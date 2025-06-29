@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Results - Plumber</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Define CSS custom properties for font sizes */
+        :root {
+            --base-font-size: 16px; /* Default */
+            --small-font-size: 14px;
+            --medium-font-size: 16px;
+            --large-font-size: 18px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #ffffff, #dbeafe); /* Default theme background */
+            font-size: var(--base-font-size); /* Apply base font size */
+        }
+
+        /* Adjust font sizes based on a class applied to the body */
+        body.font-small {
+            font-size: var(--small-font-size);
+        }
+        body.font-medium {
+            font-size: var(--medium-font-size);
+        }
+        body.font-large {
+            font-size: var(--large-font-size);
+        }
+
+        /* --- Theme-specific styles --- */
+        /* Blue Theme */
+        body.blue-theme {
+            background: linear-gradient(135deg, #e0f7fa, #bbdefb, #90caf9);
+            color: #212121;
+        }
+        body.blue-theme header {
+            background-image: linear-gradient(to right, #2196f3, #1976d2);
+        }
+        body.blue-theme .service-category {
+            background-color: #e3f2fd;
+            border-color: #90caf9;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+        }
+        body.blue-theme .service-category i {
+            color: #2196f3;
+        }
+        body.blue-theme input, body.blue-theme select { /* Added select */
+            background-color: #e0f7fa;
+            border-color: #90caf9;
+            color: #212121;
+        }
+        body.blue-theme .toggle-container {
+            background-color: #bbdefb;
+        }
+        body.blue-theme .toggle-button {
+            color: #212121;
+        }
+        body.blue-theme .active-toggle {
+            background-color: #2196f3;
+            color: white;
+        }
+        /* Blue Theme sidebar */
+        body.blue-theme #menu-sidebar {
+            background-color: #1976d2; /* Darker blue for sidebar */
+        }
+
+
+        /* Green Theme */
+        body.green-theme {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9, #a5d6a7);
+            color: #212121;
+        }
+        body.green-theme header {
+            background-image: linear-gradient(to right, #4caf50, #388e3c);
+        }
+        body.green-theme .service-category {
+            background-color: #f1f8e9;
+            border-color: #a5d6a7;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+        }
+        body.green-theme .service-category i {
+            color: #4caf50;
+        }
+        body.green-theme input, body.green-theme select { /* Added select */
+            background-color: #e8f5e9;
+            border-color: #a5d6a7;
+            color: #212121;
+        }
+        body.green-theme .toggle-container {
+            background-color: #c8e6c9;
+        }
+        body.green-theme .toggle-button {
+            color: #212121;
+        }
+        body.green-theme .active-toggle {
+            background-color: #4caf50;
+            color: white;
+        }
+        /* Green Theme sidebar */
+        body.green-theme #menu-sidebar {
+            background-color: #388e3c; /* Darker green for sidebar */
+        }
+
+        /* Dark Mode overrides for themes - these should override if dark-mode is active */
+        body.dark-mode { /* This class remains for dark mode base */
+            background-color: #1a202c;
+            color: #f7fafc;
+        }
+        body.dark-mode header {
+            background-image: linear-gradient(to right, #4a5568, #2d3748);
+        }
+        body.dark-mode .service-category {
+            background-color: #2d3748;
+            border-color: #4a5568;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        body.dark-mode .service-category:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-mode input, body.dark-mode select { /* Added select */
+            background-color: #2d3748;
+            border-color: #718096;
+            color: #f7fafc;
+        }
+        body.dark-mode input:focus, body.dark-mode select:focus { /* Added select */
+            ring-color: #a0aec0;
+            border-color: #a0aec0;
+        }
+        body.dark-mode .toggle-container {
+            background-color: #4a5568;
+        }
+        body.dark-mode .toggle-button {
+            color: #f7fafc;
+        }
+        /* Active toggle in dark mode for theme selection */
+        body.dark-mode .active-toggle {
+            background-color: #a0aec0;
+            color: #1a202c;
+        }
+        /* Dark Mode sidebar */
+        body.dark-mode #menu-sidebar {
+            background-color: #2d3748; /* Darker shade for sidebar in dark mode */
+        }
+        /* End Theme-specific styles */
+
+
+        @keyframes wave-animation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            15% {
+                transform: rotate(14deg);
+            }
+
+            30% {
+                transform: rotate(-8deg);
+            }
+
+            40% {
+                transform: rotate(14deg);
+            }
+
+            50% {
+                transform: rotate(-4deg);
+            }
+
+            60% {
+                transform: rotate(10deg);
+            }
+
+            70% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes fire-bounce {
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            25% {
+                transform: scale(1.1) rotate(-5deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(5deg);
+            }
+
+            75% {
+                transform: scale(1.1) rotate(-3deg);
+            }
+        }
+
+        .voice-icon {
+            animation: wave-animation 2s infinite;
+            transform-origin: bottom center;
+        }
+
+        .fire-emoji {
+            display: inline-block;
+            animation: fire-bounce 1.2s infinite;
+            transform-origin: center;
+        }
+
+        .toggle-container {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            padding: 4px;
+            position: relative;
+        }
+
+        .toggle-button {
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .active-toggle {
+            background-color: #4f46e5;
+            color: white;
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 640px) {
+            .search-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-category {
+            background-color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-category:hover {
+            transform: translateY(-0.75rem);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-category i {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #4f46e5;
+        }
+
+        #menu-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #1e3a8a; /* Default base color */
+            color: #f8fafc;
+            z-index: 100;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            padding-top: 5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #menu-sidebar.open {
+            transform: translateX(0);
+        }
+
+        #menu-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #menu-sidebar ul li {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+
+        #menu-sidebar ul li:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        #menu-sidebar ul li i {
+            margin-right: 0.75rem;
+            width: 1.2em;
+            text-align: center;
+            color: #60a5fa;
+        }
+        
+        /* Style for parent settings item */
+        #settingsMenu {
+            position: relative; /* Needed for absolute positioning of the caret */
+        }
+        #settingsMenu > i { /* Icon for the main settings item */
+            margin-right: 0.75rem;
+            width: 1.2em;
+            text-align: center;
+            color: #60a5fa;
+        }
+        #settingsMenu .caret {
+            position: absolute;
+            right: 1.5rem; /* Align caret to the right */
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg); /* Initial state: pointing right/down */
+            transition: transform 0.2s ease;
+            font-size: 1rem;
+        }
+        #settingsMenu.open .caret {
+            transform: translateY(-50%) rotate(90deg); /* Rotated when open */
+        }
+
+
+        #menu-sidebar .settings-options {
+            list-style: none;
+            padding: 0; /* Remove left padding to align with parent */
+            margin: 0;
+            background-color: rgba(0, 0, 0, 0.1); /* Slightly darker background for sub-menu */
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: none; /* Hidden by default */
+        }
+        #settingsMenu.open .settings-options {
+            display: block; /* Show when parent is open */
+        }
+
+        #menu-sidebar .settings-options li {
+            padding: 0.8rem 1.5rem 0.8rem 3rem; /* Indent sub-options further */
+            font-size: 0.95rem; /* Slightly larger font for sub-items */
+            border-bottom: none; /* No border for sub-items */
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space between label and toggle */
+        }
+        #menu-sidebar .settings-options li:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        #menu-sidebar .settings-options li:last-child {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Border on last sub-item to separate from next main item */
+        }
+
+        /* Fix for select dropdown options visibility */
+        .settings-options select {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            padding: 4px 8px;
+            color: #f8fafc;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            appearance: none; /* Remove default arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 25px; /* Space for custom arrow */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23f8fafc%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 12px;
+            
+            /* Crucial for visibility: ensures options are not clipped */
+            z-index: 101; /* Higher than sidebar z-index if needed */
+            position: relative; /* Needed for z-index to work */
+        }
+
+        /* Ensure options within the select are visible and readable */
+        .settings-options select option {
+            background-color: #1e3a8a; /* Dark background for options */
+            color: #f8fafc; /* Light text for options */
+        }
+        .dark-mode .settings-options select option {
+            background-color: #2d3748; /* Darker background in dark mode */
+            color: #f7fafc; /* Light text in dark mode */
+        }
+
+
+        .dark-mode .settings-options select {
+            background-color: rgba(255, 255, 255, 0.1); /* Darker in dark mode */
+            border-color: rgba(255, 255, 255, 0.15);
+            color: #f7fafc;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23f7fafc%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+        }
+
+
+        #menu-sidebar .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #f8fafc;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        #menu-sidebar .close-menu:hover {
+            opacity: 1;
+        }
+
+        .header-profile-picture {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #60a5fa;
+            margin-right: 1rem;
+        }
+
+        .dark-mode {
+            background-color: #1a202c;
+            color: #f7fafc;
+        }
+
+        .dark-mode header {
+            background-image: linear-gradient(to right, #4a5568, #2d3748);
+        }
+
+        .dark-mode .service-category {
+            background-color: #2d3748;
+            border-color: #4a5568;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-mode .service-category:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode input {
+            background-color: #2d3748;
+            border-color: #718096;
+            color: #f7fafc;
+        }
+
+        .dark-mode input:focus {
+            ring-color: #a0aec0;
+            border-color: #a0aec0;
+        }
+
+        .dark-mode .toggle-container {
+            background-color: #4a5568;
+        }
+
+        .dark-mode .toggle-button {
+            color: #f7fafc;
+        }
+        /* Active toggle in dark mode for theme selection */
+        .dark-mode .active-toggle {
+            background-color: #a0aec0;
+            color: #1a202c;
+        }
+
+        /* Custom styles for the toggle switch */
+        .dark-mode-switch {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 36px;
+            border-radius: 9999px;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            flex-shrink: 0; /* Prevent it from shrinking */
+        }
+
+        .dark-mode-switch:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode-switch-track {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            background-color: #e5e7eb;
+            transition: background-color 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e5e7eb;
+        }
+
+        .dark-mode-switch-track.dark {
+            background-color: #4a5568;
+            border-color: #4a5568;
+        }
+
+        .dark-mode-switch-thumb {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dark-mode-switch-thumb.dark {
+            transform: translateX(64px);
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.5);
+        }
+
+        .dark-mode-switch-label {
+            position: relative;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4a5568;
+            margin-left: 36px; /* Adjust margin to accommodate thumb */
+            transition: color 0.3s ease;
+            user-select: none;
+        }
+
+        .dark-mode-switch-label.dark {
+            color: #f7fafc;
+        }
+
+        .dark-mode-switch-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dark-mode-switch-icon.light {
+            left: 12px;
+            opacity: 1;
+            transform: translateY(-50%) scale(1);
+            color: #f5fc56;
+        }
+
+        .dark-mode-switch-icon.dark {
+            left: 72px;
+            opacity: 0;
+            transform: translateY(-50%) scale(0.5);
+            color: #a0aec0;
+        }
+
+        .dark-mode-switch-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+
+        .icon-sun {
+            fill: #f5fc56;
+            stroke: #f5fc56;
+        }
+
+        .icon-moon {
+            fill: #a0aec0;
+            stroke: #a0aec0;
+        }
+
+        /* Added style for active voice button */
+        .voice-button-active {
+            background-image: linear-gradient(to right, #ef4444, #dc2626) !important; /* Red gradient when active */
+        }
+
+        /* Message box for user feedback */
+        #messageBox {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        /* Custom styles for the current page */
+        .search-results-header {
+            color: #1f2937;
+        }
+        .location-text {
+            color: #4b5563;
+        }
+        .result-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .result-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15), 0 3px 6px -1px rgba(0, 0, 0, 0.08);
+        }
+        .result-title {
+            color: #4f46e5;
+        }
+        .result-description {
+            color: #6b7280;
+        }
+        .rating-stars {
+            color: #f59e0b;
+        }
+        .anchor-ad {
+            background: linear-gradient(to right, #fcd34d, #fb8c00, #ef4444);
+        }
+        .result-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 9999px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        /* Style for select dropdowns */
+        .header-select {
+            background-color: white;
+            color: #374151; /* Dark gray for better visibility of text */
+            padding: 0.25rem 0.75rem; /* Reduced padding for compact look */
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem; /* text-sm */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow */
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%234a5568%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+            cursor: pointer;
+            outline: none;
+            padding-right: 2rem; /* Make space for the custom arrow */
+        }
+
+        .dark-mode .header-select {
+            background-color: #2d3748; /* Darker background in dark mode */
+            color: #f7fafc; /* Light text in dark mode */
+            border-color: #718096; /* Darker border */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23f7fafc%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans">
+    <header class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white p-4 flex items-center justify-between shadow-lg">
+        <div class="flex items-center gap-2">
+            <button id="burger-menu" class="text-3xl hover:scale-110 transform transition duration-300 ease-in-out">☰</button>
+        </div>
+        <div class="flex items-center gap-2">
+            <button id="todayOfferButton" class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow hover:bg-red-700 transition">
+                <span class="fire-emoji">🔥</span><span id="todayOfferText"></span>
+            </button>
+            
+            <!-- Dynamic Selects for State, City, Area -->
+            <select id="selectState" class="header-select">
+                <option value="" disabled selected></option>
+            </select>
+            <select id="selectCity" class="header-select">
+                <option value="" disabled selected></option>
+            </select>
+            <select id="selectArea" class="header-select">
+                <option value="" disabled selected></option>
+            </select>
+        </div>
+    </header>
+
+    <div class="flex justify-between items-center px-4 mt-4">
+        <div class="toggle-container" id="modeSwitch">
+            <span id="serviceToggle" class="toggle-button active-toggle">Service</span>
+            <span id="businessToggle" class="toggle-button">Business</span>
+        </div>
+        <button id="currentCityButton" class="bg-yellow-400 text-black px-3 py-2 rounded-full font-medium text-sm shadow hover:bg-yellow-300 transition">Current City: Miami</button>
+    </div>
+
+    <div class="search-grid px-4 mt-4 mb-8">
+        <div class="relative w-full">
+            <input type="text" id="searchInput" placeholder="Search for service..." class="w-full pl-4 pr-16 py-2 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:border-blue-500" />
+            <div class="absolute top-1/2 right-4 transform -translate-y-1/2">
+                <button id="voiceButton" class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white shadow-lg voice-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+                        <path d="M12 3a4 4 0 0 0-4 4v4a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4zm-6 7a6 6 0 0 0 12 0h-2a4 4 0 0 1-8 0H6zm6 10a7 7 0 0 0 7-7h-2a5 5 0 0 1-10 0H5a7 7 0 0 0 7 7z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <button id="searchButton" class="bg-blue-600 text-white px-4 py-2 rounded-full font-medium hover:bg-blue-700 hover:scale-105 transform transition">Search</button>
+    </div>
+
+    <!-- Dynamic Service and Business Categories will be rendered here -->
+    <div id="dynamicCategoriesContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 mt-4">
+        <!-- Categories will be injected here by JavaScript -->
+        <p class="col-span-full text-center text-gray-500" id="noCategoriesMessage">Loading categories...</p>
+    </div>
+
+    <div class="fixed bottom-14 left-0 w-full bg-gradient-to-r from-yellow-400 via-orange-300 to-red-400 text-black text-center py-3 font-bold text-sm shadow-inner animate-pulse z-50" onclick="alert('Contact us to promote your business!')">
+        📢 Promote your business here – Contact us to get featured!
+    </div>
+
+    <div id="menu-sidebar">
+        <div id="close-menu" class="close-menu">×</div>
+        <ul>
+            <li class="flex items-center mb-4">
+                <!-- Removed the hardcoded image for the user profile -->
+                <span class="font-semibold text-lg" id="userNameLabel">User Name</span>
+            </li>
+            <li><i class="fas fa-home"></i><span id="homeLabel">Home</span></li>
+            <li><i class="fas fa-user"></i><span id="loginSignupLabel">Login/SignUp</span></li>
+            <li><i class="fas fa-user-circle"></i><span id="myProfileLabel">My Profile</span></li>
+            <li><i class="fas fa-user-tie"></i><span id="beAnAgentLabel">Be An Agent</span></li>
+            <li><i class="fas fa-bullhorn"></i><span id="anchorAdsLabel">Anchor Ads</span></li>
+            <li><i class="fas fa-gift"></i><span id="todayOfferLabel">Today's Offer</span></li>
+            
+            <!-- Settings Menu with Sub-options -->
+            <li class="settings-parent" id="settingsMenu">
+                <i class="fas fa-cog"></i><span id="settingsLabel">Settings</span> <span class="caret">▶</span>
+                <ul class="settings-options">
+                    <li>
+                        <span id="themeSelectionLabel">Theme Selection</span>
+                        <select id="themeSelect">
+                            <option value="default">Default Theme</option>
+                            <option value="blue">Blue Theme</option>
+                            <option value="green">Green Theme</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span id="lightDarkModeLabel">Light and Dark Mode</span>
+                        <label id="dark-mode-toggle" class="dark-mode-switch">
+                            <div class="dark-mode-switch-track"></div>
+                            <div class="dark-mode-switch-thumb"></div>
+                            <span class="dark-mode-switch-label">Dark Mode</span>
+                            <div class="dark-mode-switch-icon light">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-sun"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0z"/></svg>
+                            </div>
+                            <div class="dark-mode-switch-icon dark">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-moon"><path d="M12 3a6 6 0 0 1 9 9 9 9 0 1 1-9-9z"/></svg>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <span id="fontSizeTextLabel">Font Size</span>
+                        <select id="fontSizeSelect">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span id="languagePreferencesTextLabel">Language Preferences</span>
+                        <select id="languageSelect">
+                            <option value="en">English</option>
+                            <option value="hi">हिन्दी (Hindi)</option>
+                            <option value="ta">தமிழ் (Tamil)</option>
+                            <option value="gu">ગુજરાતી (Gujarati)</option>
+                            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                            <option value="mr">मराठी (Marathi)</option>
+                            <option value="bn">বাংলা (Bengali)</option>
+                            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                            <option value="te">తెలుగు (Telugu)</option>
+                        </select>
+                    </li>
+                    <li>
+                        <button id="resetDefaultsButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-2 w-full text-sm">
+                            Reset to Defaults
+                        </button>
+                    </li>
+                </ul>
+            </li>
+            <li><i class="fas fa-comments"></i><span id="feedbackLabel">Feedback</span></li>
+            <li><i class="fas fa-info-circle"></i><span id="aboutUsLabel">About Us</span></li>
+            <li><i class="fas fa-sign-out-alt"></i><span id="logoutLabel">Logout</span></li>
+        </ul>
+    </div>
+
+    <!-- Message box to display user feedback -->
+    <div id="messageBox" class="hidden"></div>
+
+    <!-- Firebase SDK imports -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"></script>
+
+    <script type="module">
+        // Import necessary Firebase functions directly from the CDN for use in this module
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Initialization (Copied from data-management-logic for self-contained functionality)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        let app;
+        let db;
+        let auth;
+        let userId;
+
+        /**
+         * Initializes Firebase application and authenticates the user.
+         * This should be called once when the application loads.
+         */
+        async function initializeFirebaseAndAuth() {
+            try {
+                if (!app) {
+                    app = initializeApp(firebaseConfig);
+                }
+                if (!db) {
+                    db = getFirestore(app);
+                }
+                if (!auth) {
+                    auth = getAuth(app);
+                }
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                    console.log("Firebase signed in with custom token.");
+                } else {
+                    await signInAnonymously(auth);
+                    console.log("Firebase signed in anonymously.");
+                }
+
+                userId = auth.currentUser?.uid || crypto.randomUUID();
+                console.log("Current Firebase User ID:", userId);
+                return { db, auth, userId };
+            } catch (error) {
+                console.error("Error initializing Firebase or authenticating:", error);
+                throw error;
+            }
+        }
+
+        // Firestore data fetching functions (Copied from data-management-logic)
+        function getPublicCollectionPath(collectionName) {
+            if (!appId) throw new Error("App ID is not defined.");
+            return `artifacts/${appId}/public/data/${collectionName}`;
+        }
+
+        async function fetchDataFromFirestore(collectionName, isPrivate = false, queryFn = null) {
+            await initializeFirebaseAndAuth();
+
+            const path = isPrivate ? getPrivateCollectionPath(collectionName) : getPublicCollectionPath(collectionName);
+            const colRef = collection(db, path);
+            let q = colRef;
+
+            if (queryFn) {
+                q = queryFn(colRef);
+            }
+
+            console.log(`Fetching data from collection: ${path}`);
+            try {
+                const querySnapshot = await getDocs(q);
+                const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                console.log(`Fetched ${data.length} documents from ${path}`);
+                return data;
+            } catch (error) {
+                console.error(`Error fetching data from Firestore collection ${path}:`, error);
+                throw error;
+            }
+        }
+
+        // DOM elements
+        const serviceToggle = document.getElementById('serviceToggle');
+        const businessToggle = document.getElementById('businessToggle');
+        const burgerMenuBtn = document.getElementById('burger-menu');
+        const menuSidebar = document.getElementById('menu-sidebar');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        const darkModeSwitchTrack = document.querySelector('.dark-mode-switch-track');
+        const darkModeSwitchThumb = document.querySelector('.dark-mode-switch-thumb');
+        const darkModeSwitchLabel = document.querySelector('.dark-mode-switch-label');
+        const lightModeIcon = document.querySelector('.dark-mode-switch-icon.light');
+        const darkModeIcon = document.querySelector('.dark-mode-switch-icon.dark');
+        const fontSizeSelect = document.getElementById('fontSizeSelect');
+        const languageSelect = document.getElementById('languageSelect');
+        const searchInput = document.getElementById('searchInput');
+        const currentCityButton = document.getElementById('currentCityButton');
+        const searchButton = document.getElementById('searchButton');
+        const themeSelect = document.getElementById('themeSelect');
+        const voiceButton = document.getElementById('voiceButton');
+        const messageBox = document.getElementById('messageBox');
+        const resetDefaultsButton = document.getElementById('resetDefaultsButton');
+        const todayOfferButton = document.getElementById('todayOfferButton');
+        const todayOfferTextSpan = document.getElementById('todayOfferText');
+        
+        // New elements for dynamic dropdowns and categories container
+        const selectState = document.getElementById('selectState');
+        const selectCity = document.getElementById('selectCity');
+        const selectArea = document.getElementById('selectArea');
+        const dynamicCategoriesContainer = document.getElementById('dynamicCategoriesContainer');
+        const noCategoriesMessage = document.getElementById('noCategoriesMessage');
+
+
+        let allLocationsData = []; // To store all fetched locations
+        let allCategoriesData = []; // To store all fetched categories
+        let isServiceMode = true; // State for service/business toggle
+
+        // Message display function
+        function showMessage(message, duration = 3000) {
+            messageBox.textContent = message;
+            messageBox.classList.remove('hidden');
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+            }, duration);
+        }
+
+        // Language translations (kept as is)
+        const translations = {
+            en: {
+                userName: "User Name", home: "Home", loginSignup: "Login/SignUp", myProfile: "My Profile",
+                beAnAgent: "Be An Agent", anchorAds: "Anchor Ads", todayOffer: "Today's Offer", settings: "Settings",
+                themeSelection: "Theme Selection", lightDarkMode: "Light and Dark Mode", fontSize: "Font Size",
+                languagePreferences: "Language Preferences", feedback: "Feedback", aboutUs: "About Us", logout: "Logout",
+                darkModeLabel: "Dark Mode", promoteBusiness: "📢 Promote your business here – Contact us to get featured!",
+                currentCity: "Current City:", searchForService: "Search for service...", search: "Search",
+                service: "Service", business: "Business", todayOfferButton: "Today's Offer", selectState: "Select State",       
+                selectCity: "Select City", selectArea: "Select Area",
+                // Categories will be dynamically named, but placeholders for common ones are fine
+                // e.g., electrician: "Electrician", plumber: "Plumber", etc. (will be loaded dynamically)
+                loadingLocations: "Loading locations...",
+                loadingCategories: "Loading categories...",
+                noStatesFound: "No states found.",
+                noCitiesFound: "No cities found for this state.",
+                noAreasFound: "No areas found for this city.",
+                noServicesFound: "No services found. Upload via Admin Panel.",
+                noBusinessesFound: "No businesses found. Upload via Admin Panel.",
+                voiceSearchReady: "Voice search ready. Please speak...",
+                voiceSearchError: "Speech recognition not supported or denied.",
+                voiceSearchStopped: "Voice search stopped.",
+                showingServices: "Showing Services",
+                showingBusinesses: "Showing Businesses",
+                searchPlaceholderService: "Search for service...",
+                searchPlaceholderBusiness: "Search for business..."
+            },
+            hi: {
+                userName: "उपयोगकर्ता नाम", home: "मुख्य पृष्ठ", loginSignup: "लॉगिन/साइन अप करें", myProfile: "मेरी प्रोफाइल",
+                beAnAgent: "एजेंट बनें", anchorAds: "एंकर विज्ञापन", todayOffer: "आज का ऑफर", settings: "सेटिंग्स",
+                themeSelection: "थीम चुनें", lightDarkMode: "लाइट और डार्क मोड", fontSize: "फ़ॉन्ट आकार",
+                languagePreferences: "भाषा वरीयताएँ", feedback: "प्रतिक्रिया", aboutUs: "हमारे बारे में", logout: "लॉगआउट",
+                darkModeLabel: "डार्क मोड", promoteBusiness: "📢 अपना व्यवसाय यहाँ बढ़ावा दें – फ़ीचर होने के लिए संपर्क करें!",
+                currentCity: "वर्तमान शहर:", searchForService: "सेवा खोजें...", search: "खोज",
+                service: "सेवा", business: "व्यवसाय", todayOfferButton: "आज का ऑफर", selectState: "राज्य चुनें",
+                selectCity: "शहर चुनें", selectArea: "क्षेत्र चुनें",
+                loadingLocations: "स्थान लोड हो रहे हैं...",
+                loadingCategories: "श्रेणियां लोड हो रही हैं...",
+                noStatesFound: "कोई राज्य नहीं मिला।",
+                noCitiesFound: "इस राज्य के लिए कोई शहर नहीं मिला।",
+                noAreasFound: "इस शहर के लिए कोई क्षेत्र नहीं मिला।",
+                noServicesFound: "कोई सेवा नहीं मिली। एडमिन पैनल के माध्यम से अपलोड करें।",
+                noBusinessesFound: "कोई व्यवसाय नहीं मिला। एडमिन पैनल के माध्यम से अपलोड करें।",
+                voiceSearchReady: "वॉयस सर्च तैयार है। कृपया बोलें...",
+                voiceSearchError: "वाक् पहचान समर्थित नहीं है या अस्वीकृत है।",
+                voiceSearchStopped: "वॉयस सर्च बंद हो गई।",
+                showingServices: "सेवाएं दिखा रहा है",
+                showingBusinesses: "व्यवसाय दिखा रहा है",
+                searchPlaceholderService: "सेवा खोजें...",
+                searchPlaceholderBusiness: "व्यवसाय खोजें..."
+            },
+            // ... (other languages similar to previous version, truncated for brevity)
+            ta: {
+                userName: "பயனர் பெயர்", home: "முகப்பு", loginSignup: "உள்நுழை/பதிவு", myProfile: "எனது சுயவிவரம்",
+                beAnAgent: "ஒரு முகவராக இருங்கள்", anchorAds: "நங்கூர விளம்பரங்கள்", todayOffer: "இன்றைய சலுகை", settings: "அமைப்புகள்",
+                themeSelection: "தீம் தேர்வு", lightDarkMode: "வெளிச்சம் மற்றும் இருண்ட பயன்முறை", fontSize: "எழுத்துரு அளவு",
+                languagePreferences: "மொழி விருப்பத்தேர்வுகள்", feedback: "பின்னூட்டம்", aboutUs: "எங்களைப் பற்றி", logout: "வெளியேறு",
+                darkModeLabel: "இருண்ட பயன்முறை", promoteBusiness: "📢 உங்கள் வணிகத்தை இங்கே விளம்பரப்படுத்துங்கள் – இடம்பெற எங்களைத் தொடர்பு கொள்ளுங்கள்!",
+                currentCity: "தற்போதைய நகரம்:", searchForService: "சேவையைத் தேடுக...", search: "தேடல்",
+                service: "சேவை", business: "வணிகம்", todayOfferButton: "இன்றைய சலுகை", selectState: "மாநிலத்தைத் தேர்ந்தெடு",
+                selectCity: "நகரத்தைத் தேர்ந்தெடு", selectArea: "பகுதியைத் தேர்ந்தெடு",
+                loadingLocations: "இருப்பிடங்கள் ஏற்றப்படுகின்றன...",
+                loadingCategories: "வகைகள் ஏற்றப்படுகின்றன...",
+                noStatesFound: "மாநிலங்கள் எதுவும் இல்லை.",
+                noCitiesFound: "இந்த மாநிலத்திற்கு நகரங்கள் எதுவும் இல்லை.",
+                noAreasFound: "இந்த நகரத்திற்கு பகுதிகள் எதுவும் இல்லை.",
+                noServicesFound: "சேவைகள் எதுவும் இல்லை. நிர்வாக குழு மூலம் பதிவேற்றவும்.",
+                noBusinessesFound: "வணிகங்கள் எதுவும் இல்லை. நிர்வாக குழு மூலம் பதிவேற்றவும்.",
+                voiceSearchReady: "குரல் தேடல் தயார். தயவுசெய்து பேசுங்கள்...",
+                voiceSearchError: "பேச்சு அங்கீகாரம் ஆதரிக்கப்படவில்லை அல்லது மறுக்கப்பட்டது.",
+                voiceSearchStopped: "குரல் தேடல் நிறுத்தப்பட்டது.",
+                showingServices: "சேவைகளைக் காட்டுகிறது",
+                showingBusinesses: "வணிகங்களைக் காட்டுகிறது",
+                searchPlaceholderService: "சேவையைத் தேடுக...",
+                searchPlaceholderBusiness: "வணிகத்தைத் தேடுக..."
+            },
+            gu: {
+                userName: "વપરાશકર્તા નામ", home: "હોમ", loginSignup: "લૉગિન/સાઇન અપ કરો", myProfile: "મારી પ્રોફાઇલ",
+                beAnAgent: "એજન્ટ બનો", anchorAds: "એન્કર જાહેરાતો", todayOffer: "આજની ઓફર", settings: "સેટિંગ્સ",
+                themeSelection: "થીમ પસંદગી", lightDarkMode: "લાઇટ અને ડાર્ક મોડ", fontSize: "ફૉન્ટ સાઇઝ",
+                languagePreferences: "ભાષા પસંદગીઓ", feedback: "પ્રતિભાવ", aboutUs: "અમારા વિશે", logout: "લૉગઆઉટ",
+                darkModeLabel: "ડાર્ક મોડ", promoteBusiness: "📢 તમારા વ્યવસાયનો અહીં પ્રચાર કરો - ફીચર થવા માટે સંપર્ક કરો!",
+                currentCity: "વર્તમાન શહેર:", searchForService: "સેવા શોધો...", search: "શોધો",
+                service: "સેવા", business: "વ્યવસાય", todayOfferButton: "આજની ઓફર", selectState: "રાજ્ય પસંદ કરો",
+                selectCity: "શહેર પસંદ કરો", selectArea: "વિસ્તાર પસંદ કરો",
+                loadingLocations: "સ્થાનો લોડ થઈ રહ્યા છે...",
+                loadingCategories: "શ્રેણીઓ લોડ થઈ રહી છે...",
+                noStatesFound: "કોઈ રાજ્યો મળ્યા નથી.",
+                noCitiesFound: "આ રાજ્ય માટે કોઈ શહેરો મળ્યા નથી.",
+                noAreasFound: "આ શહેર માટે કોઈ વિસ્તારો મળ્યા નથી.",
+                noServicesFound: "કોઈ સેવાઓ મળતી નથી. એડમિન પેનલ દ્વારા અપલોડ કરો.",
+                noBusinessesFound: "કોઈ વ્યવસાયો મળતા નથી. એડમિન પેનલ દ્વારા અપલોડ કરો.",
+                voiceSearchReady: "વૉઇસ શોધ તૈયાર છે. કૃપા કરીને બોલો...",
+                voiceSearchError: "વાણી ઓળખ સમર્થિત નથી અથવા નકારવામાં આવી છે.",
+                voiceSearchStopped: "વૉઇસ શોધ બંધ થઈ ગઈ.",
+                showingServices: "સેવાઓ બતાવી રહ્યું છે",
+                showingBusinesses: "વ્યવસાયો બતાવી રહ્યું છે",
+                searchPlaceholderService: "સેવા શોધો...",
+                searchPlaceholderBusiness: "વ્યવસાય શોધો..."
+            },
+            kn: {
+                userName: "ಬಳಕೆದಾರ ಹೆಸರು", home: "ಮುಖಪುಟ", loginSignup: "ಲಾಗಿನ್/ಸೈನ್ ಅಪ್ ಮಾಡಿ", myProfile: "ನನ್ನ ಪ್ರೊಫೈಲ್",
+                beAnAgent: "ಏಜೆಂಟ್ ಆಗಿ", anchorAds: "ಆಂಕರ ಜಾಹೀರಾತುಗಳು", todayOffer: "ಇಂದಿನ ಕೊಡುಗೆ", settings: "ಸೆಟ್ಟಿಂಗ್ಸ್",
+                themeSelection: "ಥೀಮ್ ಆಯ್ಕೆ", lightDarkMode: "ಲೈಟ್ ಮತ್ತು ಡಾರ್ಕ್ ಮೋಡ್", fontSize: "ಫಾಂಟ್ ಗಾತ್ರ",
+                languagePreferences: "ಭಾಷಾ ಆದ್ಯತೆಗಳು", feedback: "ಪ್ರತಿಕ್ರಿಯೆ", aboutUs: "ನಮ್ಮ ಬಗ್ಗೆ", logout: "ಲಾಗ್ಔಟ್",
+                darkModeLabel: "ಡಾರ್ಕ್ ಮೋಡ್", promoteBusiness: "📢 ನಿಮ್ಮ ವ್ಯಾಪಾರವನ್ನು ಇಲ್ಲಿ ಪ್ರಚಾರ ಮಾಡಿ – ವೈಶಿಷ್ಟ್ಯಗೊಳಿಸಲು ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ!",
+                currentCity: "ಪ್ರಸ್ತುत ನಗರ:", searchForService: "ಸೇವೆಯನ್ನು ಹುಡುಕಿ...", search: "ಹುಡುಕಿ",
+                service: "ಸೇವೆ", business: "ವ್ಯವಹಾರ", todayOfferButton: "ಇಂದಿನ ಕೊಡುಗೆ", selectState: "ರಾಜ್ಯ ಆಯ್ಕೆಮಾಡಿ",
+                selectCity: "ನಗರ ಆಯ್ಕೆಮಾಡಿ", selectArea: "ಪ್ರದೇಶ ಆಯ್ಕೆಮಾಡಿ",
+                loadingLocations: "ಸ್ಥಳಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...",
+                loadingCategories: "ವರ್ಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...",
+                noStatesFound: "ಯಾವುದೇ ರಾಜ್ಯಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
+                noCitiesFound: "ಈ ರಾಜ್ಯಕ್ಕೆ ಯಾವುದೇ ನಗರಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
+                noAreasFound: "ಈ ನಗರಕ್ಕೆ ಯಾವುದೇ ಪ್ರದೇಶಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
+                noServicesFound: "ಯಾವುದೇ ಸೇವೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ನಿರ್ವಾಹಕ ಫಲಕದ ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಿ.",
+                noBusinessesFound: "ಯಾವುದೇ ವ್ಯವಹಾರಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ನಿರ್ವಾಹಕ ಫಲಕದ ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಿ.",
+                voiceSearchReady: "ಧ್ವನಿ ಹುಡುಕಾಟ ಸಿದ್ಧವಾಗಿದೆ. ದಯವಿಟ್ಟು ಮಾತನಾಡಿ...",
+                voiceSearchError: "ಧ್ವನಿ ಗುರುತಿಸುವಿಕೆ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ ಅಥವಾ ನಿರಾಕರಿಸಲಾಗಿದೆ.",
+                voiceSearchStopped: "ಧ್ವನಿ ಹುಡುಕಾಟ ನಿಲ್ಲಿಸಲಾಗಿದೆ.",
+                showingServices: "ಸೇವೆಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ",
+                showingBusinesses: "ವ್ಯವಹಾರಗಳನ್ನು ತೋರಿಸಲಾಗುತ್ತಿದೆ",
+                searchPlaceholderService: "ಸೇವೆಯನ್ನು ಹುಡುಕಿ...",
+                searchPlaceholderBusiness: "ವ್ಯವಹಾರವನ್ನು ಹುಡುಕಿ..."
+            },
+            mr: {
+                userName: "वापरकर्ता नाव", home: "मुख्यपृष्ठ", loginSignup: "लॉगिन/साइन अप करा", myProfile: "माझी प्रोफाइल",
+                beAnAgent: "एजंट बना", anchorAds: "अँकर जाहिराती", todayOffer: "आजची ऑफर", settings: "सेटिंग्ज",
+                themeSelection: "थीम निवड", lightDarkMode: "लाइट आणि डार्क मोड", fontSize: "फॉन्ट आकार",
+                languagePreferences: "भाषा प्राधान्ये", feedback: "प्रतिक्रिया", aboutUs: "आमच्याबद्दल", logout: "लॉगआउट",
+                darkModeLabel: "डार्क मोड", promoteBusiness: "📢 तुमच्या व्यवसायाची येथे जाहिरात करा – वैशिष्ट्यासाठी संपर्क साधा!",
+                currentCity: "वर्तमान शहर:", searchForService: "सेवा शोधा...", search: "शोधा",
+                service: "सेवा", business: "व्यवसाय", todayOfferButton: "आजची ऑफर", selectState: "राज्य निवडा",
+                selectCity: "शहर निवडा", selectArea: "क्षेत्र निवडा",
+                loadingLocations: "स्थाने लोड होत आहेत...",
+                loadingCategories: "श्रेणी लोड होत आहे...",
+                noStatesFound: "कोणतेही राज्य सापडले नाही.",
+                noCitiesFound: "या राज्यासाठी कोणतेही शहर सापडले नाही.",
+                noAreasFound: "या शहरासाठी कोणतेही क्षेत्र सापडले नाही.",
+                noServicesFound: "कोणत्याही सेवा आढळल्या नाहीत. ॲडमिन पॅनलद्वारे अपलोड करा.",
+                noBusinessesFound: "कोणतेही व्यवसाय आढळले नाहीत. ॲडमिन पॅनलद्वारे अपलोड करा.",
+                voiceSearchReady: "आवाज शोध तयार आहे. कृपया बोला...",
+                voiceSearchError: "भाषण ओळख समर्थित नाही किंवा नाकारली आहे.",
+                voiceSearchStopped: "आवाज शोध थांबला.",
+                showingServices: "सेवा दर्शवित आहे",
+                showingBusinesses: "व्यवसाय दर्शवित आहे",
+                searchPlaceholderService: "सेवा शोधा...",
+                searchPlaceholderBusiness: "व्यवसाय शोधा..."
+            },
+            bn: {
+                userName: "ব্যবহারকারীর নাম", home: "হোম", loginSignup: "লগইন/সাইন আপ করুন", myProfile: "আমার প্রোফাইল",
+                beAnAgent: "একজন এজেন্ট হন", anchorAds: "অ্যাঙ্কর বিজ্ঞাপন", todayOffer: "আজকের অফার", settings: "সেটিংস",
+                themeSelection: "থিম নির্বাচন", lightDarkMode: "লাইট এবং ডার্ক মোড", fontSize: "ফন্ট সাইজ",
+                languagePreferences: "ভাষা পছন্দ", feedback: "প্রতিক্রিয়া", aboutUs: "আমাদের সম্পর্কে", logout: "লগআউট",
+                darkModeLabel: "ডার্ক মোড", promoteBusiness: "📢 আপনার ব্যবসা এখানে প্রচার করুন – বৈশিষ্ট্যযুক্ত হতে আমাদের সাথে যোগাযোগ করুন!",
+                currentCity: "বর্তমান শহর:", searchForService: "পরিষেবা খুঁজুন...", search: "অনুসন্ধান",
+                service: "পরিষেবা", business: "ব্যবসা", todayOfferButton: "আজকের অফার", selectState: "রাজ্য নির্বাচন করুন",
+                selectCity: "শহর নির্বাচন করুন", selectArea: "এলাকা নির্বাচন করুন",
+                loadingLocations: "অবস্থান লোড হচ্ছে...",
+                loadingCategories: "শ্রেণী লোড হচ্ছে...",
+                noStatesFound: "কোনো রাজ্য পাওয়া যায়নি।",
+                noCitiesFound: "এই রাজ্যের জন্য কোনো শহর পাওয়া যায়নি।",
+                noAreasFound: "এই শহরের জন্য কোনো এলাকা পাওয়া যায়নি।",
+                noServicesFound: "কোনো পরিষেবা পাওয়া যায়নি। অ্যাডমিন প্যানেল থেকে আপলোড করুন।",
+                noBusinessesFound: "কোনো ব্যবসা পাওয়া যায়নি। অ্যাডমিন প্যানেল থেকে আপলোড করুন।",
+                voiceSearchReady: "ভয়েস অনুসন্ধান প্রস্তুত। দয়া করে কথা বলুন...",
+                voiceSearchError: "স্পিচ রিকগনিশন সমর্থিত নয় বা অস্বীকার করা হয়েছে।",
+                voiceSearchStopped: "ভয়েস অনুসন্ধান বন্ধ হয়ে গেছে।",
+                showingServices: "পরিষেবা দেখাচ্ছে",
+                showingBusinesses: "ব্যবসা দেখাচ্ছে",
+                searchPlaceholderService: "পরিষেবা খুঁজুন...",
+                searchPlaceholderBusiness: "ব্যবসা খুঁজুন..."
+            },
+            pa: {
+                userName: "ਉਪਭੋਗਤਾ ਨਾਮ", home: "ਘਰ", loginSignup: "ਲਾਗਇਨ/ਸਾਈਨ ਅੱਪ ਕਰੋ", myProfile: "ਮੇਰੀ ਪ੍ਰੋਫਾਈਲ",
+                beAnAgent: "ਏਜੰਟ ਬਣੋ", anchorAds: "ਐਂਕਰ ਵਿਗਿਆਪਨ", todayOffer: "ਅੱਜ ਦੀ ਪੇਸ਼ਕਸ਼", settings: "ਸੈਟਿੰਗਜ਼",
+                themeSelection: "ਥੀਮ ਚੋਣ", lightDarkMode: "ਲਾਈਟ ਅਤੇ ਡਾਰਕ ਮੋਡ", fontSize: "ਫੌਂਟ ਸਾਈਜ਼",
+                languagePreferences: "ਭਾਸ਼ਾ ਪਸੰਦ", feedback: "ਪ੍ਰਤੀਕਰਮ", aboutUs: "ਸਾਡੇ ਬਾਰੇ", logout: "ਲੌਗਆਊਟ",
+                darkModeLabel: "ਡਾਰਕ ਮੋਡ", promoteBusiness: "📢 ਆਪਣੇ ਕਾਰੋਬਾਰ ਦਾ ਇੱਥੇ ਪ੍ਰਚਾਰ ਕਰੋ – ਵਿਸ਼ੇਸ਼ਤਾ ਲਈ ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ!",
+                currentCity: "ਮੌਜੂਦਾ ਸ਼ਹਿਰ:", searchForService: "ਸੇਵਾ ਲੱਭੋ...", search: "ਖੋਜ",
+                service: "ਸੇਵਾ", business: "ਕਾਰੋਬਾਰ", todayOfferButton: "ਅੱਜ ਦੀ ਪੇਸ਼ਕਸ਼", selectState: "ਰਾਜ ਚੁਣੋ",
+                selectCity: "ਸ਼ਹਿਰ ਚੁਣੋ", selectArea: "ਖੇਤਰ ਚੁਣੋ",
+                loadingLocations: "ਟਿਕਾਣੇ ਲੋਡ ਹੋ ਰਹੇ ਹਨ...",
+                loadingCategories: "ਸ਼੍ਰੇਣੀਆਂ ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ...",
+                noStatesFound: "ਕੋਈ ਰਾਜ ਨਹੀਂ ਮਿਲਿਆ।",
+                noCitiesFound: "ਇਸ ਰਾਜ ਲਈ ਕੋਈ ਸ਼ਹਿਰ ਨਹੀਂ ਮਿਲਿਆ।",
+                noAreasFound: "ਇਸ ਸ਼ਹਿਰ ਲਈ ਕੋਈ ਖੇਤਰ ਨਹੀਂ ਮਿਲਿਆ।",
+                noServicesFound: "ਕੋਈ ਸੇਵਾਵਾਂ ਨਹੀਂ ਮਿਲੀਆਂ। ਕਿਰਪਾ ਕਰਕੇ ਐਡਮਿਨ ਪੈਨਲ ਰਾਹੀਂ ਅਪਲੋਡ ਕਰੋ।",
+                noBusinessesFound: "ਕੋਈ ਕਾਰੋਬਾਰ ਨਹੀਂ ਮਿਲਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਐਡਮਿਨ ਪੈਨਲ ਰਾਹੀਂ ਅਪਲੋਡ ਕਰੋ।",
+                voiceSearchReady: "ਵੌਇਸ ਖੋਜ ਤਿਆਰ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਬੋਲੋ...",
+                voiceSearchError: "ਸਪੀਚ ਪਛਾਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹੈ ਜਾਂ ਇਨਕਾਰ ਕੀਤੀ ਗਈ ਹੈ।",
+                voiceSearchStopped: "ਵੌਇਸ ਖੋਜ ਬੰਦ ਹੋ ਗਈ ਹੈ।",
+                showingServices: "ਸੇਵਾਵਾਂ ਦਿਖਾ ਰਿਹਾ ਹੈ",
+                showingBusinesses: "ਕਾਰੋਬਾਰ ਦਿਖਾ ਰਿਹਾ ਹੈ",
+                searchPlaceholderService: "ਸੇਵਾ ਲੱਭੋ...",
+                searchPlaceholderBusiness: "ਕਾਰੋਬਾਰ ਲੱਭੋ..."
+            },
+            te: {
+                userName: "వినియోగదారు పేరు", home: "ముఖపుట", loginSignup: "లాగిన్/సైన్ అప్ చేయండి", myProfile: "నా ప్రొఫైల్",
+                beAnAgent: "ఏజెంట్ అవ్వండి", anchorAds: "యాంకర్ ప్రకటనలు", todayOffer: "నేటి ఆఫర్", settings: "సెట్టింగ్‌లు",
+                themeSelection: "థీమ్ ఎంపిక", lightDarkMode: "లైట్ మరియు డార్క్ మోడ్", fontSize: "ఫాంట్ పరిమాణం",
+                languagePreferences: "భాషా ప్రాధాన్యతలు", feedback: "అభిప్రాయం", aboutUs: "మా గురించి", logout: "లాగ్అవుట్",
+                darkModeLabel: "డార్క్ మోడ్", promoteBusiness: "📢 మీ వ్యాపారాన్ని ఇక్కడ ప్రచారం చేయండి – ఫీచర్ అవ్వడానికి మమ్మల్ని సంప్రదించండి!",
+                currentCity: "ప్రస్తుత నగరం:", searchForService: "సేవ కోసం శోధించండి...", search: "శోధన",
+                service: "సేవ", business: "వ్యాపారం", todayOfferButton: "నేటి ఆఫర్", selectState: "రాష్ట్రం ఎంచుకోండి",
+                selectCity: "నగరాన్ని ఎంచుకోండి", selectArea: "ప్రాంతాన్ని ఎంచుకోండి",
+                loadingLocations: "స్థానాలు లోడ్ అవుతున్నాయి...",
+                loadingCategories: "వర్గాలు లోడ్ అవుతున్నాయి...",
+                noStatesFound: "రాష్ట్రాలు ఏమీ కనుగొనబడలేదు.",
+                noCitiesFound: "ఈ రాష్ట్రానికి నగరాలు ఏమీ కనుగొనబడలేదు.",
+                noAreasFound: "ఈ నగరానికి ప్రాంతాలు ఏమీ కనుగొనబడలేదు.",
+                noServicesFound: "సేవలు ఏమీ కనుగొనబడలేదు. అడ్మిన్ ప్యానెల్ ద్వారా అప్‌లోడ్ చేయండి.",
+                noBusinessesFound: "వ్యాపారాలు ఏమీ కనుగొనబడలేదు. అడ్మిన్ ప్యానెల్ ద్వారా అప్‌లోడ్ చేయండి.",
+                voiceSearchReady: "వాయిస్ శోధన సిద్ధంగా ఉంది. దయచేసి మాట్లాడండి...",
+                voiceSearchError: "వాయిస్ రికగ్నిషన్ మద్దతు లేదు లేదా తిరస్కరించబడింది.",
+                voiceSearchStopped: "వాయిస్ శోధన ఆగిపోయింది.",
+                showingServices: "సేవలను చూపిస్తోంది",
+                showingBusinesses: "వ్యాపారాలను చూపిస్తోంది",
+                searchPlaceholderService: "సేవ కోసం శోధించండి...",
+                searchPlaceholderBusiness: "వ్యాపారం కోసం శోధించండి..."
+            }
+        };
+
+
+        // Function to set dark mode state
+        function setDarkMode(isDark) {
+            if (isDark) {
+                body.classList.add('dark-mode');
+                darkModeSwitchTrack.classList.add('dark');
+                darkModeSwitchThumb.classList.add('dark');
+                darkModeSwitchLabel.classList.add('dark');
+                lightModeIcon.classList.add('dark');
+                darkModeIcon.classList.add('dark');
+            } else {
+                body.classList.remove('dark-mode');
+                darkModeSwitchTrack.classList.remove('dark');
+                darkModeSwitchThumb.classList.remove('dark');
+                darkModeSwitchLabel.classList.remove('dark');
+                lightModeIcon.classList.remove('dark');
+                darkModeIcon.classList.remove('dark');
+            }
+            localStorage.setItem('isDarkMode', isDark);
+        }
+
+        // Dark mode toggle functionality
+        darkModeToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const isDark = body.classList.contains('dark-mode');
+            setDarkMode(!isDark);
+        });
+
+        // Function to apply selected theme
+        function applyTheme(themeValue) {
+            body.classList.remove('default-theme', 'blue-theme', 'green-theme');
+            if (themeValue !== 'default') {
+                body.classList.add(`${themeValue}-theme`);
+            }
+            localStorage.setItem('selectedTheme', themeValue);
+        }
+
+        // Theme Selection Logic
+        themeSelect.addEventListener('change', (event) => {
+            event.stopPropagation();
+            applyTheme(event.target.value);
+        });
+
+        // Function to apply font size
+        function applyFontSize(sizeValue) {
+            body.classList.remove('font-small', 'font-medium', 'font-large');
+            body.classList.add(`font-${sizeValue}`);
+            localStorage.setItem('selectedFontSize', sizeValue);
+        }
+
+        // Font Size Selection Logic
+        fontSizeSelect.addEventListener('change', (event) => {
+            event.stopPropagation();
+            applyFontSize(event.target.value);
+        });
+
+        function applyLanguage(lang) {
+            const t = translations[lang];
+            if (!t) return;
+
+            document.getElementById('userNameLabel').textContent = t.userName || "User Name";
+            // The image is removed, so no image-related text content update needed here
+            document.getElementById('homeLabel').textContent = t.home;
+            document.getElementById('loginSignupLabel').textContent = t.loginSignup;
+            document.getElementById('myProfileLabel').textContent = t.myProfile;
+            document.getElementById('beAnAgentLabel').textContent = t.beAnAgent;
+            document.getElementById('anchorAdsLabel').textContent = t.anchorAds;
+            document.getElementById('todayOfferLabel').textContent = t.todayOffer;
+            document.getElementById('settingsLabel').textContent = t.settings;
+            
+            document.getElementById('themeSelectionLabel').textContent = t.themeSelection;
+            document.getElementById('lightDarkModeLabel').textContent = t.lightDarkMode;
+            document.getElementById('fontSizeTextLabel').textContent = t.fontSize; 
+            document.getElementById('languagePreferencesTextLabel').textContent = t.languagePreferences; 
+
+            document.getElementById('feedbackLabel').textContent = t.feedback;
+            document.getElementById('aboutUsLabel').textContent = t.aboutUs;
+            document.getElementById('logoutLabel').textContent = t.logout;
+
+            document.querySelector('.fixed.bottom-14').textContent = t.promoteBusiness;
+            serviceToggle.textContent = t.service;
+            businessToggle.textContent = t.business;
+            
+            // Current City Button Update
+            const selectedCityFromDropdown = selectCity.value;
+            if (currentCityButton) {
+                currentCityButton.textContent = selectedCityFromDropdown ? 
+                    `${t.currentCity} ${selectedCityFromDropdown}` : 
+                    `${t.currentCity} Miami`; // Default if no city selected
+            }
+            
+            if (searchInput) {
+                searchInput.placeholder = isServiceMode ? t.searchPlaceholderService : t.searchPlaceholderBusiness;
+            }
+
+            if (searchButton) {
+                searchButton.textContent = t.search;
+            }
+
+            // Set static "Today's Offer" text based on current language
+            if (todayOfferTextSpan) {
+                todayOfferTextSpan.textContent = t.todayOfferButton; // Set to the static translated text
+            }
+
+            // Update dropdowns' default options
+            if (selectState) {
+                const defaultOption = selectState.querySelector('option[value=""]');
+                if (defaultOption) defaultOption.textContent = t.selectState;
+            }
+            if (selectCity) {
+                const defaultOption = selectCity.querySelector('option[value=""]');
+                if (defaultOption) defaultOption.textContent = t.selectCity;
+            }
+            if (selectArea) {
+                const defaultOption = selectArea.querySelector('option[value=""]');
+                if (defaultOption) defaultOption.textContent = t.selectArea;
+            }
+
+            if (document.querySelector('#dark-mode-toggle .dark-mode-switch-label')) {
+                document.querySelector('#dark-mode-toggle .dark-mode-switch-label').textContent = t.darkModeLabel;
+            }
+            
+            // Re-render categories with updated language
+            renderCategories(isServiceMode ? 'Service' : 'Business');
+
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        languageSelect.addEventListener('change', (event) => {
+            event.stopPropagation();
+            applyLanguage(event.target.value);
+            // Re-set recognition language if it's active
+            if (recognition && isRecognizing) {
+                recognition.stop();
+                recognition.lang = event.target.value;
+                recognition.start();
+            } else if (recognition) {
+                recognition.lang = event.target.value;
+            }
+        });
+
+        // Function to reset all preferences to default
+        function resetToDefaults() {
+            localStorage.removeItem('selectedTheme');
+            localStorage.removeItem('isDarkMode');
+            localStorage.removeItem('selectedFontSize');
+            localStorage.removeItem('selectedLanguage');
+
+            applyTheme('default');
+            themeSelect.value = 'default';
+
+            setDarkMode(false);
+            
+            applyFontSize('medium');
+            fontSizeSelect.value = 'medium';
+
+            applyLanguage('en');
+            languageSelect.value = 'en';
+
+            showMessage("Settings reset to default!", 2000);
+        }
+
+        resetDefaultsButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            resetToDefaults();
+        });
+
+
+        // Voice Search Functionality (kept as is, but with language adaptation)
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+        let isRecognizing = false;
+
+        if (!recognition) {
+            showMessage("Speech recognition is not supported in this browser. Please use Google Chrome for full functionality.", 5000);
+            if (voiceButton) {
+                voiceButton.style.display = 'none';
+            }
+        } else {
+            if (voiceButton) {
+                voiceButton.style.display = 'flex'; // Ensure voice button is visible if supported
+            }
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = languageSelect.value; // Initialize with current language
+
+            recognition.onstart = () => {
+                isRecognizing = true;
+                voiceButton.classList.add('voice-button-active');
+                showMessage(translations[languageSelect.value].voiceSearchReady, 2000);
+            };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                searchInput.value = transcript;
+                console.log('Transcript:', transcript);
+                showMessage(translations[languageSelect.value].voiceSearchStopped, 1500); // Changed message to stopped
+                isRecognizing = false; // Ensure state is reset
+                voiceButton.classList.remove('voice-button-active');
+            };
+
+            recognition.onerror = (event) => {
+                isRecognizing = false;
+                voiceButton.classList.remove('voice-button-active');
+                console.error('Speech recognition error:', event.error);
+                if (event.error === 'not-allowed') {
+                    showMessage("Microphone access denied. Please allow microphone permissions in your browser settings for this site.", 5000);
+                } else if (event.error === 'no-speech') {
+                    showMessage("No speech detected. Please try again.", 3000);
+                } else if (event.error === 'network') {
+                    showMessage("Network error with speech recognition. Please check your internet connection.", 4000);
+                } else {
+                    showMessage(`Speech recognition error: ${event.error}. Please try again.`, 4000);
+                }
+            };
+
+            recognition.onend = () => {
+                isRecognizing = false;
+                voiceButton.classList.remove('voice-button-active');
+            };
+
+            if (voiceButton) {
+                voiceButton.addEventListener('click', () => {
+                    if (isRecognizing) {
+                        recognition.stop();
+                    } else {
+                        recognition.lang = languageSelect.value; // Set language before starting
+                        recognition.start();
+                    }
+                });
+            }
+        }
+
+
+        // Removed offers array and setInterval for dynamic offers.
+        // The todayOfferTextSpan will now be statically updated in applyLanguage.
+        // If you want a specific static message to be displayed, set it directly here
+        // or through a separate translation key.
+        // For now, it will simply show the translated "Today's Offer" text.
+        // The click event listener for todayOfferButton will still trigger the generic message.
+        todayOfferButton.addEventListener('click', () => {
+            showMessage(translations[languageSelect.value].todayOfferMsg);
+        });
+
+        // Burger Menu functionality (kept as is)
+        burgerMenuBtn.addEventListener('click', () => {
+            menuSidebar.classList.add('open');
+            document.getElementById('overlay').classList.add('open');
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            menuSidebar.classList.remove('open');
+            document.getElementById('overlay').classList.remove('open');
+        });
+
+        document.body.addEventListener('click', (event) => {
+            const overlay = document.getElementById('overlay');
+            if (!menuSidebar.contains(event.target) && !burgerMenuBtn.contains(event.target) && menuSidebar.classList.contains('open')) {
+                menuSidebar.classList.remove('open');
+                overlay.classList.remove('open');
+            }
+        });
+
+        menuSidebar.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+
+        // Settings menu dropdown (kept as is)
+        const settingsMenuParent = document.getElementById('settingsMenu');
+        settingsMenuParent.addEventListener('click', (event) => {
+            if (event.target === settingsMenuParent ||
+                event.target.closest('#settingsMenu > i') ||
+                event.target.closest('#settingsMenu > span:not(.caret)') ||
+                event.target.closest('#settingsMenu > .caret'))
+            {
+                settingsMenuParent.classList.toggle('open');
+            }
+        });
+
+
+        // --- Dynamic Data Population Functions ---
+
+        // Helper to add options to a select element
+        function addOptionsToSelect(selectElement, options, defaultText) {
+            selectElement.innerHTML = `<option value="" disabled selected>${defaultText}</option>`; // Add default empty option
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                selectElement.appendChild(opt);
+            });
+        }
+
+        // Populates the State dropdown
+        async function populateStates() {
+            selectState.innerHTML = `<option value="" disabled selected>${translations[languageSelect.value].loadingLocations}</option>`;
+            try {
+                allLocationsData = await fetchDataFromFirestore('locations', false); // Fetch all locations
+                const uniqueStates = [...new Set(allLocationsData.map(loc => loc.State))].sort();
+                addOptionsToSelect(selectState, uniqueStates, translations[languageSelect.value].selectState);
+                if (uniqueStates.length === 0) {
+                    showMessage(translations[languageSelect.value].noStatesFound);
+                }
+            } catch (error) {
+                console.error("Error populating states:", error);
+                showMessage(`Error loading states: ${error.message}`, 4000);
+                selectState.innerHTML = `<option value="" disabled selected>${translations[languageSelect.value].noStatesFound}</option>`;
+            }
+        }
+
+        // Populates the City dropdown based on selected State
+        selectState.addEventListener('change', () => {
+            const selectedState = selectState.value;
+            selectCity.innerHTML = `<option value="" disabled selected>${translations[languageSelect.value].selectCity}</option>`;
+            selectArea.innerHTML = `<option value="" disabled selected>${translations[languageSelect.value].selectArea}</option>`; // Reset Area
+
+            if (selectedState) {
+                const uniqueCities = [...new Set(allLocationsData
+                    .filter(loc => loc.State === selectedState)
+                    .map(loc => loc.City)
+                )].sort();
+                addOptionsToSelect(selectCity, uniqueCities, translations[languageSelect.value].selectCity);
+                if (uniqueCities.length === 0) {
+                    showMessage(translations[languageSelect.value].noCitiesFound);
+                }
+            } else {
+                 showMessage(translations[languageSelect.value].selectState); // Prompt to select state
+            }
+        });
+
+        // Populates the Area dropdown based on selected City
+        selectCity.addEventListener('change', () => {
+            const selectedState = selectState.value;
+            const selectedCity = selectCity.value;
+            selectArea.innerHTML = `<option value="" disabled selected>${translations[languageSelect.value].selectArea}</option>`; // Reset Area
+            
+            // Update current city button when a city is selected
+            const t = translations[languageSelect.value];
+            if (selectedCity) {
+                currentCityButton.textContent = `${t.currentCity} ${selectedCity}`;
+            } else {
+                currentCityButton.textContent = `${t.currentCity} Miami`; // Default if no city selected
+            }
+
+            if (selectedState && selectedCity) {
+                const uniqueAreas = [...new Set(allLocationsData
+                    .filter(loc => loc.State === selectedState && loc.City === selectedCity)
+                    .map(loc => loc.Area)
+                )].sort();
+                addOptionsToSelect(selectArea, uniqueAreas, translations[languageSelect.value].selectArea);
+                if (uniqueAreas.length === 0) {
+                    showMessage(translations[languageSelect.value].noAreasFound);
+                }
+            } else {
+                showMessage(translations[languageSelect.value].selectCity); // Prompt to select city
+            }
+        });
+
+        // Renders service/business categories
+        async function renderCategories(typeFilter) {
+            dynamicCategoriesContainer.innerHTML = `<p class="col-span-full text-center text-gray-500" id="noCategoriesMessage">${translations[languageSelect.value].loadingCategories}</p>`;
+            try {
+                // Fetch categories only if not already loaded or if a forced refresh is needed
+                if (allCategoriesData.length === 0) {
+                     allCategoriesData = await fetchDataFromFirestore('categories', false);
+                }
+               
+                const filteredCategories = allCategoriesData.filter(cat => cat.Type === typeFilter);
+                dynamicCategoriesContainer.innerHTML = ''; // Clear previous content
+
+                if (filteredCategories.length === 0) {
+                    dynamicCategoriesContainer.innerHTML = `<p class="col-span-full text-center text-gray-500">${typeFilter === 'Service' ? translations[languageSelect.value].noServicesFound : translations[languageSelect.value].noBusinessesFound}</p>`;
+                } else {
+                    filteredCategories.forEach(category => {
+                        const iconClass = getIconForCategory(category.Name);
+                        
+                        // ONLY render if a specific icon is found (not the default question circle)
+                        if (iconClass !== 'fas fa-question-circle') { 
+                            const categoryDiv = document.createElement('div');
+                            categoryDiv.className = 'service-category';
+                            categoryDiv.setAttribute(`data-${typeFilter.toLowerCase()}-id`, category.Name.toLowerCase().replace(/\s+/g, ''));
+                            categoryDiv.innerHTML = `
+                                <i class="${iconClass}"></i>
+                                <span class="${typeFilter.toLowerCase()}-name">${category.Name}</span>
+                            `;
+                            dynamicCategoriesContainer.appendChild(categoryDiv);
+                        }
+                        // Categories with default icon will not be rendered here, but will still be in allCategoriesData for search.
+                    });
+
+                    // If no categories were rendered after filtering by icon, display a message
+                    if (dynamicCategoriesContainer.children.length === 0) {
+                        dynamicCategoriesContainer.innerHTML = `<p class="col-span-full text-center text-gray-500">${typeFilter === 'Service' ? translations[languageSelect.value].noServicesFound : translations[languageSelect.value].noBusinessesFound} (or no specific icons found)</p>`;
+                    }
+                }
+            } catch (error) {
+                console.error("Error rendering categories:", error);
+                dynamicCategoriesContainer.innerHTML = `<p class="col-span-full text-center text-red-500">Error loading categories: ${error.message}</p>`;
+            }
+        }
+
+        // Helper function to get Font Awesome icon for a category name
+        function getIconForCategory(categoryName) {
+            const lowerName = categoryName.toLowerCase();
+            switch (lowerName) {
+                case 'electrician': return 'fas fa-lightbulb';
+                case 'plumber': return 'fas fa-faucet';
+                case 'carpenter': return 'fas fa-hammer';
+                case 'painter': return 'fas fa-paint-roller';
+                case 'ac repair': return 'fas fa-snowflake';
+                case 'refrigerator repair': return 'fas fa-refrigerator';
+                case 'cctv installation': return 'fas fa-video';
+                case 'water purifier': return 'fas fa-filter';
+                case 'laundry': return 'fas fa-tshirt';
+                case 'cooking gas': return 'fas fa-fire';
+                case 'mobile repair': return 'fas fa-mobile-alt';
+                case 'home cleaning': return 'fas fa-broom';
+                case 'pest control': return 'fas fa-bug';
+                case 'salon at home': return 'fas fa-cut';
+                case 'computer repair': return 'fas fa-laptop-code';
+                case 'photographer': return 'fas fa-camera-retro';
+                case 'makeup artist': return 'fas fa-paint-brush';
+                case 'dj service': return 'fas fa-compact-disc';
+                case 'restaurant': return 'fas fa-utensils';
+                case 'grocery shop': return 'fas fa-shopping-basket';
+                case 'medical store': return 'fas fa-first-aid';
+                case 'clothing store': return 'fas fa-store'; // Changed from 'tshirt' for generic store
+                case 'salon': return 'fas fa-scissors';
+                case 'courier service': return 'fas fa-box';
+                case 'book store': return 'fas fa-book';
+                case 'school': return 'fas fa-school';
+                case 'factory': return 'fas fa-industry';
+                case 'car dealer': return 'fas fa-car';
+                case 'pagdi wala': return 'fas fa-hard-hat'; // Example for Pagdi Wala, if you want an icon for it. Otherwise, it will fallback to default.
+                default: return 'fas fa-question-circle'; // Default icon for unmatched categories
+            }
+        }
+
+        // Service/Business Toggle (updated to render dynamic categories)
+        serviceToggle.addEventListener('click', () => {
+            if (!isServiceMode) {
+                serviceToggle.classList.add('active-toggle');
+                businessToggle.classList.remove('active-toggle');
+                isServiceMode = true;
+                searchInput.placeholder = translations[languageSelect.value].searchPlaceholderService;
+                showMessage(translations[languageSelect.value].showingServices, 2000);
+                renderCategories('Service');
+            }
+        });
+
+        businessToggle.addEventListener('click', () => {
+            if (isServiceMode) {
+                businessToggle.classList.add('active-toggle');
+                serviceToggle.classList.remove('active-toggle');
+                isServiceMode = false;
+                searchInput.placeholder = translations[languageSelect.value].searchPlaceholderBusiness;
+                showMessage(translations[languageSelect.value].showingBusinesses, 2000);
+                renderCategories('Business');
+            }
+        });
+
+        // Search Functionality (updated to search dynamic categories)
+        searchButton.addEventListener('click', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const currentCategories = dynamicCategoriesContainer.querySelectorAll('.service-category');
+            let found = false;
+
+            // First, hide all currently displayed categories
+            currentCategories.forEach(categoryDiv => {
+                categoryDiv.style.display = 'none';
+            });
+            
+            // Now, iterate through all categories (including those not displayed on the grid)
+            const typeFilter = isServiceMode ? 'Service' : 'Business';
+            const categoriesToSearch = allCategoriesData.filter(cat => cat.Type === typeFilter);
+
+            categoriesToSearch.forEach(category => {
+                const categoryName = category.Name.toLowerCase();
+                if (categoryName.includes(searchTerm)) {
+                    // Check if the category is currently rendered on the grid.
+                    // If not, we might need to dynamically add it or show a message.
+                    // For now, let's assume we want to *display* it if searched, even if it has no icon.
+                    // To do this, we need to re-evaluate how categories are displayed upon search.
+                    
+                    // Simpler approach for now: if a match is found, and it *would* have been rendered (i.e. has an icon), show it.
+                    // If it has no icon, we'll indicate it in a message.
+                    const iconClass = getIconForCategory(category.Name);
+                    if (iconClass !== 'fas fa-question-circle') {
+                        // Find the existing div or create a new one if it was initially filtered out
+                        // This part is tricky if we need to dynamically add elements *just for search results*
+                        // For now, we'll stick to showing/hiding *already rendered* elements.
+                        // To show elements that were *not* rendered, you'd need a separate search results display area.
+
+                        // Since the current `renderCategories` already filters out items without specific icons,
+                        // `currentCategories` will only contain items *with* icons.
+                        // So, a search for "Pagdi Wala" (if it defaults to question mark) won't find a div to show.
+                        // We need to decide if search should *temporarily* render non-iconed items, or just list names.
+
+                        // Let's refine the search behavior: if a category without an icon is searched, 
+                        // we'll show a message instead of trying to display it visually on the grid.
+                        found = true; // Mark as found, even if not visually displayed in the grid
+                        showMessage(`Found "${category.Name}". No specific icon is available, but you can select this service.`, 3000);
+                        // Stop after first match for simplicity in this message.
+                        return; // Exit forEach if a match is found to show message
+                    } else {
+                        // If it has an icon and matches the search term, show it.
+                        const categoryDiv = document.querySelector(`[data-${typeFilter.toLowerCase()}-id="${category.Name.toLowerCase().replace(/\s+/g, '')}"]`);
+                        if (categoryDiv) {
+                            categoryDiv.style.display = 'flex';
+                            found = true;
+                        }
+                    }
+                }
+            });
+
+            if (!found && searchTerm !== "") {
+                showMessage(`No results found for "${searchInput.value}".`);
+            } else if (searchTerm === "") {
+                // If search input is cleared, re-render all appropriate categories (with icons)
+                renderCategories(isServiceMode ? 'Service' : 'Business');
+            }
+        });
+
+
+        // Initial setup on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initializeFirebaseAndAuth();
+            console.log("Website Page: Firebase initialized and authenticated.");
+
+            // Apply saved settings (theme, dark mode, font size, language)
+            const storedTheme = localStorage.getItem('selectedTheme') || 'default';
+            applyTheme(storedTheme);
+            themeSelect.value = storedTheme;
+
+            const storedDarkMode = localStorage.getItem('isDarkMode') === 'true';
+            setDarkMode(storedDarkMode);
+            
+            const storedFontSize = localStorage.getItem('selectedFontSize') || 'medium';
+            applyFontSize(storedFontSize);
+            fontSizeSelect.value = storedFontSize;
+
+            const storedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            languageSelect.value = storedLanguage;
+            applyLanguage(storedLanguage); // Apply initial language and trigger UI updates
+
+
+            // Initial population of dropdowns and categories
+            await populateStates(); // Populates State dropdown
+            await renderCategories(isServiceMode ? 'Service' : 'Business'); // Render initial categories
+
+            // Set placeholder for search input based on initial mode
+            searchInput.placeholder = isServiceMode ? translations[languageSelect.value].searchPlaceholderService : translations[languageSelect.value].searchPlaceholderBusiness;
+
+            // Initialize current city display
+            currentCityButton.textContent = `${translations[languageSelect.value].currentCity} Miami`; // Default until a city is selected
+        });
+    </script>
+</body>
+</html>

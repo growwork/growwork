@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="profilePageTitle">Service/Business Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" xintegrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Define CSS custom properties for font sizes */
+        :root {
+            --base-font-size: 16px; /* Default */
+            --small-font-size: 14px;
+            --medium-font-size: 16px;
+            --large-font-size: 18px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #ffffff, #dbeafe); /* Default theme background */
+            font-size: var(--base-font-size); /* Apply base font size */
+        }
+
+        /* Adjust font sizes based on a class applied to the body */
+        body.font-small {
+            font-size: var(--small-font-size);
+        }
+        body.font-medium {
+            font-size: var(--medium-font-size);
+        }
+        body.font-large {
+            font-size: var(--large-font-size);
+        }
+
+        /* --- Theme-specific styles --- */
+        /* Blue Theme */
+        body.blue-theme {
+            background: linear-gradient(135deg, #e0f7fa, #bbdefb, #90caf9);
+            color: #212121;
+        }
+        body.blue-theme header {
+            background-image: linear-gradient(to right, #2196f3, #1976d2);
+        }
+        body.blue-theme .profile-card {
+            background-color: #e3f2fd;
+            border-color: #90caf9;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+        }
+        body.blue-theme .profile-card h2, body.blue-theme .profile-card h3 {
+            color: #2196f3;
+        }
+        body.blue-theme #menu-sidebar {
+            background-color: #1976d2; /* Darker blue for sidebar */
+        }
+
+
+        /* Green Theme */
+        body.green-theme {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9, #a5d6a7);
+            color: #212121;
+        }
+        body.green-theme header {
+            background-image: linear-gradient(to right, #4caf50, #388e3c);
+        }
+        body.green-theme .profile-card {
+            background-color: #f1f8e9;
+            border-color: #a5d6a7;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+        }
+        body.green-theme .profile-card h2, body.green-theme .profile-card h3 {
+            color: #4caf50;
+        }
+        body.green-theme #menu-sidebar {
+            background-color: #388e3c; /* Darker green for sidebar */
+        }
+
+        /* Dark Mode overrides for themes - these should override if dark-mode is active */
+        body.dark-mode { /* This class remains for dark mode base */
+            background-color: #1a202c;
+            color: #f7fafc;
+        }
+        body.dark-mode header {
+            background-image: linear-gradient(to right, #4a5568, #2d3748);
+        }
+        body.dark-mode .profile-card {
+            background-color: #2d3748;
+            border-color: #4a5568;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        body.dark-mode .profile-card h2, body.dark-mode .profile-card h3 {
+            color: #63b3ed; /* Lighter blue for dark mode headings */
+        }
+        body.dark-mode .profile-card:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-mode #menu-sidebar {
+            background-color: #2d3748; /* Darker shade for sidebar in dark mode */
+        }
+        body.dark-mode .toggle-container {
+            background-color: #4a5568;
+        }
+        body.dark-mode .toggle-button {
+            color: #f7fafc;
+        }
+        body.dark-mode .active-toggle {
+            background-color: #a0aec0;
+            color: #1a202c;
+        }
+        body.dark-mode .dark-mode-switch-track.dark {
+            background-color: #4a5568;
+            border-color: #4a5568;
+        }
+        body.dark-mode .dark-mode-switch-thumb.dark {
+            transform: translateX(64px);
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.5);
+        }
+        body.dark-mode .dark-mode-switch-label.dark {
+            color: #f7fafc;
+        }
+        body.dark-mode .settings-options select {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: #f7fafc;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23f7fafc%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+        }
+        body.dark-mode .settings-options select option {
+            background-color: #2d3748;
+            color: #f7fafc;
+        }
+        /* End Theme-specific styles */
+
+
+        @keyframes fire-bounce {
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                transform: scale(1.1) rotate(-5deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(5deg);
+            }
+            75% {
+                transform: scale(1.1) rotate(-3deg);
+            }
+        }
+
+        .fire-emoji {
+            display: inline-block;
+            animation: fire-bounce 1.2s infinite;
+            transform-origin: center;
+        }
+
+        /* Message box for user feedback */
+        #messageBox {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .profile-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            border: 1px solid #e0e0e0; /* Added border for consistency */
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #60a5fa;
+            margin-bottom: 1rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rating-stars {
+            color: #f59e0b;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styles for select dropdowns in header and sidebar */
+        .header-select {
+            background-color: white;
+            color: #374151;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid #d1d5db;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%234a5568%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1rem;
+            cursor: pointer;
+            outline: none;
+            padding-right: 2rem;
+        }
+
+        .dark-mode .header-select {
+            background-color: #2d3748;
+            color: #f7fafc;
+            border-color: #718096;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23f7fafc%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+        }
+
+        /* Sidebar styles copied from homepage */
+        #menu-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #1e3a8a; /* Default base color */
+            color: #f8fafc;
+            z-index: 100;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            padding-top: 5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #menu-sidebar.open {
+            transform: translateX(0);
+        }
+
+        #menu-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #menu-sidebar ul li {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+
+        #menu-sidebar ul li:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        #menu-sidebar ul li i {
+            margin-right: 0.75rem;
+            width: 1.2em;
+            text-align: center;
+            color: #60a5fa;
+        }
+        
+        #settingsMenu {
+            position: relative;
+        }
+        #settingsMenu > i {
+            margin-right: 0.75rem;
+            width: 1.2em;
+            text-align: center;
+            color: #60a5fa;
+        }
+        #settingsMenu .caret {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            transition: transform 0.2s ease;
+            font-size: 1rem;
+        }
+        #settingsMenu.open .caret {
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        #menu-sidebar .settings-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: none;
+        }
+        #settingsMenu.open .settings-options {
+            display: block;
+        }
+
+        #menu-sidebar .settings-options li {
+            padding: 0.8rem 1.5rem 0.8rem 3rem;
+            font-size: 0.95rem;
+            border-bottom: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #menu-sidebar .settings-options li:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        #menu-sidebar .settings-options li:last-child {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .settings-options select {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            padding: 4px 8px;
+            color: #f8fafc;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            padding-right: 25px;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23f8fafc%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 12px;
+            z-index: 101;
+            position: relative;
+        }
+
+        .settings-options select option {
+            background-color: #1e3a8a;
+            color: #f8fafc;
+        }
+
+        #menu-sidebar .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #f8fafc;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+
+        #menu-sidebar .close-menu:hover {
+            opacity: 1;
+        }
+
+        /* Custom styles for the toggle switch */
+        .dark-mode-switch {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 36px;
+            border-radius: 9999px;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .dark-mode-switch:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode-switch-track {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 9999px;
+            background-color: #e5e7eb;
+            transition: background-color 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e5e7eb;
+        }
+
+        .dark-mode-switch-thumb {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dark-mode-switch-label {
+            position: relative;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4a5568;
+            margin-left: 36px;
+            transition: color 0.3s ease;
+            user-select: none;
+        }
+
+        .dark-mode-switch-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dark-mode-switch-icon.light {
+            left: 12px;
+            opacity: 1;
+            transform: translateY(-50%) scale(1);
+            color: #f5fc56;
+        }
+
+        .dark-mode-switch-icon.dark {
+            left: 72px;
+            opacity: 0;
+            transform: translateY(-50%) scale(0.5);
+            color: #a0aec0;
+        }
+
+        .dark-mode-switch-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+
+        .icon-sun {
+            fill: #f5fc56;
+            stroke: #f5fc56;
+        }
+
+        .icon-moon {
+            fill: #a0aec0;
+            stroke: #a0aec0;
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans">
+    <header class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white p-4 flex items-center justify-between shadow-lg">
+        <div class="flex items-center gap-2">
+            <button id="backButton" class="text-2xl mr-4 hover:scale-110 transform transition duration-300 ease-in-out">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <button id="burger-menu" class="text-3xl hover:scale-110 transform transition duration-300 ease-in-out">☰</button>
+        </div>
+        <h1 id="headerTitle" class="text-xl font-bold flex-grow text-center">Profile Details</h1>
+        <div class="flex items-center gap-2">
+            <button id="todayOfferButton" class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow hover:bg-red-700 transition">
+                <span class="fire-emoji">🔥</span><span id="todayOfferText"></span>
+            </button>
+            <button id="currentCityButton" class="bg-yellow-400 text-black px-3 py-2 rounded-full font-medium text-sm shadow hover:bg-yellow-300 transition">Current City: Miami</button>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4">
+        <div id="profileContent" class="profile-card">
+            <!-- Profile data will be loaded here -->
+            <p class="text-center text-gray-500" id="loadingMessage">Loading profile...</p>
+        </div>
+    </main>
+
+    <div class="fixed bottom-0 left-0 w-full bg-gradient-to-r from-yellow-400 via-orange-300 to-red-400 text-black text-center py-3 font-bold text-sm shadow-inner animate-pulse z-50" onclick="alert('Contact us to promote your business!')">
+        📢 Promote your business here – Contact us to get featured!
+    </div>
+
+    <div id="menu-sidebar">
+        <div id="close-menu" class="close-menu">×</div>
+        <ul>
+            <li class="flex items-center mb-4">
+                <!-- User profile image placeholder removed -->
+                <span class="font-semibold text-lg" id="userNameLabel">User Name</span>
+            </li>
+            <li><i class="fas fa-home"></i><span id="homeLabel">Home</span></li>
+            <li><i class="fas fa-user"></i><span id="loginSignupLabel">Login/SignUp</span></li>
+            <li><i class="fas fa-user-circle"></i><span id="myProfileLabel">My Profile</span></li>
+            <li><i class="fas fa-user-tie"></i><span id="beAnAgentLabel">Be An Agent</span></li>
+            <li><i class="fas fa-bullhorn"></i><span id="anchorAdsLabel">Anchor Ads</span></li>
+            <li><i class="fas fa-gift"></i><span id="todayOfferLabelSidebar">Today's Offer</span></li>
+            
+            <li class="settings-parent" id="settingsMenu">
+                <i class="fas fa-cog"></i><span id="settingsLabel">Settings</span> <span class="caret">▶</span>
+                <ul class="settings-options">
+                    <li>
+                        <span id="themeSelectionLabel">Theme Selection</span>
+                        <select id="themeSelect">
+                            <option value="default">Default Theme</option>
+                            <option value="blue">Blue Theme</option>
+                            <option value="green">Green Theme</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span id="lightDarkModeLabel">Light and Dark Mode</span>
+                        <label id="dark-mode-toggle" class="dark-mode-switch">
+                            <div class="dark-mode-switch-track"></div>
+                            <div class="dark-mode-switch-thumb"></div>
+                            <span class="dark-mode-switch-label">Dark Mode</span>
+                            <div class="dark-mode-switch-icon light">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-sun"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0z"/></svg>
+                            </div>
+                            <div class="dark-mode-switch-icon dark">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-moon"><path d="M12 3a6 6 0 0 1 9 9 9 9 0 1 1-9-9z"/></svg>
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <span id="fontSizeTextLabel">Font Size</span>
+                        <select id="fontSizeSelect">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span id="languagePreferencesTextLabel">Language Preferences</span>
+                        <select id="languageSelect">
+                            <option value="en">English</option>
+                            <option value="hi">हिन्दी (Hindi)</option>
+                            <option value="ta">தமிழ் (Tamil)</option>
+                            <option value="gu">ગુજરાતી (Gujarati)</option>
+                            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                            <option value="mr">मराठी (Marathi)</option>
+                            <option value="bn">বাংলা (Bengali)</option>
+                            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                            <option value="te">తెలుగు (Telugu)</option>
+                        </select>
+                    </li>
+                    <li>
+                        <button id="resetDefaultsButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-2 w-full text-sm">
+                            Reset to Defaults
+                        </button>
+                    </li>
+                </ul>
+            </li>
+            <li><i class="fas fa-comments"></i><span id="feedbackLabel">Feedback</span></li>
+            <li><i class="fas fa-info-circle"></i><span id="aboutUsLabel">About Us</span></li>
+            <li><i class="fas fa-sign-out-alt"></i><span id="logoutLabel">Logout</span></li>
+        </ul>
+    </div>
+
+    <!-- Message box to display user feedback -->
+    <div id="messageBox" class="hidden"></div>
+
+    <!-- Firebase SDK imports -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        // Import getStorage if you plan to fetch images from Firebase Storage
+        // import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+
+        // Firebase Initialization
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        let app;
+        let db;
+        let auth;
+        let userId;
+
+        /**
+         * Initializes Firebase application and authenticates the user.
+         */
+        async function initializeFirebaseAndAuth() {
+            try {
+                if (!app) {
+                    app = initializeApp(firebaseConfig);
+                }
+                if (!db) {
+                    db = getFirestore(app);
+                }
+                if (!auth) {
+                    auth = getAuth(app);
+                }
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                    console.log("Firebase signed in with custom token.");
+                } else {
+                    await signInAnonymously(auth);
+                    console.log("Firebase signed in anonymously.");
+                }
+
+                userId = auth.currentUser?.uid || crypto.randomUUID();
+                console.log("Current Firebase User ID:", userId);
+                return { db, auth, userId };
+            } catch (error) {
+                console.error("Error initializing Firebase or authenticating:", error);
+                throw error;
+            }
+        }
+
+        // DOM Elements
+        const profilePageTitle = document.getElementById('profilePageTitle');
+        const headerTitle = document.getElementById('headerTitle');
+        const backButton = document.getElementById('backButton');
+        const profileContent = document.getElementById('profileContent');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const messageBox = document.getElementById('messageBox');
+        const body = document.body;
+
+        // Header and Sidebar elements
+        const burgerMenuBtn = document.getElementById('burger-menu');
+        const menuSidebar = document.getElementById('menu-sidebar');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const todayOfferButton = document.getElementById('todayOfferButton');
+        const todayOfferTextSpan = document.getElementById('todayOfferText');
+        const currentCityButton = document.getElementById('currentCityButton');
+
+        // Sidebar settings elements
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const darkModeSwitchTrack = document.querySelector('#menu-sidebar .dark-mode-switch-track');
+        const darkModeSwitchThumb = document.querySelector('#menu-sidebar .dark-mode-switch-thumb');
+        const darkModeSwitchLabel = document.querySelector('#menu-sidebar .dark-mode-switch-label');
+        const lightModeIcon = document.querySelector('#menu-sidebar .dark-mode-switch-icon.light');
+        const darkModeIcon = document.querySelector('#menu-sidebar .dark-mode-switch-icon.dark');
+        const fontSizeSelect = document.getElementById('fontSizeSelect');
+        const languageSelect = document.getElementById('languageSelect');
+        const themeSelect = document.getElementById('themeSelect');
+        const settingsMenuParent = document.getElementById('settingsMenu');
+        const resetDefaultsButton = document.getElementById('resetDefaultsButton');
+
+
+        // Message display function
+        function showMessage(message, duration = 3000) {
+            messageBox.textContent = message;
+            messageBox.classList.remove('hidden');
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+            }, duration);
+        }
+
+        // Language translations for this page and shared elements
+        const translations = {
+            en: {
+                profilePageTitle: "Service/Business Profile",
+                headerTitleDefault: "Profile Details", // Default for header before loading
+                loadingProfile: "Loading profile...",
+                profileNotFound: "Profile not found.",
+                name: "Name:",
+                type: "Type:",
+                description: "Description:",
+                contact: "Contact Information",
+                phone: "Phone:",
+                email: "Email:",
+                address: "Address:",
+                rating: "Rating:",
+                reviews: "Reviews", // Changed to match common usage
+                operatingHours: "Operating Hours",
+                gallery: "Gallery",
+                noProfileId: "No profile ID provided. Returning to search...",
+                backButton: "Back to Search",
+                
+                // Shared homepage elements translations
+                userName: "User Name", home: "Home", loginSignup: "Login/SignUp", myProfile: "My Profile",
+                beAnAgent: "Be An Agent", anchorAds: "Anchor Ads", todayOffer: "Today's Offer", settings: "Settings",
+                themeSelection: "Theme Selection", lightDarkMode: "Light and Dark Mode", fontSize: "Font Size",
+                languagePreferences: "Language Preferences", feedback: "Feedback", aboutUs: "About Us", logout: "Logout",
+                darkModeLabel: "Dark Mode", promoteBusiness: "📢 Promote your business here – Contact us to get featured!",
+                currentCity: "Current City:", todayOfferButton: "Today's Offer",
+                todayOfferMsg: "Check out our amazing deals!", // Added for the Today's Offer button click
+            },
+            hi: {
+                profilePageTitle: "सेवा/व्यवसाय प्रोफ़ाइल",
+                headerTitleDefault: "प्रोफ़ाइल विवरण",
+                loadingProfile: "प्रोफ़ाइल लोड हो रही है...",
+                profileNotFound: "प्रोफ़ाइल नहीं मिली।",
+                name: "नाम:",
+                type: "प्रकार:",
+                description: "विवरण:",
+                contact: "संपर्क जानकारी",
+                phone: "फोन:",
+                email: "ईमेल:",
+                address: "पता:",
+                rating: "रेटिंग:",
+                reviews: "समीक्षाएं",
+                operatingHours: "कार्य के घंटे",
+                gallery: "गैलरी",
+                noProfileId: "कोई प्रोफ़ाइल आईडी प्रदान नहीं की गई। खोज पर लौट रहा है...",
+                backButton: "खोज पर वापस",
+
+                // Shared homepage elements translations
+                userName: "उपयोगकर्ता नाम", home: "मुख्य पृष्ठ", loginSignup: "लॉगिन/साइन अप करें", myProfile: "मेरी प्रोफाइल",
+                beAnAgent: "एजेंट बनें", anchorAds: "एंकर विज्ञापन", todayOffer: "आज का ऑफर", settings: "सेटिंग्स",
+                themeSelection: "थीम चुनें", lightDarkMode: "लाइट और डार्क मोड", fontSize: "फ़ॉन्ट आकार",
+                languagePreferences: "भाषा वरीयताएँ", feedback: "प्रतिक्रिया", aboutUs: "हमारे बारे में", logout: "लॉगआउट",
+                darkModeLabel: "डार्क मोड", promoteBusiness: "📢 अपना व्यवसाय यहाँ बढ़ावा दें – फ़ीचर होने के लिए संपर्क करें!",
+                currentCity: "वर्तमान शहर:", todayOfferButton: "आज का ऑफर",
+                todayOfferMsg: "हमारी अद्भुत डील्स देखें!",
+            },
+            ta: {
+                profilePageTitle: "சேவை/வணிக சுயவிவரம்",
+                headerTitleDefault: "சுயவிவர விவரங்கள்",
+                loadingProfile: "சுயவிவரம் ஏற்றப்படுகிறது...",
+                profileNotFound: "சுயவிவரம் காணப்படவில்லை.",
+                name: "பெயர்:",
+                type: "வகை:",
+                description: "விளக்கம்:",
+                contact: "தொடர்பு தகவல்",
+                phone: "தொலைபேசி:",
+                email: "மின்னஞ்சல்:",
+                address: "முகவரி:",
+                rating: "மதிப்பீடு:",
+                reviews: "விமர்சனங்கள்",
+                operatingHours: "செயல்பாட்டு நேரம்",
+                gallery: "காட்சியகம்",
+                noProfileId: "சுயவிவர ஐடி வழங்கப்படவில்லை. தேடலுக்குத் திரும்புகிறது...",
+                backButton: "தேடலுக்குத் திரும்பு",
+
+                // Shared homepage elements translations
+                userName: "பயனர் பெயர்", home: "முகப்பு", loginSignup: "உள்நுழை/பதிவு", myProfile: "எனது சுயவிவரம்",
+                beAnAgent: "ஒரு முகவராக இருங்கள்", anchorAds: "நங்கூர விளம்பரங்கள்", todayOffer: "இன்றைய சலுகை", settings: "அமைப்புகள்",
+                themeSelection: "தீம் தேர்வு", lightDarkMode: "வெளிச்சம் மற்றும் இருண்ட பயன்முறை", fontSize: "எழுத்துரு அளவு",
+                languagePreferences: "மொழி விருப்பத்தேர்வுகள்", feedback: "பின்னூட்டம்", aboutUs: "எங்களைப் பற்றி", logout: "வெளியேறு",
+                darkModeLabel: "இருண்ட பயன்முறை", promoteBusiness: "📢 உங்கள் வணிகத்தை இங்கே விளம்பரப்படுத்துங்கள் – இடம்பெற எங்களைத் தொடர்பு கொள்ளுங்கள்!",
+                currentCity: "தற்போதைய நகரம்:", todayOfferButton: "இன்றைய சலுகை",
+                todayOfferMsg: "எங்களின் அற்புதமான சலுகைகளைப் பாருங்கள்!",
+            },
+            gu: {
+                profilePageTitle: "સેવા/વ્યવસાય પ્રોફાઇલ",
+                headerTitleDefault: "પ્રોફાઇલ વિગતો",
+                loadingProfile: "પ્રોફાઇલ લોડ થઈ રહી છે...",
+                profileNotFound: "પ્રોફાઇલ મળી નથી.",
+                name: "નામ:",
+                type: "પ્રકાર:",
+                description: "વર્ણન:",
+                contact: "સંપર્ક માહિતી",
+                phone: "ફોન:",
+                email: "ઇમેઇલ:",
+                address: "સરનામું:",
+                rating: "રેટિંગ:",
+                reviews: "સમીક્ષાઓ",
+                operatingHours: "કાર્યકારી કલાકો",
+                gallery: "ગેલેરી",
+                noProfileId: "કોઈ પ્રોફાઇલ ID પ્રદાન કરાઈ નથી. શોધ પર પાછા જઈ રહ્યું છે...",
+                backButton: "શોધ પર પાછા",
+
+                // Shared homepage elements translations
+                userName: "વપરાશકર્તા નામ", home: "હોમ", loginSignup: "લૉગિન/સાઇન અપ કરો", myProfile: "મારી પ્રોફાઇલ",
+                beAnAgent: "એજન્ટ બનો", anchorAds: "એન્કર જાહેરાતો", todayOffer: "આજની ઓફર", settings: "સેટિંગ્સ",
+                themeSelection: "થીમ પસંદગી", lightDarkMode: "લાઇટ અને ડાર્ક મોડ", fontSize: "ફૉન્ટ સાઇઝ",
+                languagePreferences: "ભાષા પસંદગીઓ", feedback: "પ્રતિભાવ", aboutUs: "અમારા વિશે", logout: "લૉગઆઉટ",
+                darkModeLabel: "ડાર્ક મોડ", promoteBusiness: "📢 તમારા વ્યવસાયનો અહીં પ્રચાર કરો - ફીચર થવા માટે સંપર્ક કરો!",
+                currentCity: "વર્તમાન શહેર:", todayOfferButton: "આજની ઓફર",
+                todayOfferMsg: "અમારા આકર્ષક ડીલ્સ તપાસો!",
+            },
+            kn: {
+                profilePageTitle: "ಸೇವೆ/ವ್ಯವಹಾರ ಪ್ರೊಫೈಲ್",
+                headerTitleDefault: "ಪ್ರೊಫೈಲ್ ವಿವರಗಳು",
+                loadingProfile: "ಪ್ರೊಫೈಲ್ ಲೋಡ್ ಆಗುತ್ತಿದೆ...",
+                profileNotFound: "ಪ್ರೊಫೈಲ್ ಕಂಡುಬಂದಿಲ್ಲ.",
+                name: "ಹೆಸರು:",
+                type: "ಪ್ರಕಾರ:",
+                description: "ವಿವರಣೆ:",
+                contact: "ಸಂಪರ್ಕ ಮಾಹಿತಿ",
+                phone: "ಫೋನ್:",
+                email: "ಇಮೇಲ್:",
+                address: "ವಿಳಾಸ:",
+                rating: "ರೇಟಿಂಗ್:",
+                reviews: "ವಿಮರ್ಶೆಗಳು",
+                operatingHours: "ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಸಮಯ",
+                gallery: "ಗ್ಯಾಲರಿ",
+                noProfileId: "ಯಾವುದೇ ಪ್ರೊಫೈಲ್ ಐಡಿ ಒದಗಿಸಲಾಗಿಲ್ಲ. ಹುಡುಕಾಟಕ್ಕೆ ಹಿಂತಿರುಗಲಾಗುತ್ತಿದೆ...",
+                backButton: "ಹುಡುಕಾಟಕ್ಕೆ ಹಿಂತಿರುಗಿ",
+
+                // Shared homepage elements translations
+                userName: "ಬಳಕೆದಾರ ಹೆಸರು", home: "ಮುಖಪುಟ", loginSignup: "ಲಾಗಿನ್/ಸೈನ್ ಅಪ್ ಮಾಡಿ", myProfile: "ನನ್ನ ಪ್ರೊಫೈಲ್",
+                beAnAgent: "ಏಜೆಂಟ್ ಆಗಿ", anchorAds: "ಆಂಕರ ಜಾಹೀರಾತುಗಳು", todayOffer: "ಇಂದಿನ ಕೊಡುಗೆ", settings: "ಸೆಟ್ಟಿಂಗ್ಸ್",
+                themeSelection: "ಥೀಮ್ ಆಯ್ಕೆ", lightDarkMode: "ಲೈಟ್ ಮತ್ತು ಡಾರ್ಕ್ ಮೋಡ್", fontSize: "ಫಾಂಟ್ ಗಾತ್ರ",
+                languagePreferences: "ಭಾಷಾ ಆದ್ಯತೆಗಳು", feedback: "ಪ್ರತಿಕ್ರಿಯೆ", aboutUs: "ನಮ್ಮ ಬಗ್ಗೆ", logout: "ಲಾಗ್ಔಟ್",
+                darkModeLabel: "ಡಾರ್ಕ್ ಮೋಡ್", promoteBusiness: "📢 ನಿಮ್ಮ ವ್ಯಾಪಾರವನ್ನು ಇಲ್ಲಿ ಪ್ರಚಾರ ಮಾಡಿ – ವೈಶಿಷ್ಟ್ಯಗೊಳಿಸಲು ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ!",
+                currentCity: "ಪ್ರಸ್ತುत ನಗರ:", todayOfferButton: "ಇಂದಿನ ಕೊಡುಗೆ",
+                todayOfferMsg: "ನಮ್ಮ ಅದ್ಭುತ ಡೀಲ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ!",
+            },
+            mr: {
+                profilePageTitle: "सेवा/व्यवसाय प्रोफाइल",
+                headerTitleDefault: "प्रोफाइल तपशील",
+                loadingProfile: "प्रोफाइल लोड होत आहे...",
+                profileNotFound: "प्रोफाइल सापडली नाही.",
+                name: "नाव:",
+                type: "प्रकार:",
+                description: "वर्णन:",
+                contact: "संपर्क माहिती",
+                phone: "फोन:",
+                email: "ईमेल:",
+                address: "पत्ता:",
+                rating: "रेटिंग:",
+                reviews: "पुनरावलोकने",
+                operatingHours: "कार्यरत तास",
+                gallery: "गॅलरी",
+                noProfileId: "कोणतीही प्रोफाइल आयडी प्रदान केलेली नाही. शोधाकडे परत जात आहे...",
+                backButton: "शोधाकडे परत",
+
+                // Shared homepage elements translations
+                userName: "वापरकर्ता नाव", home: "मुख्यपृष्ठ", loginSignup: "लॉगिन/साइन अप करा", myProfile: "माझी प्रोफाइल",
+                beAnAgent: "एजंट बना", anchorAds: "अँकर जाहिराती", todayOffer: "आजची ऑफर", settings: "सेटिंग्ज",
+                themeSelection: "थीम निवड", lightDarkMode: "लाइट आणि डार्क मोड", fontSize: "फॉन्ट आकार",
+                languagePreferences: "भाषा प्राधान्ये", feedback: "प्रतिक्रिया", aboutUs: "आमच्याबद्दल", logout: "लॉगआउट",
+                darkModeLabel: "डार्क मोड", promoteBusiness: "📢 तुमच्या व्यवसायाची येथे जाहिरात करा – वैशिष्ट्यासाठी संपर्क साधा!",
+                currentCity: "वर्तमान शहर:", todayOfferButton: "आजची ऑफर",
+                todayOfferMsg: "आमच्या अप्रतिम डील तपासा!",
+            },
+            bn: {
+                profilePageTitle: "পরিষেবা/ব্যবসা প্রোফাইল",
+                headerTitleDefault: "প্রোফাইল বিবরণ",
+                loadingProfile: "প্রোফাইল লোড হচ্ছে...",
+                profileNotFound: "প্রোফাইল পাওয়া যায়নি।",
+                name: "নাম:",
+                type: "প্রকার:",
+                description: "বর্ণনা:",
+                contact: "যোগাযোগের তথ্য",
+                phone: "ফোন:",
+                email: "ইমেল:",
+                address: "ঠিকানা:",
+                rating: "রেটিং:",
+                reviews: "পর্যালোচনা",
+                operatingHours: "কার্যকরী সময়",
+                gallery: "গ্যালারি",
+                noProfileId: "কোনো প্রোফাইল আইডি প্রদান করা হয়নি। অনুসন্ধানে ফিরে যাচ্ছে...",
+                backButton: "অনুসন্ধানে ফিরে যান",
+
+                // Shared homepage elements translations
+                userName: "ব্যবহারকারীর নাম", home: "হোম", loginSignup: "লগইন/সাইন আপ করুন", myProfile: "আমার প্রোফাইল",
+                beAnAgent: "একজন এজেন্ট হন", anchorAds: "অ্যাঙ্কর বিজ্ঞাপন", todayOffer: "আজকের অফার", settings: "সেটিংস",
+                themeSelection: "থিম নির্বাচন", lightDarkMode: "লাইট এবং ডার্ক মোড", fontSize: "ফন্ট সাইজ",
+                languagePreferences: "ভাষা পছন্দ", feedback: "প্রতিক্রিয়া", aboutUs: "আমাদের সম্পর্কে", logout: "লগআউট",
+                darkModeLabel: "ডার্ক মোড", promoteBusiness: "📢 আপনার ব্যবসা এখানে প্রচার করুন – বৈশিষ্ট্যযুক্ত হতে আমাদের সাথে যোগাযোগ করুন!",
+                currentCity: "বর্তমান শহর:", todayOfferButton: "আজকের অফার",
+                todayOfferMsg: "আমাদের আশ্চর্যজনক ডিলগুলি দেখুন!",
+            },
+            pa: {
+                profilePageTitle: "ਸੇਵਾ/ਕਾਰੋਬਾਰ ਪ੍ਰੋਫਾਈਲ",
+                headerTitleDefault: "ਪ੍ਰੋਫਾਈਲ ਵੇਰਵੇ",
+                loadingProfile: "ਪ੍ਰੋਫਾਈਲ ਲੋਡ ਹੋ ਰਹੀ ਹੈ...",
+                profileNotFound: "ਪ੍ਰੋਫਾਈਲ ਨਹੀਂ ਲੱਭੀ।",
+                name: "ਨਾਮ:",
+                type: "ਕਿਸਮ:",
+                description: "ਵਰਣਨ:",
+                contact: "ਸੰਪਰਕ ਜਾਣਕਾਰੀ",
+                phone: "ਫੋਨ:",
+                email: "ਈਮੇਲ:",
+                address: "ਪਤਾ:",
+                rating: "ਰੇਟਿੰਗ:",
+                reviews: "ਸਮੀਖਿਆਵਾਂ",
+                operatingHours: "ਓਪਰੇਟਿੰਗ ਘੰਟੇ",
+                gallery: "ਗੈਲਰੀ",
+                noProfileId: "ਕੋਈ ਪ੍ਰੋਫਾਈਲ ID ਪ੍ਰਦਾਨ ਨਹੀਂ ਕੀਤੀ ਗਈ। ਖੋਜ 'ਤੇ ਵਾਪਸ ਜਾ ਰਿਹਾ ਹੈ...",
+                backButton: "ਖੋਜ 'ਤੇ ਵਾਪਸ",
+
+                // Shared homepage elements translations
+                userName: "ਉਪਭੋਗਤਾ ਨਾਮ", home: "ਘਰ", loginSignup: "ਲਾਗਇਨ/ਸਾਈਨ ਅੱਪ ਕਰੋ", myProfile: "ਮੇਰੀ ਪ੍ਰੋਫਾਈਲ",
+                beAnAgent: "ਏਜੰਟ ਬਣੋ", anchorAds: "ਐਂਕਰ ਵਿਗਿਆਪਨ", todayOffer: "ਅੱਜ ਦੀ ਪੇਸ਼ਕਸ਼", settings: "ਸੈਟਿੰਗਜ਼",
+                themeSelection: "ਥੀਮ ਚੋਣ", lightDarkMode: "ਲਾਈਟ ਅਤੇ ਡਾਰਕ ਮੋਡ", fontSize: "ਫੌਂਟ ਸਾਈਜ਼",
+                languagePreferences: "ਭਾਸ਼ਾ ਪਸੰਦ", feedback: "ਪ੍ਰਤੀਕਰਮ", aboutUs: "ਸਾਡੇ ਬਾਰੇ", logout: "ਲੌਗਆਊਟ",
+                darkModeLabel: "ਡਾਰਕ ਮੋਡ", promoteBusiness: "📢 ਆਪਣੇ ਕਾਰੋਬਾਰ ਦਾ ਇੱਥੇ ਪ੍ਰਚਾਰ ਕਰੋ – ਵਿਸ਼ੇਸ਼ਤਾ ਲਈ ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ!",
+                currentCity: "ਮੌਜੂਦਾ ਸ਼ਹਿਰ:", todayOfferButton: "ਅੱਜ ਦੀ ਪੇਸ਼ਕਸ਼",
+                todayOfferMsg: "ਸਾਡੀਆਂ ਸ਼ਾਨਦਾਰ ਪੇਸ਼ਕਸ਼ਾਂ ਵੇਖੋ!",
+            },
+            te: {
+                profilePageTitle: "సేవ/వ్యాపార ప్రొఫైల్",
+                headerTitleDefault: "ప్రొఫైల్ వివరాలు",
+                loadingProfile: "ప్రొఫైల్ లోడ్ అవుతోంది...",
+                profileNotFound: "ప్రొఫైల్ కనుగొనబడలేదు.",
+                name: "పేరు:",
+                type: "రకం:",
+                description: "వివరణ:",
+                contact: "సంప్రదింపు సమాచారం",
+                phone: "ఫోన్:",
+                email: "ఇమెయిల్:",
+                address: "చిరునామా:",
+                rating: "రేటింగ్:",
+                reviews: "సమీక్షలు",
+                operatingHours: "కార్యాలయ వేళలు",
+                gallery: "గ్యాలరీ",
+                noProfileId: "ప్రొఫైల్ ID అందించబడలేదు. శోధనకు తిరిగి వెళుతోంది...",
+                backButton: "శోధనకు తిరిగి",
+
+                // Shared homepage elements translations
+                userName: "వినియోగదారు పేరు", home: "ముఖపుట", loginSignup: "లాగిన్/సైన్ అప్ చేయండి", myProfile: "నా ప్రొఫైల్",
+                beAnAgent: "ఏజెంట్ అవ్వండి", anchorAds: "యాంకర్ ప్రకటనలు", todayOffer: "నేటి ఆఫర్", settings: "సెట్టింగ్‌లు",
+                themeSelection: "థీమ్ ఎంపిక", lightDarkMode: "లైట్ మరియు డార్క్ మోడ్", fontSize: "ఫాంట్ పరిమాణం",
+                languagePreferences: "భాషా ప్రాధాన్యతలు", feedback: "అభిప్రాయం", aboutUs: "మా గురించి", logout: "లాగ్అవుట్",
+                darkModeLabel: "డార్క్ మోడ్", promoteBusiness: "📢 మీ వ్యాపారాన్ని ఇక్కడ ప్రచారం చేయండి – ఫీచర్ అవ్వడానికి మమ్మల్ని సంప్రదించండి!",
+                currentCity: "ప్రస్తుత నగరం:", todayOfferButton: "నేటి ఆఫర్",
+                todayOfferMsg: "మా అద్భుతమైన డీల్‌లను చూడండి!",
+            }
+        };
+
+        let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+
+        // Function to apply language to page elements
+        function applyLanguage(lang) {
+            const t = translations[lang];
+            if (!t) return;
+
+            profilePageTitle.textContent = t.profilePageTitle;
+            headerTitle.textContent = t.headerTitleDefault; // Default before profile loads
+            loadingMessage.textContent = t.loadingProfile;
+            backButton.title = t.backButton;
+            
+            // Apply shared homepage elements translations
+            document.getElementById('userNameLabel').textContent = t.userName || "User Name";
+            document.getElementById('homeLabel').textContent = t.home;
+            document.getElementById('loginSignupLabel').textContent = t.loginSignup;
+            document.getElementById('myProfileLabel').textContent = t.myProfile;
+            document.getElementById('beAnAgentLabel').textContent = t.beAnAgent;
+            document.getElementById('anchorAdsLabel').textContent = t.anchorAds;
+            document.getElementById('todayOfferLabelSidebar').textContent = t.todayOffer; // Sidebar Today's Offer
+            document.getElementById('settingsLabel').textContent = t.settings;
+            document.getElementById('themeSelectionLabel').textContent = t.themeSelection;
+            document.getElementById('lightDarkModeLabel').textContent = t.lightDarkMode;
+            document.getElementById('fontSizeTextLabel').textContent = t.fontSize;
+            document.getElementById('languagePreferencesTextLabel').textContent = t.languagePreferences;
+            document.getElementById('feedbackLabel').textContent = t.feedback;
+            document.getElementById('aboutUsLabel').textContent = t.aboutUs;
+            document.getElementById('logoutLabel').textContent = t.logout;
+            document.querySelector('.fixed.bottom-0').textContent = t.promoteBusiness; // Changed from bottom-14
+            todayOfferTextSpan.textContent = t.todayOfferButton; // Header Today's Offer
+            currentCityButton.textContent = `${t.currentCity} ${sessionStorage.getItem('selectedCity') || 'Miami'}`; // Keep current city updated
+            darkModeSwitchLabel.textContent = t.darkModeLabel;
+        }
+
+        // Function to set dark mode state
+        function setDarkMode(isDark) {
+            if (isDark) {
+                body.classList.add('dark-mode');
+                darkModeSwitchTrack.classList.add('dark');
+                darkModeSwitchThumb.classList.add('dark');
+                darkModeSwitchLabel.classList.add('dark');
+                lightModeIcon.classList.add('dark');
+                darkModeIcon.classList.add('dark');
+            } else {
+                body.classList.remove('dark-mode');
+                darkModeSwitchTrack.classList.remove('dark');
+                darkModeSwitchThumb.classList.remove('dark');
+                darkModeSwitchLabel.classList.remove('dark');
+                lightModeIcon.classList.remove('dark');
+                darkModeIcon.classList.remove('dark');
+            }
+            localStorage.setItem('isDarkMode', isDark);
+        }
+
+        // Function to apply font size
+        function applyFontSize(sizeValue) {
+            body.classList.remove('font-small', 'font-medium', 'font-large');
+            body.classList.add(`font-${sizeValue}`);
+            localStorage.setItem('selectedFontSize', sizeValue);
+        }
+
+        // Function to apply selected theme
+        function applyTheme(themeValue) {
+            body.classList.remove('default-theme', 'blue-theme', 'green-theme');
+            if (themeValue !== 'default') {
+                body.classList.add(`${themeValue}-theme`);
+            }
+            localStorage.setItem('selectedTheme', themeValue);
+        }
+
+        // Helper to generate star ratings HTML
+        function getStarRatingHtml(rating) {
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5;
+            let starsHtml = '';
+            for (let i = 0; i < fullStars; i++) {
+                starsHtml += '<i class="fas fa-star"></i>';
+            }
+            if (halfStar) {
+                starsHtml += '<i class="fas fa-star-half-alt"></i>';
+            }
+            for (let i = 0; i < (5 - fullStars - (halfStar ? 1 : 0)); i++) {
+                starsHtml += '<i class="far fa-star"></i>'; // Empty star
+            }
+            return starsHtml;
+        }
+
+        // Function to render profile data
+        async function renderProfile(profileId) {
+            profileContent.innerHTML = ''; // Clear loading message
+            loadingMessage.classList.remove('hidden'); // Ensure loading message is visible initially
+
+            await initializeFirebaseAndAuth();
+
+            const t = translations[currentLanguage];
+
+            try {
+                // Fetch from a collection named 'service_providers' (you can change this)
+                const docRef = doc(db, `artifacts/${appId}/public/data/service_providers`, profileId);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const profile = docSnap.data();
+                    loadingMessage.classList.add('hidden'); // Hide loading message
+                    headerTitle.textContent = profile.name; // Set header title to profile name
+
+                    profileContent.innerHTML = `
+                        <div class="flex flex-col items-center mb-6">
+                            <img src="${profile.profilePictureUrl || 'https://placehold.co/120x120/cccccc/ffffff?text=No+Image'}" alt="${profile.name}" class="profile-picture" onerror="this.onerror=null;this.src='https://placehold.co/120x120/cccccc/ffffff?text=No+Image';">
+                            <h2 class="text-3xl font-bold text-center mb-2">${profile.name}</h2>
+                            <p class="text-lg text-gray-600">${t.type} ${profile.type}</p>
+                            <div class="text-xl rating-stars mt-2">
+                                ${getStarRatingHtml(profile.rating || 0)}
+                                <span class="ml-2 text-base text-gray-700">(${profile.rating || 'N/A'} - ${profile.reviews || 0} ${t.reviews})</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold mb-2">${t.description}</h3>
+                            <p class="text-gray-700 leading-relaxed">${profile.description || 'No description available.'}</p>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold mb-2">${t.contact}</h3>
+                            <p><i class="fas fa-phone-alt text-blue-500 mr-2"></i><strong>${t.phone}</strong> ${profile.contact?.phone || 'N/A'}</p>
+                            <p><i class="fas fa-envelope text-blue-500 mr-2"></i><strong>${t.email}</strong> ${profile.contact?.email || 'N/A'}</p>
+                            <p><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i><strong>${t.address}</strong> ${profile.contact?.address || 'N/A'}</p>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold mb-2">${t.operatingHours}</h3>
+                            ${profile.operatingHours ? `
+                                <ul class="list-disc list-inside text-gray-700">
+                                    ${Object.entries(profile.operatingHours).map(([day, hours]) => `<li>${day.charAt(0).toUpperCase() + day.slice(1)}: ${hours}</li>`).join('')}
+                                </ul>
+                            ` : '<p>No operating hours provided.</p>'}
+                        </div>
+
+                        ${profile.galleryImages && profile.galleryImages.length > 0 ? `
+                            <div class="mb-6">
+                                <h3 class="text-xl font-semibold mb-4">${t.gallery}</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                    ${profile.galleryImages.map(imgUrl => `
+                                        <div>
+                                            <img src="${imgUrl}" alt="Gallery Image" class="gallery-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/ffffff?text=Error';">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+                    `;
+                    showMessage(`Loaded profile for ${profile.name}`, 2000);
+
+                } else {
+                    profileContent.innerHTML = `<p class="text-center text-red-500">${t.profileNotFound}</p>`;
+                    showMessage(`${t.profileNotFound} ID: ${profileId}`, 3000);
+                }
+            } catch (error) {
+                console.error("Error fetching profile:", error);
+                profileContent.innerHTML = `<p class="text-center text-red-500">Error loading profile: ${error.message}</p>`;
+                showMessage(`Error: ${error.message}`, 5000);
+            }
+        }
+
+        // Event Listeners for back button and sidebar
+        backButton.addEventListener('click', () => {
+            history.back(); // Go back to the previous page (search results)
+        });
+
+        burgerMenuBtn.addEventListener('click', () => {
+            menuSidebar.classList.add('open');
+            document.getElementById('overlay').classList.add('open'); // Assumes an overlay div exists
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            menuSidebar.classList.remove('open');
+            document.getElementById('overlay').classList.remove('open');
+        });
+
+        // Click outside sidebar to close it
+        document.body.addEventListener('click', (event) => {
+            const overlay = document.getElementById('overlay');
+            if (overlay && overlay.classList.contains('open') && !menuSidebar.contains(event.target) && !burgerMenuBtn.contains(event.target)) {
+                menuSidebar.classList.remove('open');
+                overlay.classList.remove('open');
+            }
+        });
+
+        menuSidebar.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent clicks inside sidebar from closing it
+        });
+
+        darkModeToggle.addEventListener('click', (event) => {
+            event.stopPropagation(); // Stop event propagation to prevent sidebar from closing
+            const isDark = body.classList.contains('dark-mode');
+            setDarkMode(!isDark);
+        });
+
+        themeSelect.addEventListener('change', (event) => {
+            event.stopPropagation();
+            applyTheme(event.target.value);
+        });
+
+        fontSizeSelect.addEventListener('change', (event) => {
+            event.stopPropagation();
+            applyFontSize(event.target.value);
+        });
+
+        languageSelect.addEventListener('change', (event) => {
+            event.stopPropagation();
+            currentLanguage = event.target.value; // Update current language
+            applyLanguage(currentLanguage);
+            // Re-render profile content to apply new language strings to fetched data
+            const profileId = sessionStorage.getItem('selectedProfileId');
+            if (profileId) renderProfile(profileId);
+        });
+
+        settingsMenuParent.addEventListener('click', (event) => {
+            // Check if the click is directly on the settings menu item or its immediate children (icon/span)
+            if (event.target === settingsMenuParent ||
+                event.target.closest('#settingsMenu > i') ||
+                event.target.closest('#settingsMenu > span:not(.caret)') ||
+                event.target.closest('#settingsMenu > .caret'))
+            {
+                settingsMenuParent.classList.toggle('open');
+            }
+        });
+
+        todayOfferButton.addEventListener('click', () => {
+            showMessage(translations[currentLanguage].todayOfferMsg);
+        });
+
+        resetDefaultsButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            localStorage.removeItem('selectedTheme');
+            localStorage.removeItem('isDarkMode');
+            localStorage.removeItem('selectedFontSize');
+            localStorage.removeItem('selectedLanguage');
+
+            applyTheme('default');
+            themeSelect.value = 'default';
+
+            setDarkMode(false);
+            
+            applyFontSize('medium');
+            fontSizeSelect.value = 'medium';
+
+            currentLanguage = 'en'; // Reset language to English
+            languageSelect.value = 'en';
+            applyLanguage(currentLanguage);
+
+            showMessage(translations[currentLanguage].resetDefaultsSuccess || "Settings reset to default!", 2000);
+            // Re-render profile content to apply new language strings after reset
+            const profileId = sessionStorage.getItem('selectedProfileId');
+            if (profileId) renderProfile(profileId);
+        });
+
+
+        // Initial setup on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Create an overlay div if it doesn't exist
+            let overlay = document.getElementById('overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.id = 'overlay';
+                overlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 hidden';
+                document.body.appendChild(overlay);
+            }
+
+            // Apply saved settings
+            currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            applyLanguage(currentLanguage); // Apply initial language and trigger UI updates
+
+            const storedTheme = localStorage.getItem('selectedTheme') || 'default';
+            applyTheme(storedTheme);
+            themeSelect.value = storedTheme;
+
+            const storedDarkMode = localStorage.getItem('isDarkMode') === 'true';
+            setDarkMode(storedDarkMode);
+            
+            const storedFontSize = localStorage.getItem('selectedFontSize') || 'medium';
+            applyFontSize(storedFontSize);
+            fontSizeSelect.value = storedFontSize;
+
+            languageSelect.value = currentLanguage; // Ensure dropdown reflects current language
+
+            // Get profile ID from sessionStorage (passed from the previous page)
+            const profileId = sessionStorage.getItem('selectedProfileId');
+
+            if (profileId) {
+                await renderProfile(profileId);
+            } else {
+                profileContent.innerHTML = `<p class="text-center text-red-500">${translations[currentLanguage].noProfileId}</p>`;
+                showMessage(translations[currentLanguage].noProfileId, 3000);
+                setTimeout(() => {
+                    history.back(); // Redirect back to search page
+                }, 3000);
+            }
+
+            // Populate current city button based on session storage, or default
+            currentCityButton.textContent = `${translations[currentLanguage].currentCity} ${sessionStorage.getItem('selectedCity') || 'Miami'}`;
+        });
+    </script>
+</body>
+</html>

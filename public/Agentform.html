@@ -18,7 +18,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #e0f2fe, #ffffff, #dbeafe); /* Default theme background */
+            background: linear-gradient(135deg, #e0f2fe, #ffffff, #dbeafe);
             font-size: var(--base-font-size);
             min-height: 100vh;
             display: flex;
@@ -29,64 +29,6 @@
         body.font-small { font-size: var(--small-font-size); }
         body.font-medium { font-size: var(--medium-font-size); }
         body.font-large { font-size: var(--large-font-size); }
-
-        /* Theme-specific styles (consistent with other pages) */
-        body.blue-theme { background: linear-gradient(135deg, #e0f7fa, #bbdefb, #90caf9); color: #212121; }
-        body.blue-theme header { background-image: linear-gradient(to right, #2196f3, #1976d2); }
-        body.blue-theme .form-container, body.blue-theme .details-box { background-color: #e3f2fd; border-color: #90caf9; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08); }
-        body.blue-theme h2 { color: #2196f3; }
-        body.blue-theme .read-details button, body.blue-theme #signInAsAgentBtn { border-color: #2196f3; color: #2196f3; }
-        body.blue-theme input, body.blue-theme select, body.blue-theme textarea { background-color: #e0f7fa; border-color: #90caf9; color: #212121; }
-        body.blue-theme button[type="submit"] { background-color: #2196f3; }
-        body.blue-theme button[type="submit"]:hover:not(:disabled) { background-color: #1976d2; }
-        body.blue-theme #menu-sidebar { background-color: #1976d2; }
-        body.blue-theme .settings-options select { background-color: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.2); color: #f8fafc; }
-        body.blue-theme .settings-options select option { background-color: #1e3a8a; color: #f8fafc; }
-
-
-        body.green-theme { background: linear-gradient(135deg, #e8f5e9, #c8e6c9, #a5d6a7); color: #212121; }
-        body.green-theme header { background-image: linear-gradient(to right, #4caf50, #388e3c); }
-        body.green-theme .form-container, body.green-theme .details-box { background-color: #f1f8e9; border-color: #a5d6a7; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08); }
-        body.green-theme h2 { color: #4caf50; }
-        body.green-theme .read-details button, body.green-theme #signInAsAgentBtn { border-color: #4caf50; color: #4caf50; }
-        body.green-theme input, body.green-theme select, body.green-theme textarea { background-color: #e8f5e9; border-color: #a5d6a7; color: #212121; }
-        body.green-theme button[type="submit"] { background-color: #4caf50; }
-        body.green-theme button[type="submit"]:hover:not(:disabled) { background-color: #388e3c; }
-        body.green-theme #menu-sidebar { background-color: #388e3c; }
-        body.green-theme .settings-options select { background-color: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.2); color: #f8fafc; }
-        body.green-theme .settings-options select option { background-color: #388e3c; color: #f8fafc; }
-
-
-        /* Dark Mode overrides */
-        body.dark-mode { background-color: #1a202c; color: #f7fafc; }
-        body.dark-mode header { background-image: linear-gradient(to right, #4a5568, #2d3748); }
-        body.dark-mode .form-container, body.dark-mode .details-box { background-color: #2d3748; border-color: #4a5568; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); }
-        body.dark-mode h2 { color: #63b3ed; }
-        body.dark-mode .read-details button, body.dark-mode #signInAsAgentBtn { border-color: #63b3ed; color: #63b3ed; }
-        body.dark-mode input, body.dark-mode select, body.dark-mode textarea { background-color: #3f4a5a; border-color: #5a667a; color: #f7fafc; }
-        body.dark-mode input::placeholder, body.dark-mode textarea::placeholder { color: #a0aec0; }
-        body.dark-mode button[type="submit"] { background-color: #63b3ed; }
-        body.dark-mode button[type="submit"]:hover:not(:disabled) { background-color: #4a90e2; }
-        body.dark-mode #menu-sidebar { background-color: #2d3748; }
-        body.dark-mode .toggle-container { background-color: #4a5568; }
-        body.dark-mode .toggle-button { color: #f7fafc; }
-        body.dark-mode .active-toggle { background-color: #a0aec0; color: #1a202c; }
-        body.dark-mode .dark-mode-switch-track.dark { background-color: #4a5568; border-color: #4a5568; }
-        body.dark-mode .dark-mode-switch-thumb.dark { transform: translateX(64px); box-shadow: 0 2px 7px rgba(0, 0, 0, 0.5); }
-        body.dark-mode .dark-mode-switch-label.dark { color: #f7fafc; }
-        body.dark-mode .settings-options select { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.15); color: #f7fafc; }
-        body.dark-mode .settings-options select option { background-color: #2d3748; color: #f7fafc; }
-
-
-        @keyframes fire-bounce { 0%, 100% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.1) rotate(-5deg); } 50% { transform: scale(1.2) rotate(5deg); } 75% { transform: scale(1.1) rotate(-3deg); } }
-        .fire-emoji { display: inline-block; animation: fire-bounce 1.2s infinite; transform-origin: center; }
-
-        /* Message box */
-        #messageBox {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.8);
-            color: white; padding: 15px 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000; display: none; text-align: center; font-size: 1rem;
-        }
 
         /* Form-specific styles */
         .form-container {
@@ -99,1656 +41,239 @@
             border: 1px solid #e0e0e0;
         }
         
-        #signInAsAgentBtn {
-            background-color: transparent;
-            border: 1px solid #4b3cc4;
-            color: #4b3cc4;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-bottom: 1.5rem; /* Space below button */
-            width: 100%; /* Make it full width like other form elements */
-            text-align: center;
-            display: block; /* Ensure it takes full width */
-        }
-        #signInAsAgentBtn:hover {
-            background-color: #4b3cc4;
-            color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .read-details {
-            margin-bottom: 1.5rem; /* Space below button */
-            text-align: center; /* Center the button */
-        }
-        .read-details button {
-            background-color: transparent;
-            border: 1px solid #4b3cc4;
-            color: #4b3cc4;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .read-details button:hover {
-            background-color: #4b3cc4;
-            color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .details-box {
-            background-color: #eef1ff;
-            border: 1px dashed #4b3cc4;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            margin-bottom: 1.5rem;
-            display: block; /* Changed to block by default */
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .details-box p {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        .details-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #333;
-        }
-        body.dark-mode .form-group label {
-            color: #f7fafc;
-        }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333; }
+        .form-group label span { color: red; }
         .form-group input[type="text"],
         .form-group input[type="number"],
         .form-group input[type="email"],
-        .form-group input[type="password"], /* Added password input */
-        .form-group input[type="file"], /* Added file input */
+        .form-group input[type="password"],
+        .form-group input[type="file"],
         .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ccc;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            background-color: #f9f9f9;
-            color: #333;
-            transition: all 0.2s ease;
+            width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 0.5rem; font-size: 1rem;
+            background-color: #f9f9f9; color: #333; transition: all 0.2s ease;
         }
         .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #4b3cc4;
-            box-shadow: 0 0 0 3px rgba(75, 60, 196, 0.2);
+            outline: none; border-color: #4b3cc4; box-shadow: 0 0 0 3px rgba(75, 60, 196, 0.2);
         }
-        .form-group small {
-            color: #888;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-            display: block;
-        }
-        .form-group label span {
-            color: red; /* Asterisk color */
-        }
-        .password-error {
-            color: red;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-        .password-error.visible {
-            display: block;
-        }
+        
         button[type="submit"] {
-            width: 100%;
-            background-color: #4b3cc4;
-            color: white;
-            padding: 1rem;
-            border: none;
-            border-radius: 0.75rem;
-            font-size: 1.125rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 1.5rem;
-            transition: all 0.3s ease;
+            width: 100%; background-color: #4b3cc4; color: white; padding: 1rem; border: none; border-radius: 0.75rem;
+            font-size: 1.125rem; font-weight: 700; cursor: pointer; margin-top: 1.5rem; transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
-        button[type="submit"]:hover:not(:disabled) {
-            background-color: #362ea4;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-        }
-        button[type="submit"]:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-            opacity: 0.7;
-            transform: none;
-            box-shadow: none;
-        }
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
-        }
-        .checkbox-group input[type="checkbox"] {
-            width: auto;
-            margin-right: 0.5rem;
-            margin-bottom: 0;
-            transform: scale(1.2);
-            accent-color: #4b3cc4;
-        }
-        .checkbox-group a {
-            color: #4b3cc4;
-            text-decoration: underline;
-            margin-left: 0.25rem;
-        }
-        body.dark-mode .checkbox-group a {
-            color: #9f94ed; /* Lighter link for dark mode */
+        button[type="submit"]:hover:not(:disabled) { background-color: #362ea4; transform: translateY(-2px); }
+        button[type="submit"]:disabled { background-color: #cccccc; cursor: not-allowed; }
+        
+        #messageBox {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.8);
+            color: white; padding: 15px 25px; border-radius: 10px; z-index: 1000; display: none; text-align: center;
         }
 
-
-        /* Sidebar styles (copied from search-profile-page, ensure consistency) */
-        #menu-sidebar {
-            position: fixed; top: 0; left: 0; height: 100%; width: 250px; background-color: #1e3a8a; color: #f8fafc; z-index: 100;
-            transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2); overflow-y: auto;
-            display: flex; flex-direction: column;
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4b3cc4;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 10px;
+            vertical-align: middle;
         }
-        #menu-sidebar.open { transform: translateX(0); }
-        #menu-sidebar ul { list-style: none; padding: 0; margin: 0; }
-        #menu-sidebar ul li { padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; transition: background-color 0.3s ease; font-weight: 500; }
-        #menu-sidebar ul li:hover { background-color: rgba(255, 255, 255, 0.05); }
-        #menu-sidebar ul li i { margin-right: 0.75rem; width: 1.2em; text-align: center; color: #60a5fa; }
-        #settingsMenu { position: relative; }
-        #settingsMenu > i { margin-right: 0.75rem; width: 1.2em; text-align: center; color: #60a5fa; }
-        #settingsMenu .caret { position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%) rotate(0deg); transition: transform 0.2s ease; font-size: 1rem; }
-        #settingsMenu.open .caret { transform: translateY(-50%) rotate(90deg); }
-        #menu-sidebar .settings-options { list-style: none; padding: 0; margin: 0; background-color: rgba(0, 0, 0, 0.1); border-top: 1px solid rgba(255, 255, 255, 0.05); display: none; }
-        #settingsMenu.open .settings-options { display: block; }
-        #menu-sidebar .settings-options li { padding: 0.8rem 1.5rem 0.8rem 3rem; font-size: 0.95rem; border-bottom: none; display: flex; align-items: center; justify-content: space-between; }
-        #menu-sidebar .settings-options li:hover { background-color: rgba(255, 255, 255, 0.03); }
-        #menu-sidebar .settings-options li:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .settings-options select { background-color: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 5px; padding: 4px 8px; color: #f8fafc; font-size: 0.9rem; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; -moz-appearance: none; padding-right: 25px; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22%23f8fafc%22%3E%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M5.293%207.293a1%201%200%20011.414%200L10%2010.586l3.293-3.293a1%201%200%20111.414%201.414l-4%204a1%201%200%2001-1.414%200l-4-4a1%201%200%20010-1.414z%22%20clip-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 8px center; background-size: 12px; z-index: 101; position: relative; }
-        .settings-options select option { background-color: #1e3a8a; color: #f8fafc; }
-        #menu-sidebar .close-menu { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2rem; cursor: pointer; color: #f8fafc; opacity: 0.8; transition: opacity 0.2s ease; }
-        #menu-sidebar .close-menu:hover { opacity: 1; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Dark Mode Switch Styling - UPDATED FOR ICONS */
-        .dark-mode-switch { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 100px; height: 36px; border-radius: 9999px; padding: 0; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.3s ease; flex-shrink: 0; }
-        .dark-mode-switch:hover { transform: scale(1.08); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
-        .dark-mode-switch-track { position: absolute; width: 100%; height: 100%; border-radius: 9999px; background-color: #e5e7eb; transition: background-color 0.3s ease; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); border: 2px solid #e5e7eb; }
-        .dark-mode-switch-thumb { position: absolute; top: 4px; left: 4px; width: 28px; height: 28px; border-radius: 50%; background-color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .dark-mode-switch-label { position: relative; font-size: 0.875rem; font-weight: 500; color: #4a5568; margin-left: 36px; transition: color 0.3s ease; user-select: none; }
-
-        .dark-mode-switch-icon {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            transition: opacity 0.3s ease, transform 0.3s ease, left 0.3s ease; /* Added left for smooth transition */
-            color: currentColor; /* Ensure icon color adapts */
-        }
-
-        /* Default (Light Mode) Icon States */
-        .dark-mode-switch-icon.light {
-            left: 12px;
-            opacity: 1;
-            transform: translateY(-50%) scale(1);
-        }
-        .dark-mode-switch-icon.dark {
-            left: 72px; /* Off-screen in light mode */
-            opacity: 0;
-            transform: translateY(-50%) scale(0.5);
-        }
-
-        /* Dark Mode Icon States (when body has .dark-mode) */
-        body.dark-mode .dark-mode-switch-icon.light {
-            left: 12px; /* Stay in place but hide */
-            opacity: 0;
-            transform: translateY(-50%) scale(0.5);
-        }
-        body.dark-mode .dark-mode-switch-icon.dark {
-            left: 72px; /* Move into visibility */
-            opacity: 1;
-            transform: translateY(-50%) scale(1);
-        }
-
-        .icon-sun { fill: #f5fc56; stroke: #f5fc56; }
-        .icon-moon { fill: #a0aec0; stroke: #a0aec0; }
     </style>
 </head>
 <body class="min-h-screen font-sans">
     <header class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white p-4 flex items-center justify-between shadow-lg">
-        <div class="flex items-center gap-2">
-            <button id="backButton" class="text-2xl mr-4 hover:scale-110 transform transition duration-300 ease-in-out">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <button id="burger-menu" class="text-3xl hover:scale-110 transform transition duration-300 ease-in-out">☰</button>
-        </div>
-        <h1 id="headerTitle" class="text-xl font-bold flex-grow text-center">Become an Agent</h1>
-        <div class="flex items-center gap-2">
-            <button id="todayOfferButton" class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow hover:bg-red-700 transition">
-                <span class="fire-emoji">🔥</span><span id="todayOfferText"></span>
-            </button>
-            <button id="currentCityButton" class="bg-yellow-400 text-black px-3 py-2 rounded-full font-medium text-sm shadow hover:bg-yellow-300 transition">Current City: Miami</button>
-        </div>
+         <h1 class="text-xl font-bold flex-grow text-center">Become an Agent</h1>
     </header>
 
     <main class="container mx-auto p-4 flex-grow">
         <div class="form-container">
             <h2 class="text-3xl font-bold text-center mb-8 text-gray-800" id="becomeAgentTitle">Become an Agent</h2>
 
-            <button id="signInAsAgentBtn" class="mb-6">Sign In as Agent</button>
-
-            <div class="read-details">
-                <button onclick="toggleDetails()" id="readDetailsButton">Read Details</button>
-            </div>
-
-            <div class="details-box" id="detailsBox">
-                <p><i class="fas fa-id-badge text-blue-500"></i> <span id="detail1">When you become an agent, you will get a unique Agent ID.</span></p>
-                <p><i class="fas fa-handshake text-green-500"></i> <span id="detail2">You can help others register and earn ₹20 for each verified form they submit using your ID.</span></p>
-                <p><i class="fas fa-money-bill-wave text-yellow-500"></i> <span id="detail3">Once your total earnings reach ₹100, you can request a withdrawal.</span></p>
-                <p><i class="fas fa-university text-purple-500"></i> <span id="detail4">We’ll transfer your earnings to the bank account you provided.</span></p>
-                <p><i class="fas fa-exclamation-triangle text-red-500"></i> <span id="detail5">Admin will review your agent request before approval.</span></p>
-            </div>
-
-            <form id="agentRegistrationForm" onsubmit="event.preventDefault(); submitAgentForm()">
+            <form id="agentRegistrationForm">
                 <div class="form-group">
-                    <label for="firstName" id="firstNameLabel">First Name <span>*</span></label>
-                    <input type="text" id="firstName" required placeholder="Enter your first name" class="shadow-sm">
+                    <label for="firstName">First Name <span>*</span></label>
+                    <input type="text" id="firstName" required placeholder="Enter your first name">
                 </div>
-
                 <div class="form-group">
-                    <label for="lastName" id="lastNameLabel">Last Name <span>*</span></label>
-                    <input type="text" id="lastName" required placeholder="Enter your last name" class="shadow-sm">
+                    <label for="lastName">Last Name <span>*</span></label>
+                    <input type="text" id="lastName" required placeholder="Enter your last name">
                 </div>
-
                 <div class="form-group">
-                    <label for="gender" id="genderLabel">Gender <span>*</span></label>
-                    <select id="gender" required class="shadow-sm">
-                        <option value="" id="selectGenderOption">Select</option>
-                        <option value="Male" id="genderMaleOption">Male</option>
-                        <option value="Female" id="genderFemaleOption">Female</option>
-                        <option value="Other" id="genderOtherOption">Other</option>
+                    <label for="gender">Gender <span>*</span></label>
+                    <select id="gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="age" id="ageLabel">Age <span>*</span></label>
-                    <input type="number" id="age" required min="18" placeholder="Enter your age (must be 18+)" class="shadow-sm">
+                    <label for="age">Age <span>*</span></label>
+                    <input type="number" id="age" required min="18" placeholder="Enter your age (must be 18+)">
                 </div>
-
                 <div class="form-group">
-                    <label for="profession" id="professionLabel">Profession <span>*</span></label>
-                    <select id="profession" required class="shadow-sm">
-                        <option value="" id="selectProfessionOption">Select</option>
-                        <option value="Student" id="professionStudentOption">Student</option>
-                        <option value="Self Employed" id="professionSelfEmployedOption">Self Employed</option>
-                        <option value="Business" id="professionBusinessOption">Business</option>
+                    <label for="profession">Profession <span>*</span></label>
+                    <select id="profession" required>
+                        <option value="">Select</option>
+                        <option value="Student">Student</option>
+                        <option value="Self Employed">Self Employed</option>
+                        <option value="Business">Business</option>
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="state" id="stateLabel">State <span>*</span></label>
-                    <select id="state" required onchange="populateCities()" class="shadow-sm">
-                        <option value="" id="selectStateOption">Select State</option>
-                    </select>
+                    <label for="phone">Phone Number <span>*</span></label>
+                    <input type="text" id="phone" pattern="[0-9]{10}" maxlength="10" required placeholder="Enter 10-digit phone number">
                 </div>
-
                 <div class="form-group">
-                    <label for="city" id="cityLabel">City <span>*</span></label>
-                    <select id="city" required class="shadow-sm">
-                        <option value="" id="selectCityOption">Select City</option>
-                    </select>
+                    <label for="whatsapp">WhatsApp Number <span>*</span></label>
+                    <input type="text" id="whatsapp" pattern="[0-9]{10}" maxlength="10" required placeholder="Enter 10-digit WhatsApp number">
                 </div>
-
                 <div class="form-group">
-                    <label for="phone" id="phoneLabel">Phone Number <span>*</span></label>
-                    <input type="text" id="phone" pattern="[0-9]{10}" maxlength="10" required placeholder="Enter 10-digit phone number" class="shadow-sm">
-                    <small id="phoneSmall">e.g., 9876543210</small>
+                    <label for="email">Email <small>(optional)</small></label>
+                    <input type="email" id="email" placeholder="Enter your email address (optional)">
                 </div>
-
                 <div class="form-group">
-                    <label for="whatsapp" id="whatsappLabel">WhatsApp Number <span>*</span></label>
-                    <input type="text" id="whatsapp" pattern="[0-9]{10}" maxlength="10" required placeholder="Enter 10-digit WhatsApp number" class="shadow-sm">
-                    <small id="whatsappSmall">e.g., 9876543210</small>
+                    <label for="profilePhoto">Upload Photo <span>*</span></label>
+                    <input type="file" id="profilePhoto" accept="image/*" required>
                 </div>
-
                 <div class="form-group">
-                    <label for="email" id="emailLabel">Email <small>(optional)</small></label>
-                    <input type="email" id="email" placeholder="Enter your email address (optional)" class="shadow-sm">
+                    <label for="address">Address <span>*</span></label>
+                    <input type="text" id="address" required placeholder="Enter your full address">
                 </div>
-
-                <!-- New: Photo/Logo Upload Field -->
                 <div class="form-group">
-                    <label for="profilePhoto" id="profilePhotoLabel">Upload Photo/Logo <span>*</span></label>
-                    <input type="file" id="profilePhoto" accept="image/*" required class="shadow-sm">
-                    <small id="profilePhotoSmall">Accepts images (PNG, JPG, JPEG)</small>
+                    <label for="aadhar">Aadhar Number <span>*</span></label>
+                    <input type="text" id="aadhar" pattern="[0-9]{12}" maxlength="12" required placeholder="Enter 12-digit Aadhar number">
                 </div>
-
                 <div class="form-group">
-                    <label for="address" id="addressLabel">Address <span>*</span></label>
-                    <input type="text" id="address" required placeholder="Enter your full address" class="shadow-sm">
+                    <label for="bank">Bank Name <span>*</span></label>
+                    <input type="text" id="bank" required placeholder="Enter your bank name">
                 </div>
-
                 <div class="form-group">
-                    <label for="aadhar" id="aadharLabel">Aadhar Number <span>*</span></label>
-                    <input type="text" id="aadhar" pattern="[0-9]{12}" maxlength="12" required placeholder="Enter 12-digit Aadhar number" class="shadow-sm">
-                    <small id="aadharSmall">e.g., 123456789012</small>
+                    <label for="beneficiary">Beneficiary Name <span>*</span></label>
+                    <input type="text" id="beneficiary" required placeholder="Enter beneficiary name (as per bank account)">
                 </div>
-
                 <div class="form-group">
-                    <label for="bank" id="bankNameLabel">Bank Name <span>*</span></label>
-                    <input type="text" id="bank" required placeholder="Enter your bank name" class="shadow-sm">
+                    <label for="account">Account Number <span>*</span></label>
+                    <input type="text" id="account" required placeholder="Enter your bank account number">
                 </div>
-
                 <div class="form-group">
-                    <label for="beneficiary" id="beneficiaryNameLabel">Beneficiary Name <span>*</span></label>
-                    <input type="text" id="beneficiary" required placeholder="Enter beneficiary name (as per bank account)" class="shadow-sm">
+                    <label for="ifsc">IFSC Code <span>*</span></label>
+                    <input type="text" id="ifsc" required placeholder="Enter your bank IFSC code">
                 </div>
 
-                <div class="form-group">
-                    <label for="account" id="accountNumberLabel">Account Number <span>*</span></label>
-                    <input type="text" id="account" required placeholder="Enter your bank account number" class="shadow-sm">
-                </div>
-
-                <div class="form-group">
-                    <label for="ifsc" id="ifscCodeLabel">IFSC Code <span>*</span></label>
-                    <input type="text" id="ifsc" required placeholder="Enter your bank IFSC code" class="shadow-sm">
-                </div>
-
-                <!-- New: Password Fields -->
-                <div class="form-group">
-                    <label for="password" id="passwordLabel">Create Password <span>*</span></label>
-                    <input type="password" id="password" required placeholder="Enter a strong password" class="shadow-sm">
-                    <small id="passwordSmall">Minimum 6 characters</small>
-                    <div id="passwordError" class="password-error"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword" id="confirmPasswordLabel">Re-enter Password <span>*</span></label>
-                    <input type="password" id="confirmPassword" required placeholder="Re-enter your password" class="shadow-sm">
-                    <div id="confirmPasswordError" class="password-error"></div>
-                </div>
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="termsAccepted" required>
-                    <label for="termsAccepted" id="termsLabel">I have read all the details successfully and agree to the <a href="#" target="_blank" id="termsLink">terms and policy</a>.</label>
-                </div>
-
-                <button type="submit" id="submitRequestButton">Submit Request</button>
+                <button type="submit" id="submitRequestButton">
+                    Submit Request
+                    <span id="submitSpinner" class="spinner hidden"></span>
+                </button>
             </form>
         </div>
     </main>
-
-    <div class="fixed bottom-0 left-0 w-full bg-gradient-to-r from-yellow-400 via-orange-300 to-red-400 text-black text-center py-3 font-bold text-sm shadow-inner animate-pulse z-50">
-        📢 Promote your business here – Contact us to get featured!
-    </div>
-
-    <div id="menu-sidebar">
-        <div id="close-menu" class="close-menu">×</div>
-        <ul>
-            <li class="flex items-center mb-4">
-                <span class="font-semibold text-lg" id="userNameLabel">User Name</span>
-            </li>
-            <li><i class="fas fa-home"></i><span id="homeLabel">Home</span></li>
-            <li><i class="fas fa-user"></i><span id="loginSignupLabel">Login/SignUp</span></li>
-            <li><i class="fas fa-user-circle"></i><span id="myProfileLabelSidebar">My Profile</span></li>
-            <li><i class="fas fa-user-tie"></i><span id="beAnAgentLabelSidebar">Be An Agent</span></li>
-            <li><i class="fas fa-bullhorn"></i><span id="anchorAdsLabel">Anchor Ads</span></li>
-            <li><i class="fas fa-gift"></i><span id="todayOfferLabelSidebar">Today's Offer</span></li>
-            
-            <li class="settings-parent" id="settingsMenu">
-                <i class="fas fa-cog"></i><span id="settingsLabel">Settings</span> <span class="caret">▶</span>
-                <ul class="settings-options">
-                    <li>
-                        <span id="themeSelectionLabel">Theme Selection</span>
-                        <select id="themeSelect">
-                            <option value="default">Default Theme</option>
-                            <option value="blue">Blue Theme</option>
-                            <option value="green">Green Theme</option>
-                        </select>
-                    </li>
-                    <li>
-                        <span id="lightDarkModeLabel">Light and Dark Mode</span>
-                        <label id="dark-mode-toggle" class="dark-mode-switch">
-                            <div class="dark-mode-switch-track"></div>
-                            <div class="dark-mode-switch-thumb"></div>
-                            <span class="dark-mode-switch-label">Dark Mode</span>
-                            <div class="dark-mode-switch-icon light">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-sun"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0z"/></svg>
-                            </div>
-                            <div class="dark-mode-switch-icon dark">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-moon"><path d="M12 3a6 6 0 0 1 9 9 9 9 0 1 1-9-9z"/></svg>
-                            </div>
-                        </label>
-                    </li>
-                    <li>
-                        <span id="fontSizeTextLabel">Font Size</span>
-                        <select id="fontSizeSelect">
-                            <option value="small">Small</option>
-                            <option value="medium" selected>Medium</option>
-                            <option value="large">Large</option>
-                        </select>
-                    </li>
-                    <li>
-                        <span id="languagePreferencesTextLabel">Language Preferences</span>
-                        <select id="languageSelect">
-                            <option value="en">English</option>
-                            <option value="hi">हिन्दी (Hindi)</option>
-                            <option value="ta">தமிழ் (Tamil)</option>
-                            <option value="gu">ગુજરાતી (Gujarati)</option>
-                            <option value="kn">ಕನ್ನಡ (Kannada)</option>
-                            <option value="mr">मराठी (Marathi)</option>
-                            <option value="bn">বাংলা (Bengali)</option>
-                            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
-                            <option value="te">తెలుగు (Telugu)</option>
-                        </select>
-                    </li>
-                    <li>
-                        <button id="resetDefaultsButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-2 w-full text-sm">
-                            Reset to Defaults
-                        </button>
-                    </li>
-                </ul>
-            </li>
-            <li><i class="fas fa-comments"></i><span id="feedbackLabel">Feedback</span></li>
-            <li><i class="fas fa-info-circle"></i><span id="aboutUsLabel">About Us</span></li>
-            <li><i class="fas fa-sign-out-alt"></i><span id="logoutLabel">Logout</span></li>
-        </ul>
-    </div>
 
     <!-- Message box to display user feedback -->
     <div id="messageBox" class="hidden"></div>
 
     <!-- Firebase SDK imports -->
-    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js"></script>
+
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js";
 
-        // Firebase Initialization
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        let app;
-        let db;
-        let auth;
-        let userId = null;
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+        const auth = getAuth(app);
+        let currentUserId = null;
 
-        /**
-         * Initializes Firebase application and authenticates the user.
-         */
-        async function initializeFirebaseAndAuth() {
-            try {
-                if (!app) app = initializeApp(firebaseConfig);
-                if (!db) db = getFirestore(app);
-                if (!auth) auth = getAuth(app);
-
-                // Authenticate if not already authenticated
-                if (!auth.currentUser) {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                }
-                userId = auth.currentUser?.uid;
-                if (!userId) {
-                    console.error("User not authenticated. Some features may be limited.");
-                }
-                console.log("Agent Page: Firebase initialized and authenticated. User ID:", userId);
-                return { db, auth, userId };
-            } catch (error) {
-                console.error("Error initializing Firebase or authenticating:", error);
-                showMessage(`Error during Firebase setup: ${error.message}`, 5000, 'error');
-                return null;
-            }
-        }
-
-        // DOM Elements
-        const agentPageTitle = document.getElementById('agentPageTitle');
-        const headerTitle = document.getElementById('headerTitle');
-        const backButton = document.getElementById('backButton');
-        const detailsBox = document.getElementById('detailsBox');
-        const readDetailsButton = document.getElementById('readDetailsButton');
         const agentRegistrationForm = document.getElementById('agentRegistrationForm');
         const submitRequestButton = document.getElementById('submitRequestButton');
+        const submitSpinner = document.getElementById('submitSpinner');
         const messageBox = document.getElementById('messageBox');
-        const body = document.body;
-        const signInAsAgentBtn = document.getElementById('signInAsAgentBtn'); // New: Sign In as Agent button
-        const passwordInput = document.getElementById('password'); // New: Password input
-        const confirmPasswordInput = document.getElementById('confirmPassword'); // New: Confirm Password input
-        const passwordError = document.getElementById('passwordError'); // New: Password error div
-        const confirmPasswordError = document.getElementById('confirmPasswordError'); // New: Confirm Password error div
 
+        onAuthStateChanged(auth, (user) => {
+            currentUserId = user ? user.uid : null;
+        });
 
-        // Header and Sidebar elements (reused from other pages)
-        const burgerMenuBtn = document.getElementById('burger-menu');
-        const menuSidebar = document.getElementById('menu-sidebar');
-        const closeMenuBtn = document.getElementById('close-menu');
-        const todayOfferButton = document.getElementById('todayOfferButton');
-        const todayOfferTextSpan = document.getElementById('todayOfferText');
-        const currentCityButton = document.getElementById('currentCityButton');
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const darkModeSwitchTrack = document.querySelector('#menu-sidebar .dark-mode-switch-track');
-        const darkModeSwitchThumb = document.querySelector('#menu-sidebar .dark-mode-switch-thumb');
-        const darkModeSwitchLabel = document.querySelector('#menu-sidebar .dark-mode-switch-label');
-        const lightModeIcon = document.querySelector('#menu-sidebar .dark-mode-switch-icon.light');
-        const darkModeIcon = document.querySelector('#menu-sidebar .dark-mode-switch-icon.dark');
-        const fontSizeSelect = document.getElementById('fontSizeSelect');
-        const languageSelect = document.getElementById('languageSelect');
-        const themeSelect = document.getElementById('themeSelect');
-        const settingsMenuParent = document.getElementById('settingsMenu');
-        const resetDefaultsButton = document.getElementById('resetDefaultsButton');
-        const logoutButton = document.getElementById('logoutLabel');
-
-
-        let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
-        let allLocationsData = []; // To store all fetched locations
-
-        // Message display function
-        function showMessage(message, duration = 3000, type = 'info') {
+        function showMessage(message, isError = false) {
             messageBox.textContent = message;
-            messageBox.style.backgroundColor = type === 'error' ? 'rgba(255, 0, 0, 0.8)' : (type === 'success' ? 'rgba(0, 128, 0, 0.8)' : 'rgba(0, 0, 0, 0.8)');
-            messageBox.style.display = 'block';
-            if (duration > 0) {
-                setTimeout(() => {
-                    messageBox.style.display = 'none';
-                }, duration);
-            }
+            messageBox.style.backgroundColor = isError ? 'rgba(239, 68, 68, 0.9)' : 'rgba(16, 185, 129, 0.9)';
+            messageBox.classList.remove('hidden');
+            setTimeout(() => messageBox.classList.add('hidden'), 4000);
         }
 
-        // Language translations for this page and shared elements
-        const translations = {
-            en: {
-                agentPageTitle: "Become an Agent",
-                headerTitleDefault: "Become an Agent",
-                becomeAgentTitle: "Become an Agent",
-                readDetails: "Read Details",
-                signInAsAgent: "Sign In as Agent", // New translation
-                detail1: "When you become an agent, you will get a unique Agent ID.",
-                detail2: "You can help others register and earn ₹20 for each verified form they submit using your ID.",
-                detail3: "Once your total earnings reach ₹100, you can request a withdrawal.",
-                detail4: "We’ll transfer your earnings to the bank account you provided.",
-                detail5: "Admin will review your agent request before approval.",
-                firstNameLabel: "First Name",
-                lastNameLabel: "Last Name",
-                genderLabel: "Gender",
-                selectGenderOption: "Select",
-                genderMaleOption: "Male",
-                genderFemaleOption: "Female",
-                genderOtherOption: "Other",
-                ageLabel: "Age",
-                professionLabel: "Profession",
-                selectProfessionOption: "Select",
-                professionStudentOption: "Student",
-                professionSelfEmployedOption: "Self Employed",
-                professionBusinessOption: "Business",
-                stateLabel: "State",
-                selectStateOption: "Select State",
-                cityLabel: "City",
-                selectCityOption: "Select City",
-                phoneLabel: "Phone Number",
-                phoneSmall: "e.g., 9876543210",
-                whatsappLabel: "WhatsApp Number",
-                whatsappSmall: "e.g., 9876543210",
-                emailLabel: "Email",
-                profilePhotoLabel: "Upload Photo/Logo", // New translation
-                profilePhotoSmall: "Accepts images (PNG, JPG, JPEG)", // New translation
-                passwordLabel: "Create Password", // New translation
-                passwordSmall: "Minimum 6 characters", // New translation
-                confirmPasswordLabel: "Re-enter Password", // New translation
-                addressLabel: "Address",
-                aadharLabel: "Aadhar Number",
-                aadharSmall: "e.g., 123456789012",
-                bankNameLabel: "Bank Name",
-                beneficiaryNameLabel: "Beneficiary Name",
-                accountNumberLabel: "Account Number",
-                ifscCodeLabel: "IFSC Code",
-                termsLabel: "I have read all the details successfully and agree to the",
-                termsLink: "terms and policy",
-                submitRequestButton: "Submit Request",
-                requestSubmitted: "Agent registration submitted successfully! Your request will be reviewed by admin.",
-                formValidationError: "Please fill in all required fields and ensure data is valid.",
-                submissionError: "Error submitting agent request:",
-                loadingLocations: "Loading locations...",
-                noStatesFound: "No states found.",
-                noCitiesFound: "No cities found for this state.",
-                selectStatePrompt: "Please select a State first.",
-                passwordMismatch: "Passwords do not match.", // New translation
-                passwordTooShort: "Password must be at least 6 characters.", // New translation
-                
-                // Shared homepage elements translations (subset as needed)
-                userName: "User Name", home: "Home", loginSignup: "Login/SignUp", myProfile: "My Profile",
-                beAnAgent: "Be An Agent", anchorAds: "Anchor Ads", todayOffer: "Today's Offer", settings: "Settings",
-                themeSelection: "Theme Selection", lightDarkMode: "Light and Dark Mode", fontSize: "Font Size",
-                languagePreferences: "Language Preferences", feedback: "Feedback", aboutUs: "About Us", logout: "Logout",
-                darkModeLabel: "Dark Mode", promoteBusiness: "📢 Promote your business here – Contact us to get featured!",
-                currentCity: "Current City:", todayOfferButton: "Today's Offer", todayOfferMsg: "Check out our amazing deals!",
-                resetDefaultsSuccess: "Settings reset to default!"
-            },
-            hi: {
-                agentPageTitle: "एजेंट बनें",
-                headerTitleDefault: "एजेंट बनें",
-                becomeAgentTitle: "एजेंट बनें",
-                readDetails: "विवरण पढ़ें",
-                signInAsAgent: "एजेंट के रूप में साइन इन करें", // New translation
-                detail1: "जब आप एक एजेंट बनेंगे, तो आपको एक अद्वितीय एजेंट आईडी मिलेगी।",
-                detail2: "आप दूसरों को पंजीकरण करने में मदद कर सकते हैं और अपनी आईडी का उपयोग करके उनके द्वारा जमा किए गए प्रत्येक सत्यापित फॉर्म के लिए ₹20 कमा सकते हैं।",
-                detail3: "एक बार जब आपकी कुल कमाई ₹100 तक पहुंच जाती है, तो आप निकासी का अनुरोध कर सकते हैं।",
-                detail4: "हम आपकी कमाई आपके द्वारा प्रदान किए गए बैंक खाते में स्थानांतरित कर देंगे।",
-                detail5: "प्रशासन अनुमोदन से पहले आपके एजेंट अनुरोध की समीक्षा करेगा।",
-                firstNameLabel: "पहला नाम",
-                lastNameLabel: "अंतिम नाम",
-                genderLabel: "लिंग",
-                selectGenderOption: "चुनें",
-                genderMaleOption: "पुरुष",
-                genderFemaleOption: "महिला",
-                genderOtherOption: "अन्य",
-                ageLabel: "आयु",
-                professionLabel: "पेशा",
-                selectProfessionOption: "चुनें",
-                professionStudentOption: "छात्र",
-                professionSelfEmployedOption: "स्वरोजगार",
-                professionBusinessOption: "व्यवसाय",
-                stateLabel: "राज्य",
-                selectStateOption: "राज्य चुनें",
-                cityLabel: "शहर",
-                selectCityOption: "शहर चुनें",
-                phoneLabel: "फ़ोन नंबर",
-                phoneSmall: "उदा., 9876543210",
-                whatsappLabel: "व्हाट्सएप नंबर",
-                whatsappSmall: "उदा., 9876543210",
-                emailLabel: "ईमेल",
-                profilePhotoLabel: "फोटो/लोगो अपलोड करें", // New translation
-                profilePhotoSmall: "छवियां स्वीकार करता है (PNG, JPG, JPEG)", // New translation
-                passwordLabel: "पासवर्ड बनाएं", // New translation
-                passwordSmall: "न्यूनतम 6 वर्ण", // New translation
-                confirmPasswordLabel: "पासवर्ड पुनः दर्ज करें", // New translation
-                addressLabel: "पता",
-                aadharLabel: "आधार नंबर",
-                aadharSmall: "उदा., 123456789012",
-                bankNameLabel: "बैंक का नाम",
-                beneficiaryNameLabel: "लाभार्थी का नाम",
-                accountNumberLabel: "खाता संख्या",
-                ifscCodeLabel: "IFSC कोड",
-                termsLabel: "मैंने सभी विवरण सफलतापूर्वक पढ़ लिए हैं और",
-                termsLink: "नियम और नीति",
-                submitRequestButton: "अनुरोध सबमिट करें",
-                requestSubmitted: "एजेंट पंजीकरण सफलतापूर्वक जमा हो गया! आपके अनुरोध की प्रशासन द्वारा समीक्षा की जाएगी।",
-                formValidationError: "कृपया सभी आवश्यक फ़ील्ड भरें और सुनिश्चित करें कि डेटा वैध है।",
-                submissionError: "एजेंट अनुरोध सबमिट करने में त्रुटि:",
-                loadingLocations: "स्थान लोड हो रहे हैं...",
-                noStatesFound: "कोई राज्य नहीं मिला।",
-                noCitiesFound: "इस राज्य के लिए कोई शहर नहीं मिला।",
-                selectStatePrompt: "कृपया पहले एक राज्य चुनें।",
-                passwordMismatch: "पासवर्ड मेल नहीं खाते।", // New translation
-                passwordTooShort: "पासवर्ड कम से कम 6 वर्णों का होना चाहिए।", // New translation
+        agentRegistrationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-                // Shared homepage elements translations
-                userName: "उपयोगकर्ता नाम", home: "मुख्य पृष्ठ", loginSignup: "लॉगिन/साइन अप करें", myProfile: "मेरी प्रोफाइल",
-                beAnAgent: "एजंट बनें", anchorAds: "एंकर विज्ञापन", todayOffer: "आज का ऑफर", settings: "सेटिंग्स",
-                themeSelection: "थीम चुनें", lightDarkMode: "लाइट और डार्क मोड", fontSize: "फ़ॉन्ट आकार",
-                languagePreferences: "भाषा वरीयताएँ", feedback: "प्रतिक्रिया", aboutUs: "हमारे बारे में", logout: "लॉगआउट",
-                darkModeLabel: "डार्क मोड", promoteBusiness: "📢 अपना व्यवसाय यहाँ बढ़ावा दें – फ़ीचर होने के लिए संपर्क करें!",
-                currentCity: "वर्तमान शहर:", todayOfferButton: "आज का ऑफर", todayOfferMsg: "हमारी अद्भुत डील्स देखें!",
-                resetDefaultsSuccess: "सेटिंग्स डिफ़ॉल्ट पर रीसेट हो गई!"
-            },
-            ta: {
-                agentPageTitle: "ஒரு முகவராக இருங்கள்",
-                headerTitleDefault: "ஒரு முகவராக இருங்கள்",
-                becomeAgentTitle: "ஒரு முகவராக இருங்கள்",
-                readDetails: "விவரங்களைப் படிக்கவும்",
-                signInAsAgent: "முகவராக உள்நுழைக", // New translation
-                detail1: "நீங்கள் ஒரு முகவராக மாறும்போது, ​​உங்களுக்கு ஒரு தனிப்பட்ட முகவர் ஐடி கிடைக்கும்.",
-                detail2: "நீங்கள் மற்றவர்கள் பதிவு செய்ய உதவலாம் மற்றும் உங்கள் ஐடியைப் பயன்படுத்தி சமர்ப்பிக்கும் ஒவ்வொரு சரிபார்க்கப்பட்ட படிவத்திற்கும் ₹20 சம்பாதிக்கலாம்.",
-                detail3: "உங்கள் மொத்த வருமானம் ₹100 ஐ எட்டியதும், நீங்கள் திரும்பப் பெறலாம்.",
-                detail4: "நீங்கள் வழங்கிய வங்கிக் கணக்கிற்கு உங்கள் வருமானத்தை நாங்கள் மாற்றுவோம்.",
-                detail5: "அங்கீகரிக்கும் முன் நிர்வாகி உங்கள் முகவர் கோரிக்கையை மதிப்பாய்வு செய்வார்.",
-                firstNameLabel: "முதல் பெயர்",
-                lastNameLabel: "கடைசி பெயர்",
-                genderLabel: "பாலினம்",
-                selectGenderOption: "தேர்ந்தெடு",
-                genderMaleOption: "ஆண்",
-                genderFemaleOption: "பெண்",
-                genderOtherOption: "மற்றவை",
-                ageLabel: "வயது",
-                professionLabel: "தொழில்",
-                selectProfessionOption: "தேர்ந்தெடு",
-                professionStudentOption: "மாணவர்",
-                professionSelfEmployedOption: "சுயதொழில் செய்பவர்",
-                professionBusinessOption: "வணிகம்",
-                stateLabel: "மாநிலம்",
-                selectStateOption: "மாநிலத்தைத் தேர்ந்தெடு",
-                cityLabel: "நகரம்",
-                selectCityOption: "நகரத்தைத் தேர்ந்தெடு",
-                phoneLabel: "தொலைபேசி எண்",
-                phoneSmall: "எ.கா., 9876543210",
-                whatsappLabel: "வாட்ஸ்அப் எண்",
-                whatsappSmall: "எ.கா., 9876543210",
-                emailLabel: "மின்னஞ்சல்",
-                profilePhotoLabel: "புகைப்படம்/லோகோ பதிவேற்றவும்", // New translation
-                profilePhotoSmall: "படங்களை ஏற்கிறது (PNG, JPG, JPEG)", // New translation
-                passwordLabel: "கடவுச்சொல்லை உருவாக்கவும்", // New translation
-                passwordSmall: "குறைந்தது 6 எழுத்துக்கள்", // New translation
-                confirmPasswordLabel: "கடவுச்சொல்லை மீண்டும் உள்ளிடவும்", // New translation
-                addressLabel: "முகவரி",
-                aadharLabel: "ஆதார் எண்",
-                aadharSmall: "எ.கா., 123456789012",
-                bankNameLabel: "வங்கி பெயர்",
-                beneficiaryNameLabel: "பயனாளி பெயர்",
-                accountNumberLabel: "கணக்கு எண்",
-                ifscCodeLabel: "IFSC குறியீடு",
-                termsLabel: "நான் அனைத்து விவரங்களையும் வெற்றிகரமாகப் படித்துவிட்டேன் மற்றும்",
-                termsLink: "விதிமுறைகள் மற்றும் கொள்கையை",
-                submitRequestButton: "கோரிக்கையைச் சமர்ப்பிக்கவும்",
-                requestSubmitted: "முகவர் பதிவு வெற்றிகரமாகச் சமர்ப்பிக்கப்பட்டது! உங்கள் கோரிக்கை நிர்வாகியால் மதிப்பாய்வு செய்யப்படும்.",
-                formValidationError: "தேவையான அனைத்து புலங்களையும் நிரப்பி, தரவு சரியானதா என்பதை உறுதிப்படுத்தவும்.",
-                submissionError: "முகவர் கோரிக்கையைச் சமர்ப்பிப்பதில் பிழை:",
-                loadingLocations: "இருப்பிடங்கள் ஏற்றப்படுகின்றன...",
-                noStatesFound: "மாநிலங்கள் எதுவும் இல்லை.",
-                noCitiesFound: "இந்த மாநிலத்திற்கு நகரங்கள் எதுவும் இல்லை.",
-                selectStatePrompt: "முதலில் ஒரு மாநிலத்தைத் தேர்ந்தெடுக்கவும்.",
-                passwordMismatch: "கடவுச்சொற்கள் பொருந்தவில்லை.", // New translation
-                passwordTooShort: "கடவுச்சொல் குறைந்தது 6 எழுத்துக்களைக் கொண்டிருக்க வேண்டும்.", // New translation
-
-                // Shared homepage elements translations
-                userName: "பயனர் பெயர்", home: "முகப்பு", loginSignup: "உள்நுழை/பதிவு", myProfile: "எனது சுயவிவரம்",
-                beAnAgent: "ஒரு முகவராக இருங்கள்", anchorAds: "நங்கூர விளம்பரங்கள்", todayOffer: "இன்றைய சலுகை", settings: "அமைப்புகள்",
-                themeSelection: "தீம் தேர்வு", lightDarkMode: "வெளிச்சம் மற்றும் இருண்ட பயன்முறை", fontSize: "எழுத்துரு அளவு",
-                languagePreferences: "மொழி விருப்பத்தேர்வுகள்", feedback: "பின்னூட்டம்", aboutUs: "எங்களைப் பற்றி", logout: "வெளியேறு",
-                darkModeLabel: "இருண்ட பயன்முறை", promoteBusiness: "📢 உங்கள் வணிகத்தை இங்கே விளம்பரப்படுத்துங்கள் – இடம்பெற எங்களைத் தொடர்பு கொள்ளுங்கள்!",
-                currentCity: "தற்போதைய நகரம்:", todayOfferButton: "இன்றைய சலுகை", todayOfferMsg: "எங்களின் அற்புதமான சலுகைகளைப் பாருங்கள்!",
-                resetDefaultsSuccess: "அமைப்புகள் இயல்புநிலைக்கு மீட்டமைக்கப்பட்டன!"
-            },
-            gu: {
-                agentPageTitle: "એજન્ટ બનો",
-                headerTitleDefault: "એજન્ટ બનો",
-                becomeAgentTitle: "એજન્ટ બનો",
-                readDetails: "વિગતો વાંચો",
-                signInAsAgent: "એજન્ટ તરીકે સાઇન ઇન કરો", // New translation
-                detail1: "જ્યારે તમે એજન્ટ બનશો, ત્યારે તમને એક અનન્ય એજન્ટ ID મળશે.",
-                detail2: "તમે અન્યને નોંધણી કરવામાં મદદ કરી શકો છો અને તમારી ID નો ઉપયોગ કરીને તેઓ સબમિટ કરેલા દરેક ચકાસાયેલ ફોર્મ માટે ₹20 કમાઈ શકો છો.",
-                detail3: "એકવાર તમારી કુલ કમાણી ₹100 સુધી પહોંચી જાય, પછી તમે ઉપાડની વિનંતી કરી શકો છો.",
-                detail4: "અમે તમારી કમાણી તમે પ્રદાન કરેલા બેંક ખાતામાં સ્થાનાંતરિત કરીશું.",
-                detail5: "મંજૂરી પહેલાં એડમિન તમારી એજન્ટ વિનંતીની સમીક્ષા કરશે.",
-                firstNameLabel: "પ્રથમ નામ",
-                lastNameLabel: "અંતિમ નામ",
-                genderLabel: "લિંગ",
-                selectGenderOption: "પસંદ કરો",
-                genderMaleOption: "પુરુષ",
-                genderFemaleOption: "સ્ત્રી",
-                genderOtherOption: "અન્ય",
-                ageLabel: "ઉંમર",
-                professionLabel: "વ્યવસાય",
-                selectProfessionOption: "પસંદ કરો",
-                professionStudentOption: "વિદ્યાર્થી",
-                professionSelfEmployedOption: "સ્વ-રોજગાર",
-                professionBusinessOption: "વ્યવસાય",
-                stateLabel: "રાજ્ય",
-                selectStateOption: "રાજ્ય પસંદ કરો",
-                cityLabel: "શહેર",
-                selectCityOption: "શહેર પસંદ કરો",
-                phoneLabel: "ફોન નંબર",
-                phoneSmall: "દા.ત., 9876543210",
-                whatsappLabel: "વોટ્સએપ નંબર",
-                whatsappSmall: "દા.ત., 9876543210",
-                emailLabel: "ઇમેઇલ",
-                profilePhotoLabel: "ફોટો/લોગો અપલોડ કરો", // New translation
-                profilePhotoSmall: "છબીઓ સ્વીકારે છે (PNG, JPG, JPEG)", // New translation
-                passwordLabel: "પાસવર્ડ બનાવો", // New translation
-                passwordSmall: "ઓછામાં ઓછા 6 અક્ષરો", // New translation
-                confirmPasswordLabel: "પાસવર્ડ ફરીથી દાખલ કરો", // New translation
-                addressLabel: "સરનામું",
-                aadharLabel: "આધાર નંબર",
-                aadharSmall: "દા.ત., 123456789012",
-                bankNameLabel: "બેંકનું નામ",
-                beneficiaryNameLabel: "લાભાર્થીનું નામ",
-                accountNumberLabel: "ખાતા નંબર",
-                ifscCodeLabel: "IFSC કોડ",
-                termsLabel: "મેં બધી વિગતો સફળતાપૂર્વક વાંચી છે અને",
-                termsLink: "નિયમો અને નીતિ",
-                submitRequestButton: "વિનંતી સબમિટ કરો",
-                requestSubmitted: "એજન્ટ નોંધણી સફળતાપૂર્વક સબમિટ થઈ! તમારી વિનંતીની એડમિન દ્વારા સમીક્ષા કરવામાં આવશે.",
-                formValidationError: "કૃપા કરીને બધા આવશ્યક ક્ષેત્રો ભરો અને ખાતરી કરો કે ડેટા માન્ય છે.",
-                submissionError: "એજન્ટ વિનંતી સબમિટ કરવામાં ભૂલ:",
-                loadingLocations: "સ્થાનો લોડ થઈ રહ્યા છે...",
-                noStatesFound: "કોઈ રાજ્યો મળ્યા નથી.",
-                noCitiesFound: "આ રાજ્ય માટે કોઈ શહેરો મળ્યા નથી.",
-                selectStatePrompt: "કૃપા કરીને પહેલા એક રાજ્ય પસંદ કરો.",
-                passwordMismatch: "પાસવર્ડ્સ મેળ ખાતા નથી.", // New translation
-                passwordTooShort: "પાસવર્ડ ઓછામાં ઓછા 6 અક્ષરોનો હોવો જોઈએ.", // New translation
-
-                // Shared homepage elements translations
-                userName: "વપરાશકર્તા નામ", home: "હોમ", loginSignup: "લૉગિન/સાઇન અપ કરો", myProfile: "મારી પ્રોફાઇલ",
-                beAnAgent: "એજન્ટ બનો", anchorAds: "એન્કર જાહેરાતો", todayOffer: "આજની ઓફર", settings: "સેટિંગ્સ",
-                themeSelection: "થીમ પસંદગી", lightDarkMode: "લાઇટ અને ડાર્ક મોડ", fontSize: "ફૉન્ટ સાઇઝ",
-                languagePreferences: "ભાષા પસંદગીઓ", feedback: "પ્રતિભાવ", aboutUs: "અમારા વિશે", logout: "લૉગઆઉટ",
-                darkModeLabel: "ડાર્ક મોડ", promoteBusiness: "📢 તમારો વ્યવસાય અહીં પ્રચાર કરો - ફીચર થવા માટે સંપર્ક કરો!",
-                currentCity: "વર્તમાન શહેર:", todayOfferButton: "આજની ઓફર", todayOfferMsg: "અમારા આકર્ષક ડીલ્સ તપાસો!",
-                resetDefaultsSuccess: "સેટિંગ્સ ડિફૉલ્ટ પર રીસેટ થઈ!"
-            },
-            kn: {
-                agentPageTitle: "ಏಜೆಂಟ್ ಆಗಿ",
-                headerTitleDefault: "ಏಜೆಂಟ್ ಆಗಿ",
-                becomeAgentTitle: "ಏಜೆಂಟ್ ಆಗಿ",
-                readDetails: "ವಿವರಗಳನ್ನು ಓದಿ",
-                signInAsAgent: "ಏಜೆಂಟ್ ಆಗಿ ಸೈನ್ ಇನ್ ಮಾಡಿ", // New translation
-                detail1: "ನೀವು ಏಜೆಂಟ್ ಆದಾಗ, ನಿಮಗೆ ಅನನ್ಯ ಏಜೆಂಟ್ ಐಡಿ ಸಿಗುತ್ತದೆ.",
-                detail2: "ನಿಮ್ಮ ID ಬಳಸಿಕೊಂಡು ಅವರು ಸಲ್ಲಿಸುವ ಪ್ರತಿ ಪರಿಶೀಲಿಸಿದ ಫಾರ್ಮ್‌ಗೆ ನೀವು ಇತರರಿಗೆ ನೋಂದಾಯಿಸಲು ಸಹಾಯ ಮಾಡಬಹುದು ಮತ್ತು ₹20 ಗಳಿಸಬಹುದು.",
-                detail3: "ನಿಮ್ಮ ಒಟ್ಟು ಗಳಿಕೆ ₹100 ತಲುಪಿದ ನಂತರ, ನೀವು ಹಿಂಪಡೆಯಲು ವಿನಂತಿಸಬಹುದು.",
-                detail4: "ನೀವು ಒದಗಿಸಿದ ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ನಿಮ್ಮ ಗಳಿಕೆಯನ್ನು ನಾವು ವರ್ಗಾಯಿಸುತ್ತೇವೆ.",
-                detail5: "ಅನುಮೋದನೆಯ ಮೊದಲು ನಿರ್ವಾಹಕರು ನಿಮ್ಮ ಏಜೆಂಟ್ ವಿನಂತಿಯನ್ನು ಪರಿಶೀಲಿಸುತ್ತಾರೆ.",
-                firstNameLabel: "ಮೊದಲ ಹೆಸರು",
-                lastNameLabel: "ಕೊನೆಯ ಹೆಸರು",
-                genderLabel: "ಲಿಂಗ",
-                selectGenderOption: "ಆಯ್ಕೆಮಾಡಿ",
-                genderMaleOption: "ಪುರುಷ",
-                genderFemaleOption: "ಮಹಿಳೆ",
-                genderOtherOption: "ಇತರೆ",
-                ageLabel: "ವಯಸ್ಸು",
-                professionLabel: "ವೃತ್ತಿ",
-                selectProfessionOption: "ಆಯ್ಕೆಮಾಡಿ",
-                professionStudentOption: "ವಿದ್ಯಾರ್ಥಿ",
-                professionSelfEmployedOption: "ಸ್ವಯಂ ಉದ್ಯೋಗಿ",
-                professionBusinessOption: "ವ್ಯಾಪಾರ",
-                stateLabel: "ರಾಜ್ಯ",
-                selectStateOption: "ರಾಜ್ಯ ಆಯ್ಕೆಮಾಡಿ",
-                cityLabel: "ನಗರ",
-                selectCityOption: "ನಗರ ಆಯ್ಕೆಮಾಡಿ",
-                phoneLabel: "ದೂರವಾಣಿ ಸಂಖ್ಯೆ",
-                phoneSmall: "ಉದಾ., 9876543210",
-                whatsappLabel: "ವಾಟ್ಸಾಪ್ ಸಂಖ್ಯೆ",
-                whatsappSmall: "ಉದಾ., 9876543210",
-                emailLabel: "ಇಮೇಲ್",
-                profilePhotoLabel: "ಫೋಟೋ/ಲೋಗೋ ಅಪ್ಲೋಡ್ ಮಾಡಿ", // New translation
-                profilePhotoSmall: "ಚಿತ್ರಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತದೆ (PNG, JPG, JPEG)", // New translation
-                passwordLabel: "ಪಾಸ್ವರ್ಡ್ ರಚಿಸಿ", // New translation
-                passwordSmall: "ಕನಿಷ್ಠ 6 ಅಕ್ಷರಗಳು", // New translation
-                confirmPasswordLabel: "ಪಾಸ್ವರ್ಡ್ ಅನ್ನು ಮತ್ತೆ ನಮೂದಿಸಿ", // New translation
-                addressLabel: "ವಿಳಾಸ",
-                aadharLabel: "ಆಧಾರ್ ಸಂಖ್ಯೆ",
-                aadharSmall: "ಉದಾ., 123456789012",
-                bankNameLabel: "ಬ್ಯಾಂಕ್ ಹೆಸರು",
-                beneficiaryNameLabel: "ಫಲಾನುಭವಿ ಹೆಸರು",
-                accountNumberLabel: "ಖಾತೆ ಸಂಖ್ಯೆ",
-                ifscCodeLabel: "IFSC ಕೋಡ್",
-                termsLabel: "ನಾನು ಎಲ್ಲಾ ವಿವರಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಓದಿದ್ದೇನೆ ಮತ್ತು",
-                termsLink: "ನಿಯಮಗಳು ಮತ್ತು ನೀತಿಗೆ",
-                submitRequestButton: "ವಿನಂತಿಯನ್ನು ಸಲ್ಲಿಸಿ",
-                requestSubmitted: "ಏಜೆಂಟ್ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಸಲಾಗಿದೆ! ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ನಿರ್ವಾಹಕರು ಪರಿಶೀಲಿಸುತ್ತಾರೆ.",
-                formValidationError: "ದಯವಿಟ್ಟು ಎಲ್ಲಾ ಅಗತ್ಯ ಕ್ಷೇತ್ರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ ಮತ್ತು ಡೇಟಾ ಮಾನ್ಯವಾಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
-                submissionError: "ಏಜೆಂಟ್ ವಿನಂತಿಯನ್ನು ಸಲ್ಲಿಸುವಲ್ಲಿ ದೋಷ:",
-                loadingLocations: "ಸ್ಥಳಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...",
-                noStatesFound: "ಯಾವುದೇ ರಾಜ್ಯಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
-                noCitiesFound: "ಈ ರಾಜ್ಯಕ್ಕೆ ಯಾವುದೇ ನಗರಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
-                selectStatePrompt: "ದಯವಿಟ್ಟು ಮೊದಲು ಒಂದು ರಾಜ್ಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ.",
-                passwordMismatch: "ಪಾಸ್ವರ್ಡ್‌ಗಳು ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ.", // New translation
-                passwordTooShort: "ಪಾಸ್ವರ್ಡ್ ಕನಿಷ್ಠ 6 ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು.", // New translation
-
-                // Shared homepage elements translations
-                userName: "ಬಳಕೆದಾರ ಹೆಸರು", home: "ಮುಖಪುಟ", loginSignup: "ಲಾಗಿನ್/ಸೈನ್ ಅಪ್ ಮಾಡಿ", myProfile: "ನನ್ನ ಪ್ರೊಫೈಲ್",
-                beAnAgent: "ಏಜೆಂಟ್ ಆಗಿ", anchorAds: "ಆಂಕರ ಜಾಹೀರಾತುಗಳು", todayOffer: "ಇಂದಿನ ಕೊಡುಗೆ", settings: "ಸೆಟ್ಟಿಂಗ್ಸ್",
-                themeSelection: "ಥೀಮ್ ಆಯ್ಕೆ", lightDarkMode: "ಲೈಟ್ ಮತ್ತು ಡಾರ್ಕ್ ಮೋಡ್", fontSize: "ಫಾಂಟ್ ಗಾತ್ರ",
-                languagePreferences: "ಭಾಷಾ ಆದ್ಯತೆಗಳು", feedback: "ಪ್ರತಿಕ್ರಿಯೆ", aboutUs: "ನಮ್ಮ ಬಗ್ಗೆ", logout: "ಲಾಗ್ಔಟ್",
-                darkModeLabel: "ಡಾರ್ಕ್ ಮೋಡ್", promoteBusiness: "📢 ನಿಮ್ಮ ವ್ಯಾಪಾರವನ್ನು ಇಲ್ಲಿ ಪ್ರಚಾರ ಮಾಡಿ – ವೈಶಿಷ್ಟ್ಯಗೊಳಿಸಲು ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ!",
-                currentCity: "ಪ್ರಸ್ತುत ನಗರ:", todayOfferButton: "ಇಂದಿನ ಕೊಡುಗೆ", todayOfferMsg: "ನಮ್ಮ ಅದ್ಭುತ ಡೀಲ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ!",
-                resetDefaultsSuccess: "ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಡೀಫಾಲ್ಟ್‌ಗಳಿಗೆ ಮರುಹೊಂದಿಸಲಾಗಿದೆ!"
-            },
-            mr: {
-                agentPageTitle: "एजंट बना",
-                headerTitleDefault: "एजंट बना",
-                becomeAgentTitle: "एजंट बना",
-                readDetails: "तपशील वाचा",
-                signInAsAgent: "एजंट म्हणून साइन इन करा", // New translation
-                detail1: "जेव्हा तुम्ही एजंट बनता, तेव्हा तुम्हाला एक अद्वितीय एजंट आयडी मिळेल.",
-                detail2: "तुम्ही इतरांना नोंदणी करण्यास मदत करू शकता आणि तुमच्या आयडीचा वापर करून त्यांनी सबमिट केलेल्या प्रत्येक सत्यापित फॉर्मसाठी ₹20 कमवू शकता.",
-                detail3: "एकदा तुमची एकूण कमाई ₹100 पर्यंत पोहोचली की, तुम्ही पैसे काढण्याची विनंती करू शकता.",
-                detail4: "आम्ही तुमची कमाई तुमच्या दिलेल्या बँक खात्यात हस्तांतरित करू.",
-                detail5: "मंजुरीपूर्वी प्रशासन तुमच्या एजंट विनंतीचे पुनरावलोकन करेल.",
-                firstNameLabel: "पहिले नाव",
-                lastNameLabel: "आडनाव",
-                genderLabel: "लिंग",
-                selectGenderOption: "निवडा",
-                genderMaleOption: "पुरुष",
-                genderFemaleOption: "महिला",
-                genderOtherOption: "इतर",
-                ageLabel: "वय",
-                professionLabel: "व्यवसाय",
-                selectProfessionOption: "निवडा",
-                professionStudentOption: "विद्यार्थी",
-                professionSelfEmployedOption: "स्वयंरोजगार",
-                professionBusinessOption: "व्यवसाय",
-                stateLabel: "राज्य",
-                selectStateOption: "राज्य निवडा",
-                cityLabel: "शहर",
-                selectCityOption: "शहर निवडा",
-                phoneLabel: "फोन नंबर",
-                phoneSmall: "उदा., 9876543210",
-                whatsappLabel: "व्हाट्सएप नंबर",
-                whatsappSmall: "उदा., 9876543210",
-                emailLabel: "ईमेल",
-                profilePhotoLabel: "फोटो/लोगो अपलोड करा", // New translation
-                profilePhotoSmall: "प्रतिमा स्वीकारते (PNG, JPG, JPEG)", // New translation
-                passwordLabel: "पासवर्ड तयार करा", // New translation
-                passwordSmall: "किमान 6 वर्ण", // New translation
-                confirmPasswordLabel: "पासवर्ड पुन्हा प्रविष्ट करा", // New translation
-                addressLabel: "पत्ता",
-                aadharLabel: "आधार नंबर",
-                aadharSmall: "उदा., 123456789012",
-                bankNameLabel: "बँकेचे नाव",
-                beneficiaryNameLabel: "लाभार्थीचे नाव",
-                accountNumberLabel: "खाते क्रमांक",
-                ifscCodeLabel: "IFSC कोड",
-                termsLabel: "मी सर्व तपशील यशस्वीरित्या वाचले आहेत आणि",
-                termsLink: "अटी व नियम",
-                submitRequestButton: "विनंती सबमिट करा",
-                requestSubmitted: "एजंट नोंदणी यशस्वीरित्या सबमिट झाली! तुमच्या विनंतीचे प्रशासन द्वारे पुनरावलोकन केले जाईल.",
-                formValidationError: "कृपया सर्व आवश्यक फील्ड भरा आणि डेटा वैध असल्याची खात्री करा.",
-                submissionError: "एजंट विनंती सबमिट करताना त्रुटी:",
-                loadingLocations: "स्थाने लोड होत आहेत...",
-                noStatesFound: "कोणतेही राज्य सापडले नाही.",
-                noCitiesFound: "या राज्यासाठी कोणतेही शहर सापडले नाही.",
-                selectStatePrompt: "कृपया आधी एक राज्य निवडा.",
-                passwordMismatch: "पासवर्ड जुळत नाहीत.", // New translation
-                passwordTooShort: "पासवर्ड किमान 6 वर्णांचा असावा.", // New translation
-
-                // Shared homepage elements translations
-                userName: "वापरकर्ता नाव", home: "मुख्यपृष्ठ", loginSignup: "लॉगिन/साइन अप करा", myProfile: "माझी प्रोफाइल",
-                beAnAgent: "एजंट बना", anchorAds: "अँकर जाहिराती", todayOffer: "आजची ऑफर", settings: "सेटिंग्ज",
-                themeSelection: "थीम निवड", lightDarkMode: "लाइट आणि डार्क मोड", fontSize: "फॉन्ट आकार",
-                languagePreferences: "भाषा प्राधान्ये", feedback: "प्रतिक्रिया", aboutUs: "आमच्याबद्दल", logout: "लॉगआउट",
-                darkModeLabel: "डार्क मोड", promoteBusiness: "📢 तुमच्या व्यवसायाची येथे जाहिरात करा – वैशिष्ट्यासाठी संपर्क साधा!",
-                currentCity: "वर्तमान शहर:", todayOfferButton: "आजची ऑफर", todayOfferMsg: "आमच्या अप्रतिम डील तपासा!",
-                resetDefaultsSuccess: "सेटिंग्ज डीफॉल्टवर रीसेट झाली!"
-            },
-            bn: {
-                agentPageTitle: "একজন এজেন্ট হন",
-                headerTitleDefault: "একজন এজেন্ট হন",
-                becomeAgentTitle: "একজন এজেন্ট হন",
-                readDetails: "বিস্তারিত পড়ুন",
-                signInAsAgent: "এজেন্ট হিসাবে সাইন ইন করুন", // New translation
-                detail1: "আপনি একজন এজেন্ট হলে, আপনি একটি অনন্য এজেন্ট আইডি পাবেন।",
-                detail2: "আপনি অন্যদের নিবন্ধন করতে সাহায্য করতে পারেন এবং আপনার আইডি ব্যবহার করে তাদের জমা দেওয়া প্রতিটি যাচাইকৃত ফর্মের জন্য ₹20 উপার্জন করতে পারেন।",
-                detail3: "একবার আপনার মোট আয় ₹100 এ পৌঁছালে, আপনি টাকা তোলার অনুরোধ করতে পারেন।",
-                detail4: "আমরা আপনার উপার্জনকে আপনার দেওয়া ব্যাংক অ্যাকাউন্টে স্থানান্তর করব।",
-                detail5: "অনুমোদনের আগে অ্যাডমিন আপনার এজেন্ট অনুরোধ পর্যালোচনা করবে।",
-                firstNameLabel: "প্রথম নাম",
-                lastNameLabel: "শেষ নাম",
-                genderLabel: "লিঙ্গ",
-                selectGenderOption: "নির্বাচন করুন",
-                genderMaleOption: "পুরুষ",
-                genderFemaleOption: "মহিলা",
-                genderOtherOption: "অন্যান্য",
-                ageLabel: "বয়স",
-                professionLabel: "পেশা",
-                selectProfessionOption: "নির্বাচন করুন",
-                professionStudentOption: "ছাত্র",
-                professionSelfEmployedOption: "স্ব-কর্মসংস্থান",
-                professionBusinessOption: "ব্যবসা",
-                stateLabel: "রাজ্য",
-                selectStateOption: "রাজ্য নির্বাচন করুন",
-                cityLabel: "শহর",
-                selectCityOption: "শহর নির্বাচন করুন",
-                phoneLabel: "ফোন নম্বর",
-                phoneSmall: "যেমন, 9876543210",
-                whatsappLabel: "হোয়াটসঅ্যাপ নম্বর",
-                whatsappSmall: "যেমন, 9876543210",
-                emailLabel: "ইমেল",
-                profilePhotoLabel: "ছবি/লোগো আপলোড করুন", // New translation
-                profilePhotoSmall: "ছবি গ্রহণ করে (PNG, JPG, JPEG)", // New translation
-                passwordLabel: "পাসওয়ার্ড তৈরি করুন", // New translation
-                passwordSmall: "কমপক্ষে 6 অক্ষর", // New translation
-                confirmPasswordLabel: "পাসওয়ার্ড পুনরায় লিখুন", // New translation
-                addressLabel: "ঠিকানা",
-                aadharLabel: "আধার নম্বর",
-                aadharSmall: "যেমন, 123456789012",
-                bankNameLabel: "ব্যাংকের নাম",
-                beneficiaryNameLabel: "সুবিধাভোগীর নাম",
-                accountNumberLabel: "অ্যাকাউন্ট নম্বর",
-                ifscCodeLabel: "IFSC কোড",
-                termsLabel: "আমি সমস্ত বিবরণ সফলভাবে পড়েছি এবং",
-                termsLink: "শর্তাবলী এবং নীতি",
-                submitRequestButton: "অনুরোধ জমা দিন",
-                requestSubmitted: "এজেন্ট নিবন্ধন সফলভাবে জমা দেওয়া হয়েছে! আপনার অনুরোধ প্রশাসক দ্বারা পর্যালোচনা করা হবে।",
-                formValidationError: "অনুগ্রহ করে সমস্ত প্রয়োজনীয় ক্ষেত্র পূরণ করুন এবং ডেটা বৈধ কিনা তা নিশ্চিত করুন।",
-                submissionError: "এজেন্ট অনুরোধ জমা দিতে ত্রুটি:",
-                loadingLocations: "অবস্থান লোড হচ্ছে...",
-                noStatesFound: "কোনো রাজ্য পাওয়া যায়নি।",
-                noCitiesFound: "এই রাজ্যের জন্য কোনো শহর পাওয়া যায়নি।",
-                selectStatePrompt: "দয়া করে প্রথমে একটি রাজ্য নির্বাচন করুন।",
-                passwordMismatch: "পাসওয়ার্ড মিলছে না।", // New translation
-                passwordTooShort: "পাসওয়ার্ড কমপক্ষে 6 অক্ষরের হতে হবে।", // New translation
-
-                // Shared homepage elements translations
-                userName: "ব্যবহারকারীর নাম", home: "হোম", loginSignup: "লগইন/সাইন আপ করুন", myProfile: "আমার প্রোফাইল",
-                beAnAgent: "একজন এজেন্ট হন", anchorAds: "অ্যাঙ্কর বিজ্ঞাপন", todayOffer: "আজকের অফার", settings: "সেটিংস",
-                themeSelection: "থিম নির্বাচন", lightDarkMode: "লাইট এবং ডার্ক মোড", fontSize: "ফন্ট সাইজ",
-                languagePreferences: "ভাষা পছন্দ", feedback: "প্রতিক্রিয়া", aboutUs: "আমাদের সম্পর্কে", logout: "লগআউট",
-                darkModeLabel: "ডার্ক মোড", promoteBusiness: "📢 আপনার ব্যবসা এখানে প্রচার করুন – বৈশিষ্ট্যযুক্ত হতে আমাদের সাথে যোগাযোগ করুন!",
-                currentCity: "বর্তমান শহর:", todayOfferButton: "আজকের অফার", todayOfferMsg: "আমাদের আশ্চর্যজনক ডিলগুলি দেখুন!",
-                resetDefaultsSuccess: "সেটিংস ডিফল্টে রিসেট করা হয়েছে!"
-            },
-            pa: {
-                agentPageTitle: "ਏਜੰਟ ਬਣੋ",
-                headerTitleDefault: "ਏਜੰਟ ਬਣੋ",
-                becomeAgentTitle: "ਏਜੰਟ ਬਣੋ",
-                readDetails: "ਵੇਰਵੇ ਪੜ੍ਹੋ",
-                signInAsAgent: "ਏਜੰਟ ਵਜੋਂ ਸਾਈਨ ਇਨ ਕਰੋ", // New translation
-                detail1: "ਜਦੋਂ ਤੁਸੀਂ ਏਜੰਟ ਬਣੋਗੇ, ਤੁਹਾਨੂੰ ਇੱਕ ਵਿਲੱਖਣ ਏਜੰਟ ID ਮਿਲੇਗੀ।",
-                detail2: "ਤੁਸੀਂ ਦੂਜਿਆਂ ਨੂੰ ਰਜਿਸਟਰ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਆਪਣੀ ID ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਉਨ੍ਹਾਂ ਦੁਆਰਾ ਜਮ੍ਹਾਂ ਕੀਤੇ ਗਏ ਹਰੇਕ ਪ੍ਰਮਾਣਿਤ ਫਾਰਮ ਲਈ ₹20 ਕਮਾ ਸਕਦੇ ਹੋ।",
-                detail3: "ਇੱਕ ਵਾਰ ਜਦੋਂ ਤੁਹਾਡੀ ਕੁੱਲ ਕਮਾਈ ₹100 ਤੱਕ ਪਹੁੰਚ ਜਾਂਦੀ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਨਿਕਾਸੀ ਦੀ ਬੇਨਤੀ ਕਰ ਸਕਦੇ ਹੋ।",
-                detail4: "ਅਸੀਂ ਤੁਹਾਡੀ ਕਮਾਈ ਤੁਹਾਡੇ ਦੁਆਰਾ ਪ੍ਰਦਾਨ ਕੀਤੇ ਬੈਂਕ ਖਾਤੇ ਵਿੱਚ ਟ੍ਰਾਂਸਫਰ ਕਰਾਂਗੇ।",
-                detail5: "ਪ੍ਰਵਾਨਗੀ ਤੋਂ ਪਹਿਲਾਂ ਪ੍ਰਬੰਧਕ ਤੁਹਾਡੀ ਏਜੰਟ ਬੇਨਤੀ ਦੀ ਸਮੀਖਿਆ ਕਰੇਗਾ।",
-                firstNameLabel: "ਪਹਿਲਾ ਨਾਮ",
-                lastNameLabel: "ਆਖਰੀ ਨਾਮ",
-                genderLabel: "ਲਿੰਗ",
-                selectGenderOption: "ਚੁਣੋ",
-                genderMaleOption: "ਮਰਦ",
-                genderFemaleOption: "ਔਰਤ",
-                genderOtherOption: "ਹੋਰ",
-                ageLabel: "ਉਮਰ",
-                professionLabel: "ਪੇਸ਼ਾ",
-                selectProfessionOption: "ਚੁਣੋ",
-                professionStudentOption: "ਵਿਦਿਆਰਥੀ",
-                professionSelfEmployedOption: "ਸਵੈ-ਰੁਜ਼ਗਾਰ",
-                professionBusinessOption: "ਕਾਰੋਬਾਰ",
-                stateLabel: "ਰਾਜ",
-                selectStateOption: "ਰਾਜ ਚੁਣੋ",
-                cityLabel: "ਸ਼ਹਿਰ",
-                selectCityOption: "ਸ਼ਹਿਰ ਚੁਣੋ",
-                phoneLabel: "ਫੋਨ ਨੰਬਰ",
-                phoneSmall: "ਜਿਵੇਂ, 9876543210",
-                whatsappLabel: "ਵਟਸਐਪ ਨੰਬਰ",
-                whatsappSmall: "ਜਿਵੇਂ, 9876543210",
-                emailLabel: "ਈਮੇਲ",
-                profilePhotoLabel: "ਫੋਟੋ/ਲੋਗੋ ਅੱਪਲੋਡ ਕਰੋ", // New translation
-                profilePhotoSmall: "ਤਸਵੀਰਾਂ ਸਵੀਕਾਰ ਕਰਦਾ ਹੈ (PNG, JPG, JPEG)", // New translation
-                passwordLabel: "ਪਾਸਵਰਡ ਬਣਾਓ", // New translation
-                passwordSmall: "ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰ", // New translation
-                confirmPasswordLabel: "ਪਾਸਵਰਡ ਮੁੜ ਦਾਖਲ ਕਰੋ", // New translation
-                addressLabel: "ਪਤਾ",
-                aadharLabel: "ਆਧਾਰ ਨੰਬਰ",
-                aadharSmall: "ਜਿਵੇਂ, 123456789012",
-                bankNameLabel: "ਬੈਂਕ ਦਾ ਨਾਮ",
-                beneficiaryNameLabel: "ਲਾਭਪਾਤਰੀ ਦਾ ਨਾਮ",
-                accountNumberLabel: "ਖਾਤਾ ਨੰਬਰ",
-                ifscCodeLabel: "IFSC ਕੋਡ",
-                termsLabel: "ਮੈਂ ਸਾਰੇ ਵੇਰਵੇ ਸਫਲਤਾਪੂਰਵਕ ਪੜ੍ਹ ਲਏ ਹਨ ਅਤੇ",
-                termsLink: "ਨਿਯਮਾਂ ਅਤੇ ਨੀਤੀ",
-                submitRequestButton: "ਬੇਨਤੀ ਜਮ੍ਹਾਂ ਕਰੋ",
-                requestSubmitted: "ਏਜੰਟ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਸਫਲਤਾਪੂਰਵਕ ਜਮ੍ਹਾਂ ਹੋ ਗਈ! ਤੁਹਾਡੀ ਬੇਨਤੀ ਦੀ ਪ੍ਰਬੰਧਕ ਦੁਆਰਾ ਸਮੀਖਿਆ ਕੀਤੀ ਜਾਵੇਗੀ।",
-                formValidationError: "ਕਿਰਪਾ ਕਰਕੇ ਸਾਰੇ ਲੋੜੀਂਦੇ ਖੇਤਰ ਭਰੋ ਅਤੇ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਡੇਟਾ ਵੈਧ ਹੈ।",
-                submissionError: "ਏਜੰਟ ਬੇਨਤੀ ਜਮ੍ਹਾਂ ਕਰਨ ਵਿੱਚ ਗਲਤੀ:",
-                loadingLocations: "ਟਿਕਾਣੇ ਲੋਡ ਹੋ ਰਹੇ ਹਨ...",
-                noStatesFound: "ਕੋਈ ਰਾਜ ਨਹੀਂ ਮਿਲਿਆ।",
-                noCitiesFound: "ਇਸ ਰਾਜ ਲਈ ਕੋਈ ਸ਼ਹਿਰ ਨਹੀਂ ਮਿਲਿਆ।",
-                selectStatePrompt: "ਕਿਰਪਾ ਕਰਕੇ ਪਹਿਲਾਂ ਇੱਕ ਰਾਜ ਚੁਣੋ।",
-                passwordMismatch: "ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ।", // New translation
-                passwordTooShort: "ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।", // New translation
-
-                // Shared homepage elements translations
-                userName: "ਉਪਭੋਗਤਾ ਨਾਮ", home: "ਘਰ", loginSignup: "ਲਾਗਇਨ/ਸਾਈਨ ਅੱਪ ਕਰੋ", myProfile: "ਮੇਰੀ ਪ੍ਰੋਫਾਈਲ",
-                beAnAgent: "ਏਜੰਟ ਬਣੋ", anchorAds: "ਐਂਕਰ ਵਿਗਿਆਪਨ", todayOffer: "ਅੱਜ ਦੀ ਪੇਸ਼ਕਸ਼", settings: "ਸੈਟਿੰਗਜ਼",
-                themeSelection: "ਥੀਮ ਚੋਣ", lightDarkMode: "ਲਾਈਟ ਅਤੇ ਡਾਰਕ ਮੋਡ", fontSize: "ਫੌਂਟ ਸਾਈਜ਼",
-                languagePreferences: "ਭਾਸ਼ਾ ਪਸੰਦ", feedback: "ਪ੍ਰਤੀਕਰਮ", aboutUs: "ਸਾਡੇ ਬਾਰੇ", logout: "ਲੌਗਆਊਟ",
-                darkModeLabel: "ਡਾਰਕ ਮੋਡ", promoteBusiness: "📢 ਆਪਣੇ ਕਾਰੋਬਾਰ ਦਾ ਇੱਥੇ ਪ੍ਰਚਾਰ ਕਰੋ – ਵਿਸ਼ੇਸ਼ਤਾ ਲਈ ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ!",
-                currentCity: "ਮੌਜੂਦਾ ਸ਼ਹਿਰ:", todayOfferButton: "ਅੱਜ ਦੀ ਪੇਸ਼ਕਸ਼", todayOfferMsg: "ਸਾਡੀਆਂ ਸ਼ਾਨਦਾਰ ਪੇਸ਼ਕਸ਼ਾਂ ਵੇਖੋ!",
-                resetDefaultsSuccess: "ਸੈਟਿੰਗਾਂ ਨੂੰ ਡਿਫੌਲਟ 'ਤੇ ਰੀਸੈਟ ਕੀਤਾ ਗਿਆ ਹੈ!"
-            },
-            te: {
-                agentPageTitle: "ఏజెంట్ అవ్వండి",
-                headerTitleDefault: "ఏజెంట్ అవ్వండి",
-                becomeAgentTitle: "ఏజెంట్ అవ్వండి",
-                readDetails: "వివరాలను చదవండి",
-                signInAsAgent: "ఏజెంట్‌గా సైన్ ఇన్ చేయండి", // New translation
-                detail1: "మీరు ఏజెంట్‌గా మారినప్పుడు, మీకు ప్రత్యేకమైన ఏజెంట్ ID లభిస్తుంది.",
-                detail2: "మీరు ఇతరులకు నమోదు చేసుకోవడానికి సహాయపడవచ్చు మరియు మీ IDని ఉపయోగించి వారు సమర్పించిన ప్రతి ధృవీకరించబడిన ఫారమ్‌కు ₹20 సంపాదించవచ్చు.",
-                detail3: "మీ మొత్తం ఆదాయం ₹100కి చేరుకున్న తర్వాత, మీరు ఉపసంహరణను అభ్యర్థించవచ్చు.",
-                detail4: "మీరు అందించిన బ్యాంక్ ఖాతాకు మేము మీ ఆదాయాన్ని బదిలీ చేస్తాము.",
-                detail5: "ఆమోదం ముందు అడ్మిన్ మీ ఏజెంట్ అభ్యర్థనను సమీక్షిస్తుంది.",
-                firstNameLabel: "మొదటి పేరు",
-                lastNameLabel: "చివరి పేరు",
-                genderLabel: "లింగం",
-                selectGenderOption: "ఎంచుకోండి",
-                genderMaleOption: "పురుషుడు",
-                genderFemaleOption: "స్త్రీ",
-                genderOtherOption: "ఇతర",
-                ageLabel: "వయస్సు",
-                professionLabel: "వృత్తి",
-                selectProfessionOption: "ఎంచుకోండి",
-                professionStudentOption: "విద్యార్థి",
-                professionSelfEmployedOption: "స్వయం ఉపాధి",
-                professionBusinessOption: "వ్యాపారం",
-                stateLabel: "రాష్ట్రం",
-                selectStateOption: "రాష్ట్రం ఎంచుకోండి",
-                cityLabel: "నగరం",
-                selectCityOption: "నగరం ఎంచుకోండి",
-                phoneLabel: "ఫోన్ నంబర్",
-                phoneSmall: "ఉదా., 9876543210",
-                whatsappLabel: "వాట్సాప్ నంబర్",
-                whatsappSmall: "ఉదా., 9876543210",
-                emailLabel: "ఇమెయిల్",
-                profilePhotoLabel: "ఫోటో/లోగో అప్‌లోడ్ చేయండి", // New translation
-                profilePhotoSmall: "చిత్రాలను అంగీకరిస్తుంది (PNG, JPG, JPEG)", // New translation
-                passwordLabel: "పాస్‌వర్డ్‌ను సృష్టించండి", // New translation
-                passwordSmall: "కనీసం 6 అక్షరాలు", // New translation
-                confirmPasswordLabel: "పాస్‌వర్డ్‌ను తిరిగి నమోదు చేయండి", // New translation
-                addressLabel: "చిరునామా",
-                aadharLabel: "ఆధార్ నంబర్",
-                aadharSmall: "ఉదా., 123456789012",
-                bankNameLabel: "బ్యాంక్ పేరు",
-                beneficiaryNameLabel: "లబ్ధిదారు పేరు",
-                accountNumberLabel: "ఖాతా సంఖ్య",
-                ifscCodeLabel: "IFSC కోడ్",
-                termsLabel: "నేను అన్ని వివరాలను విజయవంతంగా చదివాను మరియు",
-                termsLink: "నిబంధనలు మరియు విధానానికి",
-                submitRequestButton: "అభ్యర్థనను సమర్పించు",
-                requestSubmitted: "ఏజెంట్ నమోదు విజయవంతంగా సమర్పించబడింది! మీ అభ్యర్థనను అడ్మిన్ సమీక్షిస్తుంది.",
-                formValidationError: "దయచేసి అన్ని అవసరమైన ఫీల్డ్‌లను పూరించండి మరియు డేటా చెల్లుబాటు అయ్యేలా చూసుకోండి.",
-                submissionError: "ఏజెంట్ అభ్యర్థనను సమర్పించడంలో లోపం:",
-                loadingLocations: "స్థానాలు లోడ్ అవుతున్నాయి...",
-                noStatesFound: "రాష్ట్రాలు ఏమీ కనుగొనబడలేదు.",
-                noCitiesFound: "ఈ రాష్ట్రానికి నగరాలు ఏమీ కనుగొనబడలేదు.",
-                selectStatePrompt: "దయచేసి ముందుగా ఒక రాష్ట్రం ఎంచుకోండి.",
-                passwordMismatch: "పాస్‌వర్డ్‌లు సరిపోలడం లేదు.", // New translation
-                passwordTooShort: "పాస్‌వర్డ్ కనీసం 6 అక్షరాలు ఉండాలి。", // New translation
-            }
-        };
-
-
-        // Function to apply language to page elements
-        function applyLanguage(lang) {
-            const t = translations[lang];
-            if (!t) return;
-
-            agentPageTitle.textContent = t.agentPageTitle;
-            headerTitle.textContent = t.headerTitleDefault;
-            document.getElementById('becomeAgentTitle').textContent = t.becomeAgentTitle;
-            readDetailsButton.textContent = t.readDetails;
-            signInAsAgentBtn.textContent = t.signInAsAgent; // New button text
-            document.getElementById('detail1').textContent = t.detail1;
-            document.getElementById('detail2').textContent = t.detail2;
-            document.getElementById('detail3').textContent = t.detail3;
-            document.getElementById('detail4').textContent = t.detail4;
-            document.getElementById('detail5').textContent = t.detail5;
-
-            document.getElementById('firstNameLabel').textContent = `${t.firstNameLabel} *`;
-            document.getElementById('lastNameLabel').textContent = `${t.lastNameLabel} *`;
-            document.getElementById('genderLabel').textContent = `${t.genderLabel} *`;
-            document.getElementById('selectGenderOption').textContent = t.selectGenderOption;
-            document.getElementById('genderMaleOption').textContent = t.genderMaleOption;
-            document.getElementById('genderFemaleOption').textContent = t.genderFemaleOption;
-            document.getElementById('genderOtherOption').textContent = t.genderOtherOption;
-            document.getElementById('ageLabel').textContent = `${t.ageLabel} *`;
-            document.getElementById('professionLabel').textContent = `${t.professionLabel} *`;
-            document.getElementById('selectProfessionOption').textContent = t.selectProfessionOption;
-            document.getElementById('professionStudentOption').textContent = t.professionStudentOption;
-            document.getElementById('professionSelfEmployedOption').textContent = t.professionSelfEmployedOption;
-            document.getElementById('professionBusinessOption').textContent = t.professionBusinessOption;
-            document.getElementById('stateLabel').textContent = `${t.stateLabel} *`;
-            document.getElementById('selectStateOption').textContent = t.selectStateOption;
-            document.getElementById('cityLabel').textContent = `${t.cityLabel} *`;
-            document.getElementById('selectCityOption').textContent = t.selectCityOption;
-            document.getElementById('phoneLabel').textContent = `${t.phoneLabel} *`;
-            document.getElementById('phoneSmall').textContent = t.phoneSmall;
-            document.getElementById('whatsappLabel').textContent = `${t.whatsappLabel} *`;
-            document.getElementById('whatsappSmall').textContent = t.whatsappSmall;
-            document.getElementById('emailLabel').textContent = `${t.emailLabel} (optional)`;
-            document.getElementById('addressLabel').textContent = `${t.addressLabel} *`;
-            document.getElementById('aadharLabel').textContent = `${t.aadharLabel} *`;
-            document.getElementById('aadharSmall').textContent = t.aadharSmall;
-            document.getElementById('profilePhotoLabel').textContent = `${t.profilePhotoLabel} *`; // New label
-            document.getElementById('profilePhotoSmall').textContent = t.profilePhotoSmall; // New small text
-            document.getElementById('bankNameLabel').textContent = `${t.bankNameLabel} *`;
-            document.getElementById('beneficiaryNameLabel').textContent = `${t.beneficiaryNameLabel} *`;
-            document.getElementById('accountNumberLabel').textContent = `${t.accountNumberLabel} *`;
-            document.getElementById('ifscCodeLabel').textContent = `${t.ifscCodeLabel} *`;
-            document.getElementById('passwordLabel').textContent = `${t.passwordLabel} *`; // New label
-            document.getElementById('passwordSmall').textContent = t.passwordSmall; // New small text
-            document.getElementById('confirmPasswordLabel').textContent = `${t.confirmPasswordLabel} *`; // New label
-            document.getElementById('termsLabel').innerHTML = `${t.termsLabel} <a href="#" target="_blank" id="termsLink">${t.termsLink}</a>.`;
-            document.getElementById('submitRequestButton').textContent = t.submitRequestButton;
-
-            // Update placeholders
-            document.getElementById('firstName').placeholder = t.firstNameLabel;
-            document.getElementById('lastName').placeholder = t.lastNameLabel;
-            document.getElementById('age').placeholder = `${t.ageLabel} (must be 18+)`;
-            document.getElementById('phone').placeholder = `${t.phoneLabel}`;
-            document.getElementById('whatsapp').placeholder = `${t.whatsappLabel}`;
-            document.getElementById('email').placeholder = `${t.emailLabel} (optional)`;
-            document.getElementById('address').placeholder = `${t.addressLabel}`;
-            document.getElementById('aadhar').placeholder = `${t.aadharLabel}`;
-            document.getElementById('bank').placeholder = `${t.bankNameLabel}`;
-            document.getElementById('beneficiary').placeholder = `${t.beneficiaryNameLabel}`;
-            document.getElementById('account').placeholder = `${t.accountNumberLabel}`;
-            document.getElementById('ifsc').placeholder = `${t.ifscCodeLabel}`;
-            document.getElementById('password').placeholder = `Enter a strong password`; // Placeholder for password
-            document.getElementById('confirmPassword').placeholder = `Re-enter your password`; // Placeholder for confirm password
-
-
-            // Apply shared homepage elements translations
-            document.getElementById('userNameLabel').textContent = t.userName || "User Name";
-            document.getElementById('homeLabel').textContent = t.home;
-            document.getElementById('loginSignupLabel').textContent = t.loginSignup;
-            document.getElementById('myProfileLabelSidebar').textContent = t.myProfile;
-            document.getElementById('beAnAgentLabelSidebar').textContent = t.beAnAgent;
-            document.getElementById('anchorAdsLabel').textContent = t.anchorAds;
-            document.getElementById('todayOfferLabelSidebar').textContent = t.todayOffer;
-            document.getElementById('settingsLabel').textContent = t.settings;
-            document.getElementById('themeSelectionLabel').textContent = t.themeSelection;
-            document.getElementById('lightDarkModeLabel').textContent = t.lightDarkMode;
-            document.getElementById('fontSizeTextLabel').textContent = t.fontSize;
-            document.getElementById('languagePreferencesTextLabel').textContent = t.languagePreferences;
-            document.getElementById('feedbackLabel').textContent = t.feedback;
-            document.getElementById('aboutUsLabel').textContent = t.aboutUs;
-            document.getElementById('logoutLabel').textContent = t.logout;
-            document.querySelector('.fixed.bottom-0').textContent = t.promoteBusiness;
-            todayOfferTextSpan.textContent = t.todayOfferButton;
-            currentCityButton.textContent = `${t.currentCity} ${sessionStorage.getItem('selectedCity') || 'Miami'}`;
-            darkModeSwitchLabel.textContent = t.darkModeLabel;
-            
-            // Re-populate state dropdown to apply translation
-            populateStates();
-        }
-
-        // Function to set dark mode state
-        function setDarkMode(isDark) {
-            if (isDark) {
-                body.classList.add('dark-mode');
-                darkModeSwitchTrack.classList.add('dark');
-                darkModeSwitchThumb.classList.add('dark');
-                darkModeSwitchLabel.classList.add('dark');
-                // The icons visibility and position are now handled purely by CSS
-                // based on the 'body.dark-mode' class.
-            } else {
-                body.classList.remove('dark-mode');
-                darkModeSwitchTrack.classList.remove('dark');
-                darkModeSwitchThumb.classList.remove('dark');
-                darkModeSwitchLabel.classList.remove('dark');
-                // The icons visibility and position are now handled purely by CSS
-                // based on the absence of 'body.dark-mode' class.
-            }
-            localStorage.setItem('isDarkMode', isDark);
-        }
-
-        // Function to apply font size
-        function applyFontSize(sizeValue) {
-            body.classList.remove('font-small', 'font-medium', 'font-large');
-            body.classList.add(`font-${sizeValue}`);
-            localStorage.setItem('selectedFontSize', sizeValue);
-        }
-
-        // Function to apply selected theme
-        function applyTheme(themeValue) {
-            body.classList.remove('default-theme', 'blue-theme', 'green-theme');
-            if (themeValue !== 'default') {
-                body.classList.add(`${themeValue}-theme`);
-            }
-            localStorage.setItem('selectedTheme', themeValue);
-        }
-
-        // Helper to add options to a select element
-        function addOptionsToSelect(selectElement, options, defaultText) {
-            selectElement.innerHTML = `<option value="">${defaultText}</option>`; // Add default empty option
-            options.forEach(option => {
-                const opt = document.createElement('option');
-                opt.value = option;
-                opt.textContent = option;
-                selectElement.appendChild(opt);
-            });
-        }
-
-        // Populates the State dropdown from Firestore
-        async function populateStates() {
-            const stateDropdown = document.getElementById("state");
-            stateDropdown.innerHTML = `<option value="">${translations[currentLanguage].loadingLocations}</option>`;
-            try {
-                // Fetch all locations from Firestore (public collection)
-                // Assumes fetchDataFromFirestore is available globally or imported
-                allLocationsData = await fetchDataFromFirestore('locations', false); 
-                const uniqueStates = [...new Set(allLocationsData.map(loc => loc.State))].sort();
-                addOptionsToSelect(stateDropdown, uniqueStates, translations[currentLanguage].selectStateOption);
-                if (uniqueStates.length === 0) {
-                    showMessage(translations[currentLanguage].noStatesFound, 3000, 'info');
-                }
-            } catch (error) {
-                console.error("Error populating states:", error);
-                showMessage(`${translations[currentLanguage].submissionError} ${error.message}`, 5000, 'error');
-                stateDropdown.innerHTML = `<option value="">${translations[currentLanguage].noStatesFound}</option>`;
-            }
-        }
-
-        // Populates the City dropdown based on selected State
-        function populateCities() {
-            const state = document.getElementById("state").value;
-            const cityDropdown = document.getElementById("city");
-            cityDropdown.innerHTML = `<option value="">${translations[currentLanguage].selectCityOption}</option>`; // Reset City
-
-            if (state) {
-                const uniqueCities = [...new Set(allLocationsData
-                    .filter(loc => loc.State === state)
-                    .map(loc => loc.City)
-                )].sort();
-                addOptionsToSelect(cityDropdown, uniqueCities, translations[currentLanguage].selectCityOption);
-                if (uniqueCities.length === 0) {
-                    showMessage(translations[currentLanguage].noCitiesFound, 3000, 'info');
-                }
-            } else {
-                 showMessage(translations[currentLanguage].selectStatePrompt, 2000, 'info');
-            }
-        }
-
-        function toggleDetails() {
-            // This function will still toggle display, but default is now 'block' in CSS
-            detailsBox.style.display = detailsBox.style.display === "none" ? "block" : "none";
-        }
-
-        // Function to clear all form fields
-        function clearForm() {
-            agentRegistrationForm.reset(); // Resets all form fields
-            passwordError.classList.remove('visible');
-            confirmPasswordError.classList.remove('visible');
-            passwordError.textContent = '';
-            confirmPasswordError.textContent = '';
-        }
-
-        // Function to submit agent form to Firestore
-        async function submitAgentForm() {
-            submitRequestButton.disabled = true; // Disable button during submission
-            showMessage("Submitting your request...", 0, 'info'); // Show persistent message
-
-            const password = passwordInput.value.trim();
-            const confirmPassword = confirmPasswordInput.value.trim();
-            let hasValidationErrors = false;
-
-            // Reset password errors
-            passwordError.classList.remove('visible');
-            confirmPasswordError.classList.remove('visible');
-            passwordError.textContent = '';
-            confirmPasswordError.textContent = '';
-
-            if (password.length < 6) {
-                passwordError.textContent = translations[currentLanguage].passwordTooShort;
-                passwordError.classList.add('visible');
-                hasValidationErrors = true;
-            }
-            if (password !== confirmPassword) {
-                confirmPasswordError.textContent = translations[currentLanguage].passwordMismatch;
-                confirmPasswordError.classList.add('visible');
-                hasValidationErrors = true;
-            }
-
-            if (hasValidationErrors) {
-                submitRequestButton.disabled = false;
-                showMessage(translations[currentLanguage].formValidationError, 4000, 'error');
+            if (!currentUserId) {
+                showMessage("You must be logged in to register as an agent. Please go to the Login/SignUp page.", true);
                 return;
             }
 
-            // Get selected file for profile photo
+            submitRequestButton.disabled = true;
+            submitSpinner.classList.remove('hidden');
+
             const profilePhotoFile = document.getElementById('profilePhoto').files[0];
-            let profilePhotoUrl = '';
-            // In a real application, you would upload this file to Firebase Storage
-            // and get a downloadable URL. For this example, we'll just check if a file is selected.
-            if (profilePhotoFile) {
-                // Placeholder for actual Firebase Storage upload logic.
-                // For now, we'll just indicate a file was selected.
-                // A real implementation would involve:
-                // 1. Get a storage reference: `const storageRef = ref(getStorage(app), 'agent_profile_photos/' + profilePhotoFile.name);`
-                // 2. Upload the file: `const uploadTask = uploadBytesResumable(storageRef, profilePhotoFile);`
-                // 3. Get download URL after upload completes: `getDownloadURL(uploadTask.snapshot.ref);`
-                console.log("Profile photo file selected:", profilePhotoFile.name);
-                // For demonstration, we can store a placeholder URL or indicate presence
-                profilePhotoUrl = `placeholder_url_for_${profilePhotoFile.name}`; // Replace with actual URL from Storage
-            }
-
-
-            const formData = {
-                firstName: document.getElementById('firstName').value.trim(),
-                lastName: document.getElementById('lastName').value.trim(),
-                gender: document.getElementById('gender').value,
-                age: parseInt(document.getElementById('age').value),
-                profession: document.getElementById('profession').value,
-                state: document.getElementById('state').value,
-                city: document.getElementById('city').value,
-                phoneNumber: document.getElementById('phone').value.trim(),
-                whatsappNumber: document.getElementById('whatsapp').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                address: document.getElementById('address').value.trim(),
-                aadhar: document.getElementById('aadhar').value.trim(),
-                profilePhotoUrl: profilePhotoUrl, // New: Add profile photo URL
-                bankName: document.getElementById('bank').value.trim(),
-                beneficiaryName: document.getElementById('beneficiary').value.trim(),
-                accountNumber: document.getElementById('account').value.trim(),
-                ifscCode: document.getElementById('ifsc').value.trim(),
-                password: password, // New: Add password (WARNING: In a real app, hash this server-side or use Firebase Auth)
-                termsAccepted: document.getElementById('termsAccepted').checked,
-                submissionDate: new Date().toISOString(),
-                status: 'pending', // Initial status for admin review
-                submittedByUserId: userId // Link to the submitting user
-            };
-
-            // Basic client-side validation for other required fields
-            const requiredFields = [
-                'firstName', 'lastName', 'gender', 'age', 'profession', 'state', 'city',
-                'phoneNumber', 'whatsappNumber', 'address', 'aadhar', 'bankName',
-                'beneficiaryName', 'accountNumber', 'ifscCode'
-            ];
-            for (const field of requiredFields) {
-                if (!formData[field] || String(formData[field]).trim() === '') {
-                    showMessage(`${translations[currentLanguage].formValidationError} Missing field: ${translations[currentLanguage][`${field}Label`] || field}`, 4000, 'error');
-                    submitRequestButton.disabled = false;
-                    return;
-                }
-            }
-            if (formData.phoneNumber.length !== 10 || !/^\d{10}$/.test(formData.phoneNumber)) {
-                showMessage(`${translations[currentLanguage].formValidationError} Invalid Phone Number. Must be 10 digits.`, 4000, 'error');
+            if (!profilePhotoFile) {
+                showMessage('Please upload a profile photo.', true);
                 submitRequestButton.disabled = false;
-                return;
-            }
-            if (formData.whatsappNumber.length !== 10 || !/^\d{10}$/.test(formData.whatsappNumber)) {
-                showMessage(`${translations[currentLanguage].formValidationError} Invalid WhatsApp Number. Must be 10 digits.`, 4000, 'error');
-                submitRequestButton.disabled = false;
-                return;
-            }
-            if (formData.aadhar.length !== 12 || !/^\d{12}$/.test(formData.aadhar)) {
-                showMessage(`${translations[currentLanguage].formValidationError} Invalid Aadhar Number. Must be 12 digits.`, 4000, 'error');
-                submitRequestButton.disabled = false;
-                return;
-            }
-            if (formData.age < 18) {
-                showMessage(`${translations[currentLanguage].formValidationError} Age must be 18 or above.`, 4000, 'error');
-                submitRequestButton.disabled = false;
-                return;
-            }
-            if (!formData.termsAccepted) {
-                showMessage(`${translations[currentLanguage].formValidationError} You must agree to the terms and policy.`, 4000, 'error');
-                submitRequestButton.disabled = false;
-                return;
-            }
-            if (!profilePhotoFile) { // Ensure a photo is selected
-                showMessage(`${translations[currentLanguage].formValidationError} Please upload your photo/logo.`, 4000, 'error');
-                submitRequestButton.disabled = false;
+                submitSpinner.classList.add('hidden');
                 return;
             }
 
             try {
-                // Upload to a public collection for agent requests
-                // Assumes uploadDataToFirestore is available globally or imported
-                await uploadDataToFirestore('agent_requests', [formData], false);
-                showMessage(translations[currentLanguage].requestSubmitted, 5000, 'success');
-                clearForm(); // Clear form on success
+                // Upload photo to Firebase Storage
+                const photoName = `${currentUserId}_${Date.now()}_${profilePhotoFile.name}`;
+                const storageRef = ref(storage, `agent_photos/${currentUserId}/${photoName}`);
+                await uploadBytes(storageRef, profilePhotoFile);
+                const photoURL = await getDownloadURL(storageRef);
+
+                const formData = {
+                    firstName: document.getElementById('firstName').value.trim(),
+                    lastName: document.getElementById('lastName').value.trim(),
+                    gender: document.getElementById('gender').value,
+                    age: parseInt(document.getElementById('age').value),
+                    profession: document.getElementById('profession').value,
+                    phoneNumber: document.getElementById('phone').value.trim(),
+                    whatsappNumber: document.getElementById('whatsapp').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    profilePhotoUrl: photoURL,
+                    address: document.getElementById('address').value.trim(),
+                    aadhar: document.getElementById('aadhar').value.trim(),
+                    bankName: document.getElementById('bank').value.trim(),
+                    beneficiaryName: document.getElementById('beneficiary').value.trim(),
+                    accountNumber: document.getElementById('account').value.trim(),
+                    ifscCode: document.getElementById('ifsc').value.trim(),
+                    status: 'pending',
+                    submittedByUserId: currentUserId,
+                    createdAt: serverTimestamp()
+                };
+
+                const docRef = await addDoc(collection(db, `artifacts/${appId}/public/data/agent_requests`), formData);
+                
+                showMessage('Agent registration submitted successfully! Your request is pending review.');
+                agentRegistrationForm.reset();
+                
             } catch (error) {
                 console.error("Error submitting agent request:", error);
-                showMessage(`${translations[currentLanguage].submissionError} ${error.message}`, 5000, 'error');
+                showMessage(`Error: ${error.message}`, true);
             } finally {
-                submitRequestButton.disabled = false; // Re-enable button
+                submitRequestButton.disabled = false;
+                submitSpinner.classList.add('hidden');
             }
-        }
-
-        // --- Event Listeners for Header and Sidebar (copied from search-profile-page) ---
-        backButton.addEventListener('click', () => {
-            history.back();
-        });
-
-        burgerMenuBtn.addEventListener('click', () => {
-            menuSidebar.classList.add('open');
-            let overlay = document.getElementById('overlay');
-            if (!overlay) {
-                overlay = document.createElement('div');
-                overlay.id = 'overlay';
-                overlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 hidden';
-                document.body.appendChild(overlay);
-            }
-            overlay.classList.add('open');
-        });
-
-        closeMenuBtn.addEventListener('click', () => {
-            menuSidebar.classList.remove('open');
-            document.getElementById('overlay').classList.remove('open');
-        });
-
-        document.body.addEventListener('click', (event) => {
-            const overlay = document.getElementById('overlay');
-            if (overlay && overlay.classList.contains('open') && !menuSidebar.contains(event.target) && !burgerMenuBtn.contains(event.target)) {
-                menuSidebar.classList.remove('open');
-                overlay.classList.remove('open');
-            }
-        });
-
-        menuSidebar.addEventListener('click', (event) => {
-            event.stopPropagation();
-        });
-
-        darkModeToggle.addEventListener('click', (event) => {
-            event.stopPropagation();
-            const isDark = body.classList.contains('dark-mode');
-            setDarkMode(!isDark);
-        });
-
-        themeSelect.addEventListener('change', (event) => {
-            event.stopPropagation();
-            applyTheme(event.target.value);
-        });
-
-        fontSizeSelect.addEventListener('change', (event) => {
-            event.stopPropagation();
-            applyFontSize(event.target.value);
-        });
-
-        languageSelect.addEventListener('change', (event) => {
-            event.stopPropagation();
-            currentLanguage = event.target.value;
-            applyLanguage(currentLanguage);
-            populateStates(); // Re-populate states to update language
-        });
-
-        settingsMenuParent.addEventListener('click', (event) => {
-            if (event.target === settingsMenuParent ||
-                event.target.closest('#settingsMenu > i') ||
-                event.target.closest('#settingsMenu > span:not(.caret)') ||
-                event.target.closest('#settingsMenu > .caret'))
-            {
-                settingsMenuParent.classList.toggle('open');
-            }
-        });
-
-        todayOfferButton.addEventListener('click', () => {
-            showMessage(translations[currentLanguage].todayOfferMsg);
-        });
-
-        resetDefaultsButton.addEventListener('click', (event) => {
-            event.stopPropagation();
-            localStorage.removeItem('selectedTheme');
-            localStorage.removeItem('isDarkMode');
-            localStorage.removeItem('selectedFontSize');
-            localStorage.removeItem('selectedLanguage');
-
-            applyTheme('default');
-            themeSelect.value = 'default';
-
-            setDarkMode(false);
-            
-            applyFontSize('medium');
-            fontSizeSelect.value = 'medium';
-
-            currentLanguage = 'en'; // Reset language to English
-            languageSelect.value = 'en';
-            applyLanguage(currentLanguage);
-
-            showMessage(translations[currentLanguage].resetDefaultsSuccess, 2000);
-            populateStates(); // Re-populate states for language update
-        });
-        
-        logoutButton.addEventListener('click', async () => {
-            try {
-                await signOut(auth);
-                showMessage('Logged out successfully!', 2000, 'success');
-                setTimeout(() => {
-                    window.location.href = 'authentication-page.html'; // Redirect to login/signup after logout
-                }, 1500);
-            } catch (error) {
-                console.error("Error logging out:", error);
-                showMessage(`Logout failed: ${error.message}`, 5000, 'error');
-            }
-        });
-
-        // New: Event listener for "Sign In as Agent" button
-        signInAsAgentBtn.addEventListener('click', () => {
-            window.location.href = 'authentication-page.html'; // Redirect to your authentication page
-        });
-
-
-        // Initial setup on DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Create an overlay div if it doesn't exist
-            let overlay = document.getElementById('overlay');
-            if (!overlay) {
-                overlay = document.createElement('div');
-                overlay.id = 'overlay';
-                overlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 hidden';
-                document.body.appendChild(overlay);
-            }
-
-            // Apply saved settings
-            currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
-            applyLanguage(currentLanguage); // Apply initial language and trigger UI updates
-
-            const storedTheme = localStorage.getItem('selectedTheme') || 'default';
-            applyTheme(storedTheme);
-            themeSelect.value = storedTheme;
-
-            const storedDarkMode = localStorage.getItem('isDarkMode') === 'true';
-            setDarkMode(storedDarkMode);
-            
-            const storedFontSize = localStorage.getItem('selectedFontSize') || 'medium';
-            applyFontSize(storedFontSize);
-            fontSizeSelect.value = storedFontSize;
-
-            languageSelect.value = currentLanguage; // Ensure dropdown reflects current language
-
-            // Initialize Firebase and load locations for dropdowns
-            await initializeFirebaseAndAuth();
-            await populateStates();
-
-            // Populate current city button based on session storage, or default
-            currentCityButton.textContent = `${translations[currentLanguage].currentCity} ${sessionStorage.getItem('selectedCity') || 'Miami'}`;
         });
     </script>
 </body>

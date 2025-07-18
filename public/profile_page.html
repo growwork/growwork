@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="profilePageTitle">Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4ff; }
+        .spinner { border: 4px solid rgba(0,0,0,0.1); border-top-color: #4f46e5; border-radius: 50%; width: 48px; height: 48px; animation: spin 1s linear infinite; margin: 4rem auto; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Shared Styles */
+        .profile-card-wrapper { max-width: 800px; margin: 2rem auto; }
+        .profile-card { background-color: white; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); padding: 2rem; }
+        .action-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .action-button { padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); color: white; }
+        .action-button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); }
+        .action-button:disabled { cursor: not-allowed; opacity: 0.6; }
+        
+        /* Public Visiting Card */
+        .visiting-card-container { background: linear-gradient(135deg, #4338ca, #312e81); color: #d1d5db; text-align:center; padding: 2rem;}
+        .visiting-card-container .company-name { font-family: 'Great Vibes', cursive; font-size: 3rem; line-height: 1; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        .visiting-card-container .details-item i { width: 1.5rem; text-align: center; margin-right: 0.75rem; color: #a5b4fc;}
+        
+        /* Owner Dashboard */
+        .dashboard-header { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 1.5rem; margin-bottom: 1.5rem;}
+        .dashboard-profile-picture { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #818cf8; }
+        .profile-status { font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 9999px; text-transform: capitalize; }
+        .profile-status.pending { background-color: #fef08a; color: #854d0e; }
+        .profile-status.approved { background-color: #dcfce7; color: #166534; }
+        .profile-status.deactivated { background-color: #e5e7eb; color: #4b5563; }
+        .profile-status.rejected { background-color: #fee2e2; color: #991b1b; }
+        
+        /* Modal */
+        body.modal-open { overflow: hidden; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
+        .modal.show { display: flex; align-items: center; justify-content: center; }
+        .modal-content { background-color: #fff; padding: 2rem; border-radius: 0.75rem; width: 90%; max-width: 450px; text-align: center; animation: popIn 0.3s ease-out; }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body class="min-h-screen font-sans">
+    <header class="bg-gradient-to-r from-indigo-600 to-blue-700 text-white p-4 flex items-center justify-between shadow-lg">
+        <h1 id="headerTitle" class="text-xl font-bold flex-grow text-center">Profile</h1>
+        <a href="Homepage.html" id="homeButton" class="absolute right-4 text-white hover:text-gray-200">
+             <i class="fas fa-home"></i>
+        </a>
+    </header>
+
+    <main id="main-content" class="container mx-auto p-4 flex-grow">
+        <div id="profileContainer">
+             <div class="spinner"></div>
+             <p id="loadingMessage" class="text-center text-gray-500">Loading profile...</p>
+        </div>
+    </main>
+    
+    <div id="deactivateModal" class="modal">
+        <div class="modal-content">
+            <h3 class="text-xl font-bold mb-4 text-gray-800">Confirm Deactivation</h3>
+            <p class="mb-6 text-gray-600">Are you sure? Your profile will be hidden from search results but not deleted. You can reactivate it anytime.</p>
+            <div class="flex justify-center gap-4">
+                <button id="cancelDeactivate" class="action-button bg-gray-500 hover:bg-gray-600">Cancel</button>
+                <button id="confirmDeactivate" class="action-button bg-red-600 hover:bg-red-700">Deactivate</button>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+        
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        let viewerId = null;
+        let profileData = null;
+        let profileId = null;
+        
+        const profileContainer = document.getElementById('profileContainer');
+        const headerTitle = document.getElementById('headerTitle');
+        const deactivateModal = document.getElementById('deactivateModal');
+
+        onAuthStateChanged(auth, async (user) => {
+            viewerId = user ? user.uid : null;
+            await main();
+        });
+
+        async function main() {
+            const urlParams = new URLSearchParams(window.location.search);
+            profileId = urlParams.get('id');
+            
+            if (!profileId) {
+                if (viewerId) profileId = viewerId;
+                else { renderLoginPrompt(); return; }
+            }
+
+            try {
+                profileData = await fetchProfileData(profileId);
+                if (profileData) {
+                    const isOwner = viewerId && viewerId === profileId;
+                    renderProfileView(isOwner, profileData);
+                } else {
+                    renderProfileNotFound();
+                }
+            } catch (error) {
+                renderErrorState(error.message);
+            }
+        }
+        
+        async function fetchProfileData(pid) {
+            let docRef = doc(db, `artifacts/${appId}/public/data/service_providers`, pid);
+            let docSnap = await getDoc(docRef);
+            if (docSnap.exists()) return { id: docSnap.id, ...docSnap.data() };
+            return null;
+        }
+        
+        function renderProfileView(isOwner, data) {
+            headerTitle.textContent = isOwner ? "My Dashboard" : `${data.name}'s Profile`;
+            const isPubliclyVisible = data.status === 'approved';
+
+            if (!isPubliclyVisible && !isOwner) {
+                renderErrorState("This profile is not currently public.");
+                return;
+            }
+
+            profileContainer.innerHTML = isOwner ? generateProviderDashboardHTML(data) : generatePublicCardHTML(data);
+            setupViewEventListeners(isOwner);
+        }
+
+        function generateProviderDashboardHTML(data) {
+            const statusClass = `profile-status ${data.status}`;
+            const toggleButtonText = data.status === 'approved' ? 'Deactivate' : 'Activate';
+            const toggleButtonColor = data.status === 'approved' ? 'bg-yellow-500' : 'bg-green-500';
+            const canToggle = data.status === 'approved' || data.status === 'deactivated';
+
+            return `
+            <div class="profile-card-wrapper">
+                <div class="profile-card">
+                    <div class="dashboard-header">
+                        <img src="${data.profilePictureUrl || 'https://via.placeholder.com/120'}" alt="${data.name}" class="dashboard-profile-picture"/>
+                        <h2 class="text-3xl font-bold mt-4">${data.name}</h2>
+                        <p class="text-gray-500">${data.type}</p>
+                        <span class="${statusClass}">${data.status}</span>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <div><strong class="text-gray-800">Email:</strong><span class="text-gray-600 ml-2">${data.email || 'N/A'}</span></div>
+                        <div><strong class="text-gray-800">Phone:</strong><span class="text-gray-600 ml-2">${data.serviceBusinessMobileNumber || 'N/A'}</span></div>
+                        <div><strong class="text-gray-800">Address:</strong><span class="text-gray-600 ml-2">${data.fullAddress || 'N/A'}</span></div>
+                        ${data.status === 'pending' ? `<div class="mt-4 p-3 bg-blue-50 text-blue-700 rounded-lg text-sm">Your profile is under review. You'll be notified upon approval.</div>` : ''}
+                    </div>
+                </div>
+                 <div class="action-buttons">
+                    <a href="form_with_payment.html?userId=${profileId}" class="action-button bg-blue-600 hover:bg-blue-700">Edit Profile</a>
+                    <button id="toggleStatusBtn" class="action-button ${toggleButtonColor}" ${!canToggle ? 'disabled' : ''}>${toggleButtonText}</button>
+                    <a href="anchor_ad_form.html" class="action-button bg-purple-600 hover:bg-purple-700">Create Anchor Ad</a>
+                </div>
+            </div>`;
+        }
+        
+        function generatePublicCardHTML(data) {
+             return `<div class="profile-card-wrapper">
+                        <div class="profile-card visiting-card-container">
+                            <img src="${data.profilePictureUrl || 'https://via.placeholder.com/100'}" alt="${data.name}" class="w-28 h-28 rounded-full mx-auto mb-4 border-4 border-indigo-200 shadow-lg"/>
+                            <h2 class="company-name">${data.name}</h2>
+                            <p class="text-indigo-200 font-semibold mb-6 tracking-widest">${data.service1}</p>
+                            <div class="text-left space-y-3 text-lg">
+                                <p class="details-item flex items-start"><i class="fas fa-map-marker-alt mt-1"></i> <span>${data.fullAddress || 'Address not available'}</span></p>
+                                <p class="details-item flex items-start"><i class="fas fa-phone mt-1"></i> <span>${data.serviceBusinessMobileNumber || 'Phone not available'}</span></p>
+                                <p class="details-item flex items-start"><i class="far fa-clock mt-1"></i> <span>${data.openTime} - ${data.closeTime}</span></p>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                             <a href="tel:${data.serviceBusinessMobileNumber}" class="action-button bg-green-500 hover:bg-green-600 text-lg">
+                               <i class="fas fa-phone"></i> Call Now
+                             </a>
+                             <a href="https://wa.me/${data.serviceBusinessMobileNumber}?text=Hello%2C%20I%20found%20you%20on%20GrowWork." target="_blank" class="action-button bg-blue-500 hover:bg-blue-600 text-lg">
+                               <i class="fab fa-whatsapp"></i> WhatsApp
+                             </a>
+                        </div>
+                    </div>`;
+        }
+
+        // Helper functions for error/state rendering
+        function renderLoginPrompt() { profileContainer.innerHTML = `<div class="profile-card text-center"><p>Please <a href="login-signup-page.html" class="text-indigo-600 font-semibold hover:underline">log in</a> to view your profile.</p></div>`; }
+        function renderProfileNotFound() { profileContainer.innerHTML = `<div class="profile-card text-center"><p>This profile does not exist.</p></div>`; }
+        function renderErrorState(message) { profileContainer.innerHTML = `<div class="profile-card text-center bg-red-50 text-red-700"><p><strong>Error:</strong> ${message}</p></div>`; }
+
+        function setupViewEventListeners(isOwner) {
+            if (isOwner) {
+                const toggleBtn = document.getElementById('toggleStatusBtn');
+                toggleBtn?.addEventListener('click', () => {
+                     if (profileData.status === 'approved') showModal(deactivateModal);
+                     else if(profileData.status === 'deactivated') updateProfileStatus('approved');
+                });
+            }
+        }
+        
+        function showModal(modal) { modal.classList.add('show'); document.body.classList.add('modal-open'); }
+        function hideModal(modal) { modal.classList.remove('show'); document.body.classList.remove('modal-open'); }
+
+        async function updateProfileStatus(newStatus) {
+            if (!viewerId) return;
+            const docRef = doc(db, `artifacts/${appId}/public/data/service_providers`, viewerId);
+            try {
+                await updateDoc(docRef, { status: newStatus });
+                profileData.status = newStatus; // Update local state
+                renderProfileView(true, profileData); // Re-render the view
+            } catch(e) { console.error("Failed to update status: ", e); }
+        }
+        
+        document.getElementById('confirmDeactivate').addEventListener('click', () => { updateProfileStatus('deactivated'); hideModal(deactivateModal); });
+        document.getElementById('cancelDeactivate').addEventListener('click', () => hideModal(deactivateModal));
+        
+    </script>
+</body>
+</html>

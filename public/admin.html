@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GrowWork Admin Dashboard</title>
+  <!-- Link to the external CSS file -->
+  <link rel="stylesheet" href="admin_styles.css"> 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="passwordGate" class="modal-overlay active">
+  <div class="modal-content" style="text-align: center;">Checking if its really you..</div>
+</div>
+
+<div id="adminPanel" class="hidden">
+  <div class="sidebar">
+    <div class="logo">GrowWork</div>
+    <nav id="main-nav">
+      <a data-section="categories" class="active">Categories</a>
+      <a data-section="services">Services</a>
+      <a data-section="locations">Locations</a>
+    </nav>
+    <footer>
+        <button id="logoutButton" class="btn-secondary" style="width: 100%;">Goback</button>
+    </footer>
+  </div>
+
+  <main id="pageContent" class="main-content">
+    <header class="header">
+      <h2 id="current-section-title">Categories</h2>
+    </header>
+
+    <!-- Categories Section -->
+    <div id="categories" class="section">
+      <div class="section-header">
+        <h3>Manage Categories</h3>
+        <div class="search-container">
+             <input type="search" id="searchCategories" placeholder="Search by name, tag, or keywords...">
+        </div>
+        <button id="showCreateCategoryModal" class="btn-success">Create Category</button>
+      </div>
+      <div id="categoriesList" class="cards-container"></div>
+      <div id="categoriesPagination" class="pagination-controls"></div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="services" class="section hidden">
+      <div class="section-header">
+        <h3>Manage Services</h3>
+         <div class="search-container">
+             <input type="search" id="searchServices" placeholder="Search by name, tag, or keywords...">
+        </div>
+        <button id="showCreateServiceModal" class="btn-success">Create Service</button>
+      </div>
+      <div id="servicesList" class="cards-container"></div>
+      <div id="servicesPagination" class="pagination-controls"></div>
+    </div>
+
+    <!-- Locations Section (Table View) -->
+    <div id="locations" class="section hidden">
+      <div class="section-header">
+          <h3>Manage Locations</h3>
+          <div class="search-container">
+             <input type="search" id="searchLocations" placeholder="Search by state, city, or area...">
+          </div>
+      </div>
+      <div class="form-container">
+          <input type="file" id="csvFileInput" accept=".csv" />
+          <button id="uploadCsvBtn" class="btn-secondary">Upload CSV</button>
+          <div id="uploadWarning" style="margin-top: 10px; color: red; font-weight: 500;"></div>
+          <progress id="uploadProgressBar" value="0" max="100" style="width:100%; height:20px; display:none; margin-top:10px;"></progress>
+          <small style="display:block; margin-top:5px; color:gray;">Expected CSV columns: state, city, area, action (ADD or DELETE)</small>
+
+          <input type="text" id="newState" placeholder="State" required>
+          <input type="text" id="newCity" placeholder="City" required>
+          <input type="text" id="newArea" placeholder="Area" required>
+          <button id="addLocationBtn" class="btn-primary">Add Location</button>
+      </div>
+      
+      <div id="locationsContainer">
+          <table class="data-table">
+              <thead>
+                  <tr>
+                      <th>State</th>
+                      <th>City</th>
+                      <th>Areas</th>
+                      <th class="actions">Actions</th>
+                  </tr>
+              </thead>
+              <tbody id="locationsTableBody">
+                  <!-- Rows will be injected here by JavaScript -->
+              </tbody>
+          </table>
+      </div>
+      <div id="locationsPagination" class="pagination-controls"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Generic Create/Edit Modal -->
+<div id="itemModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3 id="modalTitle"></h3>
+        <form id="itemForm">
+            <input type="hidden" id="docId">
+            <input type="hidden" id="collectionName">
+            <input type="hidden" id="itemType">
+            <div id="formFields"></div>
+            <div class="modal-buttons">
+                <button type="button" id="cancelModalBtn" class="btn-secondary">Cancel</button>
+                <button type="submit" id="saveModalBtn" class="btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="utils.js"></script>
+<script type="module" src="admin.js"></script>

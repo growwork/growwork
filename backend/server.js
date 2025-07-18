@@ -2,66 +2,77 @@
 
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') }); // Important: Load .env from the root
+const fs = require('fs'); // <--- THIS WAS THE CRITICAL FIX
+
+// Correctly load the .env file from the parent directory
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// Your secret Firebase configuration and App ID from the .env file
-const firebaseConfig = process.env.FIREBASE_CONFIG;
-const appId = process.env.APP_ID;
+// --- Step 1: Build the Firebase Config object securely on the server ---
+const firebaseConfig = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+};
 
-if (!firebaseConfig || !appId) {
-    console.error("FATAL ERROR: FIREBASE_CONFIG or APP_ID is not defined in your .env file.");
-    process.exit(1);
+// Add a check to see if .env loaded correctly
+if (!firebaseConfig.apiKey) {
+    console.error("FATAL ERROR: Firebase API Key is missing. Check that your .env file is being loaded correctly.");
+    process.exit(1); 
 }
 
-// Path to your public folder containing HTML files
+// --- Step 2: Set up path to the 'public' folder ---
 const publicPath = path.join(__dirname, '../public');
+console.log(`Serving static files from: ${publicPath}`);
 
-// Serve static assets like images or CSS if you add them later
-app.use(express.static(publicPath));
 
-// This is the core logic: handle every request
-app.get('*', (req, res) => {
-    // Determine which HTML file to send. Defaults to the login page for the root path.
-    let pageName = 'login-signup-page.html'; // Default page
-    if (req.path !== '/') {
-        pageName = req.path.substring(1); // Get filename from URL, e.g., /User_profile_page.html -> User_profile_page.html
-    }
-
-    const filePath = path.join(publicPath, pageName);
-
-    // Read the requested HTML file from disk
+// --- Step 3: Create a function to render and inject config into HTML ---
+function renderHtmlWithConfig(filePath, res) {
     fs.readFile(filePath, 'utf8', (err, htmlData) => {
         if (err) {
-            // If the file doesn't exist, send a 404 Not Found error
-            return res.status(404).send(`Page not found: ${pageName}`);
+            console.error(`Error reading HTML file: ${filePath}`, err);
+            return res.status(404).send('Page not found');
         }
 
-        // --- DYNAMIC INJECTION OF FIREBASE CONFIG ---
-        // This is where we securely inject the config into the HTML before sending it to the user.
-        let content = htmlData.replace(
-            "typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};",
-            `${firebaseConfig};`
-        );
-        content = content.replace(
-            "typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';",
-            `'${appId}';`
-        );
-         content = content.replace(
-            "typeof __initial_auth_token !== 'undefined' && __initial_auth_token",
-            "false" // We will handle authentication on the client-side
-        );
-        
-        // Send the modified HTML to the user's browser
-        res.header('Content-Type', 'text/html');
-        res.send(content);
+        const injectedConfig = JSON.stringify(firebaseConfig);
+
+        let content = htmlData
+            .replace(
+                "const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};",
+                `const firebaseConfig = ${injectedConfig};`
+            )
+            .replace(
+                "const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';",
+                `const appId = '${firebaseConfig.appId}';`
+            )
+            .replace(
+                "if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token)",
+                "if (false)"
+            );
+
+        res.header('Content-Type', 'text/html').send(content);
     });
+}
+
+// --- Step 4: Define routes for your pages (BEFORE static middleware) ---
+app.get('/', (req, res) => {
+    renderHtmlWithConfig(path.join(publicPath, 'Homepage.html'), res);
 });
 
+app.get('/*.html', (req, res) => {
+    const filePath = path.join(publicPath, req.path);
+    renderHtmlWithConfig(filePath, res);
+});
+
+// --- Step 5: Serve static assets AFTER dynamic routes ---
+app.use(express.static(publicPath));
+
+
 app.listen(PORT, () => {
-    console.log(`GrowWork server is now running on http://localhost:${PORT}`);
-    console.log(`Serving files from: ${publicPath}`);
+    console.log(`✅ GrowWork server is running on http://localhost:${PORT}`);
 });

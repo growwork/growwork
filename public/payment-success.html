@@ -12,23 +12,28 @@
         @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
+<body class="flex items-center justify-center min-h-screen p-4">
     <div class="success-container bg-white p-10 rounded-2xl shadow-xl text-center max-w-lg">
         <svg class="w-20 h-20 text-green-500 mx-auto mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         <h1 class="text-3xl font-extrabold text-gray-800 mb-3">Payment Successful!</h1>
-        <p class="text-gray-600 mb-6">Your profile is now submitted for admin review. You will be notified once it is approved.</p>
-        <p class="text-sm text-gray-500 mb-6">Your Profile ID is: <strong id="profileIdDisplay"></strong></p>
-        <a href="/User_profile_page.html" class="inline-block bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition">Go to My Profile</a>
+        <p class="text-gray-600 mb-6">Your profile has been submitted for admin review. You will be notified once it is approved.</p>
+        <p class="text-sm text-gray-500 mb-6">Your Profile ID is: <strong id="profileIdDisplay" class="font-mono bg-gray-100 p-1 rounded"></strong></p>
+        <a id="goToProfileLink" href="profile_page.html" class="inline-block bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition">Go to My Profile</a>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const profileId = urlParams.get('userId'); // Matches the param from form_with_payment.html
-            if (profileId) {
-                document.getElementById('profileIdDisplay').textContent = profileId;
+            const userId = urlParams.get('userId');
+            const profileIdDisplay = document.getElementById('profileIdDisplay');
+            const goToProfileLink = document.getElementById('goToProfileLink');
+            
+            if (userId) {
+                profileIdDisplay.textContent = userId;
+                // **IMPORTANT:** The link to the profile now correctly includes the user's ID
+                goToProfileLink.href = `profile_page.html?id=${userId}`;
             } else {
-                document.getElementById('profileIdDisplay').textContent = 'Not found';
+                profileIdDisplay.textContent = 'Not found';
             }
         });
     </script>
